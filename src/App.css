@@ -1,0 +1,58 @@
+#root {
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  padding: 2rem;
+  /* text-align: center; */
+}
+html {
+  background-color: #232323;
+  color: #16db65;
+  font-family: "Roboto", sans-serif;
+}
+.h1OnPage {
+  color: white;
+}
+.HomePage {
+  background-color: #0d2818;
+  border: 1px solid #04471c;
+}
+.GameDetails {
+  margin: none;
+  padding: none;
+  color: white;
+  text-align: left;
+}
+.LeagueBar {
+  display: inline-block;
+}
+.LeagueLogo {
+  max-width: 20%;
+  text-align: right;
+  border-radius: 4px;
+  padding: none;
+  margin-bottom: 6px;
+}
+.ClubVsClub {
+  background-color: rgba(255, 255, 255, 0.094);
+  text-align: center;
+  padding: 2px;
+}
+.ClubVsClub h1 {
+  font-size: 200%;
+}
+.ClubVsClub img {
+  max-width: 10%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.LeagueIcon {
+  border-radius: 10%;
+  max-width: 10%;
+  margin-left: 0px;
+  margin-right: 10px;
+}
+.BadgeInTable {
+  max-width: 8%;
+  /* background-color: rgba(0, 0, 255, 0.575); */
+}
