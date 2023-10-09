@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import LeagueTable from "./LeagueTable";
 import Stack from "@mui/material/Stack";
 import TeamInfoCard from "./TeamInfoCard";
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -60,7 +59,7 @@ export default function BasicGrid({
     <>
       <Box sx={{ flexGrow: 1, marginTop: "40px" }}>
         <Grid container spacing={2}>
-          <Grid item xs={5}>
+          <Grid item xs={12} sm={5}>
             <Stack spacing={2}>
               <Item
                 sx={{
@@ -73,11 +72,6 @@ export default function BasicGrid({
                   club={club}
                   setYourClubsList={setYourClubsList}
                 />
-
-                {/* <p>Club info:</p>
-                <h3>{club.team_name}</h3>
-                <h2> Founded: {club.team_founded}</h2>
-                <h3>Venue: {club.venue.venue_name}</h3> */}
               </Item>
               <Item
                 sx={{
@@ -98,7 +92,7 @@ export default function BasicGrid({
             </Stack>
           </Grid>
           {!showTable ? (
-            <Grid item xs={7}>
+            <Grid item xs={12} sm={7}>
               <Item
                 sx={{
                   backgroundColor: " #04471C",
@@ -110,21 +104,42 @@ export default function BasicGrid({
                     (match, i) =>
                       value == match.match_date && (
                         <div className="GameDetails" key={i}>
-                          <div className="LeagueBar">
-                            <img
-                              style={{ cursor: "pointer" }}
-                              onClick={() => {
-                                handleShowTable(match.league_id);
-                                console.log(match.league_id);
-                              }}
-                              src={match.league_logo}
-                              alt={match.league_name}
-                              className="LeagueLogo"
-                            />
-                            <p>
-                              {match.league_name} - Round {match.match_round}
-                            </p>
-                          </div>
+                          <Grid container spacing={0}>
+                            <Grid xs={4}>
+                              <Item
+                                sx={{
+                                  background: "rgba(0,0,0,0.0)",
+                                  borderRadius: "0px",
+                                  boxShadow: "none",
+                                }}
+                              >
+                                <img
+                                  className="LeagueIcon"
+                                  onClick={() => {
+                                    handleShowTable(match.league_id);
+                                    console.log(match.league_id);
+                                  }}
+                                  src={match.league_logo}
+                                  alt=""
+                                />
+                              </Item>
+                            </Grid>
+                            <Grid xs={8}>
+                              <Item
+                                sx={{
+                                  color: "white",
+                                  background: "rgba(0,0,0,0.0)",
+                                  borderRadius: "0px",
+                                  boxShadow: "none",
+                                }}
+                              >
+                                <h2>
+                                  {match.league_name} - Round{" "}
+                                  {match.match_round}
+                                </h2>
+                              </Item>
+                            </Grid>
+                          </Grid>
                           <div className="ClubVsClub">
                             <h1>
                               <img src={match.team_home_badge} alt="" />
@@ -151,7 +166,7 @@ export default function BasicGrid({
               </Item>
             </Grid>
           ) : (
-            <Grid item xs={7}>
+            <Grid item xs={12} sm={7}>
               <Item
                 sx={{
                   backgroundColor: "#04471C",

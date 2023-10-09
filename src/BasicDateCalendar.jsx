@@ -11,10 +11,6 @@ export default function BasicDateCalendar({
   matchesData,
   setShowTable,
 }) {
-  // dodac kalendarz
-  // formularz z z dodawaniem meczow na listę / dodawanie zespolu z API
-  // klikasz na dzien w kalendarzu i obok wyswietla sie mecz
-  // dodawanie herbów z API
   return (
     <>
       <LocalizationProvider
@@ -36,6 +32,7 @@ export default function BasicDateCalendar({
               ".MuiButtonBase-root": { bgcolor: "#058C42" },
               ".Mui-selected": { bgcolor: "#16DB65" },
               ".MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
+              maxWidth: "100%",
             }}
           />
         </DemoContainer>

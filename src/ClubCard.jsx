@@ -27,7 +27,7 @@ export default function BasicGrid({ clubs }) {
 
 function Club({ club }) {
   return (
-    <Grid xs={3}>
+    <Grid xs={12} sm={4} md={3}>
       <Link to={`/${club.team_name}`}>
         <Item
           sx={{

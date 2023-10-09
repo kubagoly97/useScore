@@ -1,7 +1,6 @@
 import * as React from "react";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { OneButton } from "./OneButton";
-
 export default function Buttons({
   fetchSpainData,
   fetchSpain2Data,
