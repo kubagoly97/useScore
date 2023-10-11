@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import LeagueTable from "./LeagueTable";
 import Stack from "@mui/material/Stack";
 import TeamInfoCard from "./TeamInfoCard";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -104,54 +105,71 @@ export default function BasicGrid({
                     (match, i) =>
                       value == match.match_date && (
                         <div className="GameDetails" key={i}>
-                          <Grid container spacing={0}>
-                            <Grid xs={4}>
-                              <Item
-                                sx={{
-                                  background: "rgba(0,0,0,0.0)",
-                                  borderRadius: "0px",
-                                  boxShadow: "none",
-                                }}
-                              >
-                                <img
-                                  className="LeagueIcon"
-                                  onClick={() => {
-                                    handleShowTable(match.league_id);
-                                    console.log(match.league_id);
-                                  }}
-                                  src={match.league_logo}
-                                  alt=""
-                                />
-                              </Item>
-                            </Grid>
-                            <Grid xs={8}>
-                              <Item
-                                sx={{
-                                  color: "white",
-                                  background: "rgba(0,0,0,0.0)",
-                                  borderRadius: "0px",
-                                  boxShadow: "none",
-                                }}
-                              >
-                                <h2>
-                                  {match.league_name} - Round{" "}
-                                  {match.match_round}
-                                </h2>
-                              </Item>
-                            </Grid>
-                          </Grid>
                           <div className="ClubVsClub">
+                            <section
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                fontFamily: "sans-serif",
+                                borderRadius: "3px",
+                              }}
+                            >
+                              <img
+                                onClick={() => {
+                                  handleShowTable(match.league_id);
+                                  console.log(match.league_id);
+                                }}
+                                style={{
+                                  maxWidth: "25%",
+                                  maxHeight: "50px",
+                                  borderRadius: "3px",
+                                  cursor: "pointer",
+                                }}
+                                src={match.league_logo}
+                                alt={match.league_logo}
+                              />
+                              <div style={{ paddingLeft: "10px" }}>
+                                <p>
+                                  {match.league_name} - {match.match_round}.
+                                  round - {match.match_date} {match.match_time}
+                                </p>
+                              </div>
+                            </section>
                             <h1>
-                              <img src={match.team_home_badge} alt="" />
-                              {match.match_hometeam_name}{" "}
-                              {match.match_hometeam_score}-
-                              {match.match_awayteam_score}{" "}
-                              {match.match_awayteam_name}{" "}
-                              <img src={match.team_away_badge} alt="" />
+                              {match.match_hometeam_name} -{" "}
+                              {match.match_awayteam_name}
                             </h1>
-                            <h2>
-                              {match.match_date} - {match.match_time}
-                            </h2>
+                            <Box
+                              sx={{
+                                textAlign: "left",
+                                paddingRight: "none",
+                                width: "100%",
+                              }}
+                            >
+                              <img
+                                src={match.team_home_badge}
+                                alt={match.team_home_badge}
+                                style={{
+                                  borderRadius: "2px",
+                                  paddingLeft: "60px",
+                                }}
+                              />
+                              <img
+                                style={{
+                                  textAlign: "right",
+                                  float: "right",
+                                  borderRadius: "2px",
+                                  paddingRight: "60px",
+                                }}
+                                src={match.team_away_badge}
+                                alt={match.team_away_badge}
+                              />
+                            </Box>
+                            <h1>
+                              {" "}
+                              {match.match_hometeam_score}:
+                              {match.match_awayteam_score}{" "}
+                            </h1>
                             <h3>{match.match_stadium}</h3>
                             <h4>
                               Referee:{" "}

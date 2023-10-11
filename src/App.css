@@ -41,10 +41,8 @@ html {
   font-size: 200%;
 }
 .ClubVsClub img {
-  max-width: 10%;
+  max-width: 20%;
   height: auto;
-  padding: 0;
-  margin: 0;
 }
 .LeagueIcon {
   border-radius: 10%;
@@ -55,4 +53,9 @@ html {
 .BadgeInTable {
   max-width: 8%;
   /* background-color: rgba(0, 0, 255, 0.575); */
+}
+.ClubImageOnList {
+  max-width: 100%;
+  height: auto;
+  /* background: rgba(0, 0, 0, 0.274); */
 }
