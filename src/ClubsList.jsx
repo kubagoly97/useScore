@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 export default function ClubsList({
   yourClubsList,
   setYourClubsList,
@@ -42,7 +43,10 @@ export default function ClubsList({
                     );
                   }}
                 >
-                  ❌
+                  <DeleteForeverIcon
+                    fontSize="large"
+                    sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                  />
                 </button>
               }
             >
