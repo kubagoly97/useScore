@@ -8,8 +8,10 @@ import { useEffect, useState } from "react";
 import LeagueTable from "./LeagueTable";
 import Stack from "@mui/material/Stack";
 import TeamInfoCard from "./TeamInfoCard";
+import { Scorers } from "./Scorers";
+import { LeagueDetailsInMatchComponent } from "./LeagueDetailsInMatchComponent";
 
-const Item = styled(Paper)(({ theme }) => ({
+export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -80,15 +82,13 @@ export default function BasicGrid({
                   border: "2px dashed #0D2818",
                 }}
               >
-                <>
-                  <BasicDateCalendar
-                    value={value}
-                    setValue={setValue}
-                    matchesData={matchesData}
-                    setMatchesData={setMatchesData}
-                    setShowTable={setShowTable}
-                  />
-                </>
+                <BasicDateCalendar
+                  value={value}
+                  setValue={setValue}
+                  matchesData={matchesData}
+                  setMatchesData={setMatchesData}
+                  setShowTable={setShowTable}
+                />
               </Item>
             </Stack>
           </Grid>
@@ -106,35 +106,10 @@ export default function BasicGrid({
                       value == match.match_date && (
                         <div className="GameDetails" key={i}>
                           <div className="ClubVsClub">
-                            <section
-                              style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                fontFamily: "sans-serif",
-                                borderRadius: "3px",
-                              }}
-                            >
-                              <img
-                                onClick={() => {
-                                  handleShowTable(match.league_id);
-                                  console.log(match.league_id);
-                                }}
-                                style={{
-                                  maxWidth: "25%",
-                                  maxHeight: "50px",
-                                  borderRadius: "3px",
-                                  cursor: "pointer",
-                                }}
-                                src={match.league_logo}
-                                alt={match.league_logo}
-                              />
-                              <div style={{ paddingLeft: "10px" }}>
-                                <p>
-                                  {match.league_name} - {match.match_round}.
-                                  round - {match.match_date} {match.match_time}
-                                </p>
-                              </div>
-                            </section>
+                            <LeagueDetailsInMatchComponent
+                              handleShowTable={handleShowTable}
+                              match={match}
+                            />
                             <h1>
                               {match.match_hometeam_name} -{" "}
                               {match.match_awayteam_name}
@@ -144,6 +119,11 @@ export default function BasicGrid({
                                 textAlign: "left",
                                 paddingRight: "none",
                                 width: "100%",
+                                paddingTop: "10px",
+                                paddingBottom: "10px",
+                                backgroundColor: "rgba(255,255,255,0.1)",
+                                borderTop: "1px solid grey",
+                                borderBottom: "1px solid grey",
                               }}
                             >
                               <img
@@ -165,18 +145,44 @@ export default function BasicGrid({
                                 alt={match.team_away_badge}
                               />
                             </Box>
-                            <h1>
-                              {" "}
-                              {match.match_hometeam_score}:
-                              {match.match_awayteam_score}{" "}
+                            <h1
+                              style={{
+                                fontSize: "50px",
+                                paddingTop: "10px",
+                                paddingBottom: "10px",
+                                backgroundColor: "rgba(255,255,255,0.1)",
+                                borderTop: "1px solid grey",
+                                borderBottom: "1px solid grey",
+                              }}
+                            >
+                              {match.match_hometeam_score
+                                ? match.match_hometeam_score
+                                : " - "}
+                              :
+                              {match.match_awayteam_score
+                                ? match.match_awayteam_score
+                                : " - "}
                             </h1>
-                            <h3>{match.match_stadium}</h3>
+                            <h3>
+                              {`(${
+                                match.match_hometeam_halftime_score
+                                  ? match.match_hometeam_halftime_score
+                                  : " - "
+                              }:${
+                                match.match_awayteam_halftime_score
+                                  ? match.match_awayteam_halftime_score
+                                  : " - "
+                              })`}
+                            </h3>
+                            <Scorers match={match} />
                             <h4>
                               Referee:{" "}
                               {match.match_referee
                                 ? match.match_referee
                                 : "More details before the game"}
                             </h4>
+                            <h5>{match.match_stadium}</h5>
+                            <h6>{match.match_status}</h6>
                           </div>
                         </div>
                       )
