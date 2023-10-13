@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import ClubCard from "./ClubCard";
-import Buttons from "./Buttons";
 import Loading from "./Loading";
 import { useEffect } from "react";
 import ClubsList from "./ClubsList";
@@ -36,13 +35,6 @@ export default function HomePage({
 
   return (
     <>
-      <Buttons
-        fetchSpainData={fetchSpainData}
-        fetchEnglishData={fetchEnglishData}
-        fetchSpain2Data={fetchSpain2Data}
-        fetchGermanyData={fetchGermanyData}
-        fetchEkstraklasaData={fetchEkstraklasaData}
-      />
       {isLoading && <Loading />}
       {showClubList ? (
         <>

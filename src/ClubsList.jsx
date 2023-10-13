@@ -16,6 +16,7 @@ export default function ClubsList({
     <List
       dense
       sx={{
+        flexGrow: 1,
         width: "100%",
         maxWidth: 360,
         backgroundColor: "#04471C",

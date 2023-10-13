@@ -29,7 +29,7 @@ export default function LeagueTable({ table, club }) {
         </TableHead>
 
         {table.length &&
-          table.map((team) => (
+          table.map((team,i) => (
             <TableBody key={team.team_key}>
               <TableRow
                 style={{
@@ -43,7 +43,7 @@ export default function LeagueTable({ table, club }) {
                 key={team.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell
+                <TableCell 
                   style={{ color: "white" }}
                   component="th"
                   scope="row"

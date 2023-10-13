@@ -137,7 +137,12 @@ export default function App() {
   return (
     <Router>
       <nav>
-        <FootballBar />
+        <FootballBar  fetchEnglishData={fetchEnglishData}
+              fetchSpainData={fetchSpainData}
+              fetchSpain2Data={fetchSpain2Data}
+              fetchGermanyData={fetchGermanyData}
+              fetchEkstraklasaData={fetchEkstraklasaData}
+              matchesData={matchesData}/>
       </nav>
 
       <Routes>
