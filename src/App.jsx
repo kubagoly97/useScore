@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import BasicGrid from "./BasicGrid";
 import FootballBar from "./FootballBar";
 import HomePage from "./HomePage";
+import NotFound from "./NotFound";
+import Footer from "./Footer";
 
 export default function App() {
   const [isOnList, setIsOnList] = useState(function () {
@@ -137,14 +139,15 @@ export default function App() {
   return (
     <Router>
       <nav>
-        <FootballBar  fetchEnglishData={fetchEnglishData}
-              fetchSpainData={fetchSpainData}
-              fetchSpain2Data={fetchSpain2Data}
-              fetchGermanyData={fetchGermanyData}
-              fetchEkstraklasaData={fetchEkstraklasaData}
-              matchesData={matchesData}/>
+        <FootballBar
+          fetchEnglishData={fetchEnglishData}
+          fetchSpainData={fetchSpainData}
+          fetchSpain2Data={fetchSpain2Data}
+          fetchGermanyData={fetchGermanyData}
+          fetchEkstraklasaData={fetchEkstraklasaData}
+          matchesData={matchesData}
+        />
       </nav>
-
       <Routes>
         <Route
           path="/"
@@ -172,6 +175,7 @@ export default function App() {
           path="/yourgames"
           element={<YourGames value={value} setValue={setValue} />}
         />
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/grid"
           element={<BasicGrid value={value} setValue={setValue} />}
@@ -216,6 +220,7 @@ export default function App() {
               />
             ))}
       </Routes>
+      {isOnList && <Footer />}
     </Router>
   );
 }

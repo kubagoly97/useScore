@@ -27,7 +27,7 @@ export function LeagueDetailsInMatchComponent({ handleShowTable, match }) {
         alt={match.league_logo}
       />
       <div style={{ paddingLeft: "10px" }}>
-        <p>
+        <p style={{ fontWeight: "bold", color: "yellow" }}>
           {match.league_name} - {match.match_round}. round - {match.league_year}{" "}
           {match.match_time}
         </p>
