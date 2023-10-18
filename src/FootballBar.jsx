@@ -104,20 +104,11 @@ export default function FootballBar({
               {matchesData.length ? (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to="/">
-                      <p
-                        sx={{
-                          textDecoration: "none",
-                          color: "white",
-                        }}
-                      >
-                        Home Page
-                      </p>
-                    </Link>
+                    <Link to="/">Home Page</Link>
                   </Typography>
                 </MenuItem>
               ) : (
-                <>
+                <div>
                   <MenuItem
                     onClick={() => {
                       fetchEnglishData();
@@ -158,7 +149,7 @@ export default function FootballBar({
                   >
                     <Typography textAlign="center">Segunda Division</Typography>
                   </MenuItem>
-                </>
+                </div>
               )}
             </Menu>
           </Box>

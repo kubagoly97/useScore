@@ -6,6 +6,7 @@ import ClubCard from "./ClubCard";
 import Loading from "./Loading";
 import { useEffect } from "react";
 import ClubsList from "./ClubsList";
+import { Container } from "@mui/system";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -16,11 +17,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function HomePage({
   clubs,
-  fetchEnglishData,
-  fetchSpainData,
-  fetchSpain2Data,
-  fetchGermanyData,
-  fetchEkstraklasaData,
   showClubList,
   isLoading,
   setMatchesData,
@@ -44,23 +40,29 @@ export default function HomePage({
         </>
       ) : (
         <>
-          <h1 className="h1OnPage"> Choose the league! ↑</h1>
-          <h1 className="h1OnPage">
-            {yourClubsList.length
-              ? "Choose one of the team from your list"
-              : "And add some on your list"}
-          </h1>
-          {yourClubsList.length ? (
-            <ClubsList
-              yourClubsList={yourClubsList}
-              setYourClubsList={setYourClubsList}
-              clubs={clubs}
-              setIsOnList={setIsOnList}
-              isOnList={isOnList}
-            />
-          ) : (
-            ""
-          )}
+          <Container className="ImageOnHomePage" maxWidth="xl">
+            {" "}
+            <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
+              {" "}
+              Choose the league!
+            </h1>
+            <h1 className="h1OnPage" style={{ marginBottom: "30px" }}>
+              {yourClubsList.length
+                ? "Or pick one of the team from your list"
+                : "And add team on your list"}
+            </h1>
+            {yourClubsList.length ? (
+              <ClubsList
+                yourClubsList={yourClubsList}
+                setYourClubsList={setYourClubsList}
+                clubs={clubs}
+                setIsOnList={setIsOnList}
+                isOnList={isOnList}
+              />
+            ) : (
+              ""
+            )}
+          </Container>
         </>
       )}
     </>

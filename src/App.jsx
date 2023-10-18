@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { YourGames } from "./YourGames";
 import * as React from "react";
 import dayjs from "dayjs";
 import BasicGrid from "./BasicGrid";
 import FootballBar from "./FootballBar";
 import HomePage from "./HomePage";
 import NotFound from "./NotFound";
-import Footer from "./Footer";
 
 export default function App() {
   const [isOnList, setIsOnList] = useState(function () {
@@ -171,10 +169,6 @@ export default function App() {
             />
           }
         />
-        <Route
-          path="/yourgames"
-          element={<YourGames value={value} setValue={setValue} />}
-        />
         <Route path="*" element={<NotFound />} />
         <Route
           path="/grid"
@@ -220,7 +214,6 @@ export default function App() {
               />
             ))}
       </Routes>
-      {isOnList && <Footer />}
     </Router>
   );
 }

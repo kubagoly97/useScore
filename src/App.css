@@ -11,6 +11,7 @@ html {
 }
 .h1OnPage {
   color: white;
+  text-align: center;
 }
 .HomePage {
   background-color: #0d2818;
@@ -58,4 +59,17 @@ html {
   max-width: 100%;
   height: auto;
   /* background: rgba(0, 0, 0, 0.274); */
+}
+.ImageOnHomePage {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(2, 40, 7, 0.783)),
+    url("./public/Stadion.png");
+  border: 2px solid #000000;
+  border-radius: 6px;
+  min-width: 400px;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  color: white;
+  padding: 20px;
+  margin-top: 2em;
 }
