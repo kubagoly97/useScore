@@ -7,6 +7,8 @@ import Loading from "./Loading";
 import { useEffect } from "react";
 import ClubsList from "./ClubsList";
 import { Container } from "@mui/system";
+import FavouriteMatchesList from "./FavouriteMatchesList";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -24,6 +26,8 @@ export default function HomePage({
   setYourClubsList,
   setIsOnList,
   isOnList,
+  yourFollowingMatches,
+  setYourFollowingMatches,
 }) {
   useEffect(function () {
     setMatchesData({});
@@ -48,7 +52,7 @@ export default function HomePage({
             </h1>
             <h1 className="h1OnPage" style={{ marginBottom: "30px" }}>
               {yourClubsList.length
-                ? "Or pick one of the team from your list"
+                ? "Or pick one team from your list"
                 : "And add team on your list"}
             </h1>
             {yourClubsList.length ? (
@@ -58,6 +62,14 @@ export default function HomePage({
                 clubs={clubs}
                 setIsOnList={setIsOnList}
                 isOnList={isOnList}
+              />
+            ) : (
+              ""
+            )}
+            {yourFollowingMatches.length ? (
+              <FavouriteMatchesList
+                yourFollowingMatches={yourFollowingMatches}
+                setYourFollowingMatches={setYourFollowingMatches}
               />
             ) : (
               ""

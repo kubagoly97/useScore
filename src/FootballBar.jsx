@@ -104,7 +104,12 @@ export default function FootballBar({
               {matchesData.length ? (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to="/">Home Page</Link>
+                    <Link
+                      to="/"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Home Page
+                    </Link>
                   </Typography>
                 </MenuItem>
               ) : (

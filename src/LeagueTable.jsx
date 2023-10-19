@@ -52,7 +52,18 @@ export default function LeagueTable({ table, club }) {
                     alt={team.team_name}
                     className="BadgeInTable"
                   />{" "}
-                  {team.team_name}
+                  <a
+                    href={`/${team.team_id}`}
+                    style={{
+                      color: "white",
+                      textDecoration: "none",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {" "}
+                    {team.team_name}
+                  </a>
                 </TableCell>
                 <TableCell style={{ color: "white" }} align="right">
                   {team.overall_league_payed}

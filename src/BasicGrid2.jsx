@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import TeamInfoCard from "./TeamInfoCard";
 import { Scorers } from "./Scorers";
 import { LeagueDetailsInMatchComponent } from "./LeagueDetailsInMatchComponent";
+import { useParams } from "react-router-dom";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,17 +20,21 @@ export const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function BasicGrid({
+export default function BasicGrid2({
   value,
   setValue,
-  club,
-  matchesData,
-  setMatchesData,
   setYourClubsList,
   yourClubsList,
+  matchesData,
+  setMatchesData,
+  setYourFollowingMatches,
+  yourFollowingMatches,
 }) {
   const [showTable, setShowTable] = useState(false);
   const [table, setTable] = useState({});
+  const [clubInfo, setClubInfo] = useState([]);
+
+  let { id } = useParams();
 
   const handleShowTable = async (key) => {
     setShowTable(true);
@@ -39,23 +44,46 @@ export default function BasicGrid({
     const res = await fetch(url);
     const resJSON = await res.json();
     setTable(resJSON);
+    console.log(resJSON);
   };
+
+  const handleFetch = async (matchId) => {
+    const res = await fetch(
+      `https://apiv3.apifootball.com/?action=get_events&match_id=${matchId}&APIkey=${
+        import.meta.env.VITE_API_KEY
+      }`
+    );
+    const resJSON = await res.json();
+    setYourFollowingMatches([...yourFollowingMatches, resJSON[0]]);
+  };
+
+  useEffect(() => {
+    async function fetchClubInfo() {
+      const res = await fetch(
+        `https://apiv3.apifootball.com/?action=get_teams&team_id=${id}&APIkey=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      const resJson = await res.json();
+      setClubInfo(resJson);
+      document.title = `useScore - ${resJson[0].team_name}`;
+      console.log(resJson);
+    }
+    fetchClubInfo();
+  }, []);
 
   useEffect(() => {
     async function fetchDetails() {
       const res = await fetch(
-        `https://apiv3.apifootball.com/?action=get_events&from=2023-01-01&to=2024-12-31&team_id=${
-          club.team_key
-        }&APIkey=${import.meta.env.VITE_API_KEY}`
+        `https://apiv3.apifootball.com/?action=get_events&from=2023-01-01&to=2024-12-31&team_id=${id}&APIkey=${
+          import.meta.env.VITE_API_KEY
+        }`
       );
       const resJSON = await res.json();
       setMatchesData(resJSON);
+      console.log(resJSON);
     }
     fetchDetails();
-  }, []);
-
-  useEffect(() => {
-    document.title = `useScore - ${club.team_name}`;
   }, []);
 
   return (
@@ -70,11 +98,13 @@ export default function BasicGrid({
                   border: "2px dashed #0D2818",
                 }}
               >
-                <TeamInfoCard
-                  yourClubsList={yourClubsList}
-                  club={club}
-                  setYourClubsList={setYourClubsList}
-                />
+                {clubInfo.length && (
+                  <TeamInfoCard
+                    yourClubsList={yourClubsList}
+                    club={clubInfo[0]}
+                    setYourClubsList={setYourClubsList}
+                  />
+                )}
               </Item>
               <Item
                 sx={{
@@ -111,8 +141,26 @@ export default function BasicGrid({
                               match={match}
                             />
                             <h1>
-                              {match.match_hometeam_name} -{" "}
-                              {match.match_awayteam_name}
+                              <a
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                                href={`/${match.match_hometeam_id}`}
+                              >
+                                {" "}
+                                {match.match_hometeam_name}
+                              </a>{" "}
+                              -{" "}
+                              <a
+                                href={`/${match.match_awayteam_id}`}
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                              >
+                                {match.match_awayteam_name}
+                              </a>
                             </h1>
                             <Box
                               sx={{
@@ -126,24 +174,28 @@ export default function BasicGrid({
                                 borderBottom: "1px solid grey",
                               }}
                             >
-                              <img
-                                src={match.team_home_badge}
-                                alt={match.team_home_badge}
-                                style={{
-                                  borderRadius: "2px",
-                                  paddingLeft: "60px",
-                                }}
-                              />
-                              <img
-                                style={{
-                                  textAlign: "right",
-                                  float: "right",
-                                  borderRadius: "2px",
-                                  paddingRight: "60px",
-                                }}
-                                src={match.team_away_badge}
-                                alt={match.team_away_badge}
-                              />
+                              <a href={`/${match.match_hometeam_id}`}>
+                                <img
+                                  src={match.team_home_badge}
+                                  alt={match.team_home_badge}
+                                  style={{
+                                    borderRadius: "2px",
+                                    paddingLeft: "60px",
+                                  }}
+                                />
+                              </a>
+                              <a href={`/${match.match_awayteam_id}`}>
+                                <img
+                                  style={{
+                                    textAlign: "right",
+                                    float: "right",
+                                    borderRadius: "2px",
+                                    paddingRight: "60px",
+                                  }}
+                                  src={match.team_away_badge}
+                                  alt={match.team_away_badge}
+                                />
+                              </a>
                             </Box>
                             <h1
                               style={{
@@ -174,6 +226,9 @@ export default function BasicGrid({
                                   : " - "
                               })`}
                             </h3>
+                            <button onClick={() => handleFetch(match.match_id)}>
+                              Fetch Match Info
+                            </button>
                             <Scorers match={match} />
                             <h4>
                               Referee:{" "}
@@ -197,7 +252,9 @@ export default function BasicGrid({
                   border: "2px dashed #0D2818",
                 }}
               >
-                <LeagueTable table={table} club={club} />
+                {clubInfo.length && (
+                  <LeagueTable table={table} club={clubInfo[0]} />
+                )}
               </Item>
             </Grid>
           )}

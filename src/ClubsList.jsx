@@ -53,7 +53,7 @@ export default function ClubsList({
               }
             >
               <ListItemButton
-                href={`/${club.team_name}`}
+                href={`/${club.team_key}`}
                 onClick={() => {
                   {
                     clubs.map((c) => c.team_name).includes(club.team_name)
