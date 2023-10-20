@@ -7,9 +7,10 @@ To run app - in project's folder:
 - npm i
 - npm run dev
 
-<br>
-<img width="614" alt="HomePage" src="https://github.com/kubagoly97/useScore/assets/142389870/b5ebd5b5-24a2-4582-858c-eaee6f69b15c">
 
-<br>
+<img width="780" alt="Zrzut ekranu 2023-10-20 o 13 13 32" src="https://github.com/kubagoly97/useScore/assets/142389870/33cf4673-869e-4630-86e3-75232dbe516e">
 
-<img width="492" alt="ClubPageRelative" src="https://github.com/kubagoly97/useScore/assets/142389870/967fd98d-cf02-41bd-9e72-d7dbf39e06eb">
+<img width="778" alt="Zrzut ekranu 2023-10-20 o 13 13 54" src="https://github.com/kubagoly97/useScore/assets/142389870/10acd212-0f99-4e30-b07f-86f3788fb813">
+
+<img width="780" alt="Zrzut ekranu 2023-10-20 o 13 14 14" src="https://github.com/kubagoly97/useScore/assets/142389870/0a698d9a-519b-4e77-a748-7fd08ac57b6c">
+
