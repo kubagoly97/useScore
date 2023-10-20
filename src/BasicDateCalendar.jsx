@@ -16,24 +16,27 @@ export default function BasicDateCalendar({
         dateAdapter={AdapterDayjs}
         sx={{ flexGrow: 1, color: "white" }}
       >
-        <DemoContainer components={["DateCalendar", "DateCalendar"]}>
-          <DateCalendar
-            onChange={(newValue) => {
-              setValue(
-                `${newValue.$y}-${newValue.$M + 1 < 10 ? 0 : ""}${
-                  newValue.$M + 1
-                }-${newValue.$D < 10 ? 0 : ""}${newValue.$D}`
-              );
-              setShowTable(false);
-            }}
-            sx={{
-              color: "white",
-              ".MuiButtonBase-root": { bgcolor: "#058C42" },
-              ".Mui-selected": { bgcolor: "#16DB65" },
-              ".MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
-              maxWidth: "100%",
-            }}
-          />
+        <DemoContainer components={["DateCalendar"]}>
+          <DemoItem>
+            <DateCalendar
+              onChange={(newValue) => {
+                setValue(
+                  `${newValue.$y}-${newValue.$M + 1 < 10 ? 0 : ""}${
+                    newValue.$M + 1
+                  }-${newValue.$D < 10 ? 0 : ""}${newValue.$D}`
+                );
+                setShowTable(false);
+                console.log(value);
+              }}
+              sx={{
+                color: "white",
+                ".MuiButtonBase-root": { bgcolor: "#058C42" },
+                ".Mui-selected": { bgcolor: "#16DB65" },
+                ".MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
+                maxWidth: "100%",
+              }}
+            />
+          </DemoItem>
         </DemoContainer>
       </LocalizationProvider>
     </>

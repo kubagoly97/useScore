@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import { Link } from "react-router-dom";
+import Chip from "@mui/material/Chip";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -39,7 +40,7 @@ export default function FootballBar({
       position="static"
       sx={{
         borderRadius: "6px",
-        backgroundColor: "#04471C",
+        background: "linear-gradient(2deg,#0D2818, #058C42 )",
         border: "2px dashed #0D2818",
       }}
     >

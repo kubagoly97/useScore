@@ -11,7 +11,9 @@ import TeamInfoCard from "./TeamInfoCard";
 import { Scorers } from "./Scorers";
 import { LeagueDetailsInMatchComponent } from "./LeagueDetailsInMatchComponent";
 import { useParams } from "react-router-dom";
-
+import { Button } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -160,7 +162,38 @@ export default function BasicGrid2({
                                 }}
                               >
                                 {match.match_awayteam_name}
-                              </a>
+                              </a>{" "}
+                              <Button
+                                onClick={() => {
+                                  if (
+                                    yourFollowingMatches
+                                      .map((m) => m.match_id)
+                                      .includes(match.match_id)
+                                  ) {
+                                    setYourFollowingMatches(
+                                      yourFollowingMatches.filter(
+                                        (m) => m.match_id !== match.match_id
+                                      )
+                                    );
+                                  } else {
+                                    handleFetch(match.match_id);
+                                  }
+                                }}
+                              >
+                                {yourFollowingMatches
+                                  .map((m) => m.match_id)
+                                  .includes(match.match_id) ? (
+                                  <FavoriteIcon
+                                    fontSize="large"
+                                    sx={{ color: "red" }}
+                                  />
+                                ) : (
+                                  <FavoriteBorderIcon
+                                    fontSize="large"
+                                    sx={{ color: "white" }}
+                                  />
+                                )}
+                              </Button>
                             </h1>
                             <Box
                               sx={{
@@ -169,9 +202,9 @@ export default function BasicGrid2({
                                 width: "100%",
                                 paddingTop: "10px",
                                 paddingBottom: "10px",
-                                backgroundColor: "rgba(255,255,255,0.1)",
-                                borderTop: "1px solid grey",
-                                borderBottom: "1px solid grey",
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                borderTop: "1px solid black",
+                                borderBottom: "1px solid black",
                               }}
                             >
                               <a href={`/${match.match_hometeam_id}`}>
@@ -202,9 +235,9 @@ export default function BasicGrid2({
                                 fontSize: "50px",
                                 paddingTop: "10px",
                                 paddingBottom: "10px",
-                                backgroundColor: "rgba(255,255,255,0.1)",
-                                borderTop: "1px solid grey",
-                                borderBottom: "1px solid grey",
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                borderTop: "1px solid black",
+                                borderBottom: "1px solid black",
                               }}
                             >
                               {match.match_hometeam_score
@@ -226,9 +259,6 @@ export default function BasicGrid2({
                                   : " - "
                               })`}
                             </h3>
-                            <button onClick={() => handleFetch(match.match_id)}>
-                              Fetch Match Info
-                            </button>
                             <Scorers match={match} />
                             <h4>
                               Referee:{" "}

@@ -1,15 +1,14 @@
 import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState } from "react";
 export default function FavouriteMatchesList({
   yourFollowingMatches,
   setYourFollowingMatches,
 }) {
+  const [showDetails, setShowDetails] = useState(false);
   return (
     <>
       <h1>Your games</h1>
@@ -47,50 +46,14 @@ export default function FavouriteMatchesList({
                       );
                     }}
                   >
-                    <DeleteForeverIcon
+                    <FavoriteIcon
                       fontSize="large"
                       sx={{ color: "rgba(201, 26, 26,0.9)" }}
                     />
                   </button>
                 }
               >
-                <ListItemButton>
-                  <ListItemAvatar>
-                    <Avatar
-                      variant="square"
-                      sx={{ width: 40, height: 40, marginRight: "10px" }}
-                      src={match.team_home_badge}
-                    />
-                  </ListItemAvatar>
-                  <p style={{ fontSize: "23px" }}>
-                    {match.match_hometeam_score
-                      ? match.match_hometeam_score
-                      : "- "}
-                    :
-                    {match.match_awayteam_score
-                      ? match.match_awayteam_score
-                      : " -"}
-                  </p>
-                  {/* <ListItemText
-                  id={labelId}
-                  sx={{ color: "white" }}
-                  primary={match.match_awayteam_name}
-                /> */}
-                  <Avatar
-                    variant="square"
-                    sx={{ width: 40, height: 40, marginLeft: "10px" }}
-                    src={match.team_away_badge}
-                  />
-                  <ListItemText
-                    id={labelId}
-                    sx={{ color: "white", marginLeft: "20px" }}
-                    primary={
-                      match.match_status !== "Finished"
-                        ? `${match.match_time} | ${match.match_date}`
-                        : `Finished`
-                    }
-                  />
-                </ListItemButton>
+                <MatchDetailsOnHomePage match={match} labelId={labelId} />
               </ListItem>
             );
           })}

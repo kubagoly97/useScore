@@ -8,8 +8,8 @@ export function LeagueDetailsInMatchComponent({ handleShowTable, match }) {
         flexDirection: "row",
         fontFamily: "sans-serif",
         borderRadius: "3px",
-        backgroundColor: "rgba(255,255,255,0.1)",
-        borderBottom: "1px solid grey",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        borderBottom: "1px solid black",
       }}
     >
       <img
@@ -27,7 +27,7 @@ export function LeagueDetailsInMatchComponent({ handleShowTable, match }) {
         alt={match.league_logo}
       />
       <div style={{ paddingLeft: "10px" }}>
-        <p style={{ fontWeight: "bold", color: "yellow" }}>
+        <p style={{ fontWeight: "bold", color: "#16DB65" }}>
           {match.league_name} - {match.match_round}. round - {match.league_year}{" "}
           {match.match_time}
         </p>
