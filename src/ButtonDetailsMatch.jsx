@@ -14,10 +14,10 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
           src={match.team_home_badge}
         />
       </ListItemAvatar>
-      <p style={{ fontSize: "23px" }}>
+      <div style={{ fontSize: "23px" }}>
         {match.match_hometeam_score ? match.match_hometeam_score : "- "}:
         {match.match_awayteam_score ? match.match_awayteam_score : " -"}
-      </p>
+      </div>
       <Avatar
         variant="square"
         sx={{ width: 40, height: 40, marginLeft: "10px" }}

@@ -7,6 +7,7 @@ import FootballBar from "./FootballBar";
 import HomePage from "./HomePage";
 import NotFound from "./NotFound";
 import BasicGrid2 from "./BasicGrid2";
+import { PlayerPage } from "./PlayerPage";
 
 export default function App() {
   // -------------------------------
@@ -163,6 +164,7 @@ export default function App() {
             />
           }
         />
+        <Route path="player" element={<PlayerPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
