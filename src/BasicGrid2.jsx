@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Tooltip from "@mui/material/Tooltip";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -47,7 +48,6 @@ export default function BasicGrid2({
     const res = await fetch(url);
     const resJSON = await res.json();
     setTable(resJSON);
-    console.log(resJSON);
   };
 
   const handleFetch = async (matchId) => {
@@ -70,7 +70,6 @@ export default function BasicGrid2({
       const resJson = await res.json();
       setClubInfo(resJson);
       document.title = `useScore - ${resJson[0].team_name}`;
-      console.log(resJson);
     }
     fetchClubInfo();
   }, []);
@@ -84,7 +83,6 @@ export default function BasicGrid2({
       );
       const resJSON = await res.json();
       setMatchesData(resJSON);
-      console.log(resJSON);
     }
     fetchDetails();
   }, []);
@@ -164,37 +162,47 @@ export default function BasicGrid2({
                               >
                                 {match.match_awayteam_name}
                               </a>{" "}
-                              <Button
-                                onClick={() => {
-                                  if (
-                                    yourFollowingMatches
-                                      .map((m) => m.match_id)
-                                      .includes(match.match_id)
-                                  ) {
-                                    setYourFollowingMatches(
-                                      yourFollowingMatches.filter(
-                                        (m) => m.match_id !== match.match_id
-                                      )
-                                    );
-                                  } else {
-                                    handleFetch(match.match_id);
-                                  }
-                                }}
+                              <Tooltip
+                                title={
+                                  yourFollowingMatches
+                                    .map((m) => m.match_id)
+                                    .includes(match.match_id)
+                                    ? "Match is already on your list"
+                                    : "Add match on your list"
+                                }
                               >
-                                {yourFollowingMatches
-                                  .map((m) => m.match_id)
-                                  .includes(match.match_id) ? (
-                                  <FavoriteIcon
-                                    fontSize="large"
-                                    sx={{ color: "red" }}
-                                  />
-                                ) : (
-                                  <FavoriteBorderIcon
-                                    fontSize="large"
-                                    sx={{ color: "white" }}
-                                  />
-                                )}
-                              </Button>
+                                <Button
+                                  onClick={() => {
+                                    if (
+                                      yourFollowingMatches
+                                        .map((m) => m.match_id)
+                                        .includes(match.match_id)
+                                    ) {
+                                      setYourFollowingMatches(
+                                        yourFollowingMatches.filter(
+                                          (m) => m.match_id !== match.match_id
+                                        )
+                                      );
+                                    } else {
+                                      handleFetch(match.match_id);
+                                    }
+                                  }}
+                                >
+                                  {yourFollowingMatches
+                                    .map((m) => m.match_id)
+                                    .includes(match.match_id) ? (
+                                    <FavoriteIcon
+                                      fontSize="large"
+                                      sx={{ color: "red" }}
+                                    />
+                                  ) : (
+                                    <FavoriteBorderIcon
+                                      fontSize="large"
+                                      sx={{ color: "white" }}
+                                    />
+                                  )}
+                                </Button>
+                              </Tooltip>
                             </h1>
                             <Box
                               sx={{

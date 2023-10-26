@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import { Item } from "./BasicGrid2";
 import { Button } from "@mui/material";
-export function PlayerPage() {
+import Blank from "/Blank.jpeg";
+
+export function PlayerPage({ playerData, setPlayerData }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");
-  const [playerData, setPlayerData] = useState({});
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -29,6 +31,10 @@ export function PlayerPage() {
   }, []);
 
   const index = playerData.length - 1;
+
+  const replaceImage = (e) => {
+    e.target.src = Blank;
+  };
 
   return (
     <>
@@ -54,9 +60,12 @@ export function PlayerPage() {
               >
                 <img
                   src={playerData[index].player_image}
+                  onError={replaceImage}
                   alt={playerData[index].player_name}
                   style={{
                     borderRadius: "3px",
+                    width: "170px",
+                    height: "auto",
                   }}
                 />
                 <div style={{ paddingLeft: "10px" }}>

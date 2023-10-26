@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import { Link } from "react-router-dom";
-import Chip from "@mui/material/Chip";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -24,6 +23,7 @@ export default function FootballBar({
   fetchGermanyData,
   fetchSpain2Data,
   matchesData,
+  playerData,
 }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -102,7 +102,7 @@ export default function FootballBar({
                 display: { xs: "block", md: "none" },
               }}
             >
-              {matchesData.length ? (
+              {matchesData.length || playerData.length ? (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link
@@ -182,7 +182,7 @@ export default function FootballBar({
             useScore
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {!matchesData.length && (
+            {!matchesData.length && !playerData.length && (
               <>
                 <Button
                   onClick={fetchEnglishData}

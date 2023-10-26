@@ -12,6 +12,19 @@ export default function ClubsList({
   clubs,
   setIsOnList,
 }) {
+  const handleDelete = async (id) => {
+    const res = await fetch(`http://localhost:4000/clubList/${id}`, {
+      method: "DELETE",
+    });
+    const resJSON = await res.json();
+    console.log(resJSON);
+    if (res.ok) {
+      setYourClubsList(yourClubsList.filter((c) => c._id !== id));
+    } else {
+      console.log("ERROR");
+    }
+  };
+
   return (
     <List
       dense
@@ -39,11 +52,7 @@ export default function ClubsList({
                     border: "none",
                     cursor: "pointer",
                   }}
-                  onClick={() => {
-                    setYourClubsList(
-                      yourClubsList.filter((c) => c.team_key !== club.team_key)
-                    );
-                  }}
+                  onClick={() => handleDelete(club._id)}
                 >
                   <DeleteForeverIcon
                     fontSize="large"

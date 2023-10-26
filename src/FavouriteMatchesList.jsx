@@ -4,6 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
+import { Tooltip } from "@mui/joy";
 export default function FavouriteMatchesList({
   yourFollowingMatches,
   setYourFollowingMatches,
@@ -28,33 +29,37 @@ export default function FavouriteMatchesList({
           yourFollowingMatches.map((match, i) => {
             const labelId = `checkbox-list-secondary-label-${match}`;
             return (
-              <ListItem
-                key={i}
-                disablePadding
-                secondaryAction={
-                  <button
-                    style={{
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      setYourFollowingMatches(
-                        yourFollowingMatches.filter(
-                          (m) => m.match_id !== match.match_id
-                        )
-                      );
-                    }}
-                  >
-                    <FavoriteIcon
-                      fontSize="large"
-                      sx={{ color: "rgba(201, 26, 26,0.9)" }}
-                    />
-                  </button>
-                }
+              <Tooltip
+                title={`${match.match_hometeam_name} - ${match.match_awayteam_name}`}
               >
-                <MatchDetailsOnHomePage match={match} labelId={labelId} />
-              </ListItem>
+                <ListItem
+                  key={i}
+                  disablePadding
+                  secondaryAction={
+                    <button
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setYourFollowingMatches(
+                          yourFollowingMatches.filter(
+                            (m) => m.match_id !== match.match_id
+                          )
+                        );
+                      }}
+                    >
+                      <FavoriteIcon
+                        fontSize="large"
+                        sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                      />
+                    </button>
+                  }
+                >
+                  <MatchDetailsOnHomePage match={match} labelId={labelId} />
+                </ListItem>
+              </Tooltip>
             );
           })}
       </List>

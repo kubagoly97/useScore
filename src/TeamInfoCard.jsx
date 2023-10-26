@@ -5,12 +5,29 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
+import { useState } from "react";
 export default function TeamInfoCard({
   club,
   yourClubsList,
   setYourClubsList,
 }) {
+  const handleAddClubOnYourFavouriteList = async () => {
+    const team_badge = club.team_badge;
+    const team_name = club.team_name;
+    const team_key = club.team_key;
+    const res = await fetch("http://localhost:4000/clubList", {
+      method: "POST",
+      body: JSON.stringify({ team_badge, team_name, team_key }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await res.json();
+    if (res.ok) {
+      console.log(JSON.stringify(club.team_key), "Success");
+    }
+    if (!res.ok) {
+      console.log("Error");
+    }
+  };
   return (
     <Card sx={{ maxWidth: "100%", backgroundColor: "#058C42" }}>
       <CardMedia
@@ -42,23 +59,30 @@ export default function TeamInfoCard({
           {club.venue.venue_address}. Plays its matches at{" "}
           {club.venue.venue_name} with a capacity of {club.venue.venue_capacity}{" "}
           seats.
+          <button onClick={() => console.log(JSON.stringify(club))}>
+            show club
+          </button>
         </Typography>
       </CardContent>
       <CardActions>
         {!yourClubsList.map((c) => c.team_key).includes(club.team_key) ? (
-          <Button
-            sx={{ color: "white" }}
-            size="small"
-            onClick={() => {
-              if (
-                yourClubsList.map((c) => c.team_key).includes(club.team_key)
-              ) {
-                return;
-              } else {
-                setYourClubsList([...yourClubsList, club]);
-              }
-            }}
-          >{`Add ${club.team_name} on your list`}</Button>
+          <form action="">
+            {" "}
+            <Button
+              sx={{ color: "white" }}
+              size="small"
+              onClick={() => handleAddClubOnYourFavouriteList()}
+              // onClick={() => {
+              //   if (
+              //     yourClubsList.map((c) => c.team_key).includes(club.team_key)
+              //   ) {
+              //     return;
+              //   } else {
+              //     setYourClubsList([...yourClubsList, club]);
+              //   }
+              // }}
+            >{`Add ${club.team_name} on your list`}</Button>
+          </form>
         ) : (
           <Button disabled sx={{ color: "white" }} size="small">
             {`${club.team_name} is already on your list`}

@@ -2,9 +2,9 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import ClubCard from "./ClubCard";
+import BasicGrid from "./BasicGrid";
 import Loading from "./Loading";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ClubsList from "./ClubsList";
 import { Container } from "@mui/system";
 import FavouriteMatchesList from "./FavouriteMatchesList";
@@ -28,9 +28,11 @@ export default function HomePage({
   isOnList,
   yourFollowingMatches,
   setYourFollowingMatches,
+  setPlayerData,
 }) {
   useEffect(function () {
     setMatchesData({});
+    setPlayerData({});
   }, []);
 
   return (
@@ -39,7 +41,7 @@ export default function HomePage({
       {showClubList ? (
         <>
           <Box sx={{ flexGrow: 1, marginTop: "40px" }}>
-            <ClubCard clubs={clubs} />
+            <BasicGrid clubs={clubs} />
           </Box>
         </>
       ) : (

@@ -18,14 +18,14 @@ export default function BasicGrid({ clubs }) {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
         {clubs.map((club, i) => (
-          <Club club={club} i={i} key={i} />
+          <ClubCard club={club} i={i} key={i} />
         ))}
       </Grid>
     </Box>
   );
 }
 
-function Club({ club }) {
+function ClubCard({ club }) {
   return (
     <Grid xs={12} sm={4} md={3}>
       <Link to={`/${club.team_key}`}>

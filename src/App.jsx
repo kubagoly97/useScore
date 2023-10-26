@@ -19,10 +19,7 @@ export default function App() {
   // -------------------------------
   const [matchesData, setMatchesData] = useState([]);
   // -------------------------------
-  const [yourClubsList, setYourClubsList] = useState(function () {
-    const storedYourClubsData = localStorage.getItem("yourClubsList");
-    return storedYourClubsData ? JSON.parse(storedYourClubsData) : [];
-  });
+  const [yourClubsList, setYourClubsList] = useState([]);
   // -------------------------------
   const [yourFollowingMatches, setYourFollowingMatches] = useState(function () {
     const storedFollowingMatchesData = localStorage.getItem(
@@ -32,6 +29,8 @@ export default function App() {
       ? JSON.parse(storedFollowingMatchesData)
       : [];
   });
+  // ---------------------------
+  const [playerData, setPlayerData] = useState({});
   // ---------------------------
   const date = new Date();
   const [value, setValue] = React.useState(
@@ -108,12 +107,16 @@ export default function App() {
     },
     [yourFollowingMatches]
   );
-  useEffect(
-    function () {
-      localStorage.setItem("yourClubsList", JSON.stringify(yourClubsList));
-    },
-    [yourClubsList]
-  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:4000/clubList");
+      const resJSON = await res.json();
+      console.log(resJSON);
+      setYourClubsList(resJSON);
+    };
+    fetchData();
+  }, []);
   return (
     <Router>
       <nav>
@@ -124,6 +127,7 @@ export default function App() {
           fetchGermanyData={fetchGermanyData}
           fetchEkstraklasaData={fetchEkstraklasaData}
           matchesData={matchesData}
+          playerData={playerData}
         />
       </nav>
       <Routes>
@@ -146,6 +150,7 @@ export default function App() {
               setYourClubsList={setYourClubsList}
               yourFollowingMatches={yourFollowingMatches}
               setYourFollowingMatches={setYourFollowingMatches}
+              setPlayerData={setPlayerData}
             />
           }
         />
@@ -164,7 +169,13 @@ export default function App() {
             />
           }
         />
-        <Route path="player" element={<PlayerPage />} />
+        <Route
+          path="player"
+          element={
+            <PlayerPage playerData={playerData} setPlayerData={setPlayerData} />
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
