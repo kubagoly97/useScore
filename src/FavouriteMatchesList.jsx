@@ -4,12 +4,25 @@ import ListItem from "@mui/material/ListItem";
 import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
-import { Tooltip } from "@mui/joy";
+
 export default function FavouriteMatchesList({
   yourFollowingMatches,
   setYourFollowingMatches,
 }) {
   const [showDetails, setShowDetails] = useState(false);
+
+  const handleDelete = async (id) => {
+    const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
+      method: "DELETE",
+    });
+    const resJSON = await res.json();
+    console.log(resJSON);
+    if (res.ok) {
+      setYourFollowingMatches(yourFollowingMatches.filter((m) => m._id !== id));
+    } else {
+      console.log("ERROR");
+    }
+  };
   return (
     <>
       <h1>Your games</h1>
@@ -29,37 +42,27 @@ export default function FavouriteMatchesList({
           yourFollowingMatches.map((match, i) => {
             const labelId = `checkbox-list-secondary-label-${match}`;
             return (
-              <Tooltip
-                title={`${match.match_hometeam_name} - ${match.match_awayteam_name}`}
+              <ListItem
+                key={i}
+                disablePadding
+                secondaryAction={
+                  <button
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleDelete(match._id)}
+                  >
+                    <FavoriteIcon
+                      fontSize="large"
+                      sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                    />
+                  </button>
+                }
               >
-                <ListItem
-                  key={i}
-                  disablePadding
-                  secondaryAction={
-                    <button
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        setYourFollowingMatches(
-                          yourFollowingMatches.filter(
-                            (m) => m.match_id !== match.match_id
-                          )
-                        );
-                      }}
-                    >
-                      <FavoriteIcon
-                        fontSize="large"
-                        sx={{ color: "rgba(201, 26, 26,0.9)" }}
-                      />
-                    </button>
-                  }
-                >
-                  <MatchDetailsOnHomePage match={match} labelId={labelId} />
-                </ListItem>
-              </Tooltip>
+                <MatchDetailsOnHomePage match={match} labelId={labelId} />
+              </ListItem>
             );
           })}
       </List>

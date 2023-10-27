@@ -21,14 +21,7 @@ export default function App() {
   // -------------------------------
   const [yourClubsList, setYourClubsList] = useState([]);
   // -------------------------------
-  const [yourFollowingMatches, setYourFollowingMatches] = useState(function () {
-    const storedFollowingMatchesData = localStorage.getItem(
-      "yourFollowingMatches"
-    );
-    return storedFollowingMatchesData
-      ? JSON.parse(storedFollowingMatchesData)
-      : [];
-  });
+  const [yourFollowingMatches, setYourFollowingMatches] = useState([]);
   // ---------------------------
   const [playerData, setPlayerData] = useState({});
   // ---------------------------
@@ -98,25 +91,24 @@ export default function App() {
     setIsOnList(true);
   };
 
-  useEffect(
-    function () {
-      localStorage.setItem(
-        "yourFollowingMatches",
-        JSON.stringify(yourFollowingMatches)
-      );
-    },
-    [yourFollowingMatches]
-  );
-
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("http://localhost:4000/clubList");
       const resJSON = await res.json();
-      console.log(resJSON);
       setYourClubsList(resJSON);
     };
     fetchData();
-  }, []);
+  }, [yourClubsList]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:4000/matchesList");
+      const resJSON = await res.json();
+      setYourFollowingMatches(resJSON);
+    };
+    fetchData();
+  }, [yourFollowingMatches]);
+
   return (
     <Router>
       <nav>

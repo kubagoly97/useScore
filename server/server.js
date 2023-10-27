@@ -15,8 +15,18 @@ const clubListSchema = new Schema({
   team_key: String,
 });
 const Club = mongoose.model("Club", clubListSchema);
-const matchesListSchema = new Schema({});
+
+const matchesListSchema = new Schema({
+  team_home_badge: String,
+  team_away_badge: String,
+  match_hometeam_score: String,
+  match_awayteam_score: String,
+  match_date: String,
+  match_time: String,
+  match_id: String,
+});
 const Match = mongoose.model("Match", matchesListSchema);
+
 main().catch((err) => console.log(err));
 
 async function main() {
@@ -51,6 +61,43 @@ app.post("/clubList", async (req, res) => {
 app.delete("/clubList/:id", async (req, res) => {
   const { id } = req.params;
   await Club.findByIdAndDelete(id)
+    .then((club) => res.json(club))
+    .catch((err) => res.json(err));
+});
+//----------------------------------------
+// Favourite matches:
+
+app.get("/matchesList", async (req, res) => {
+  await Match.find()
+    .then((clubs) => res.json(clubs))
+    .catch((err) => res.json(err));
+});
+
+app.post("/matchesList", async (req, res) => {
+  const {
+    team_home_badge,
+    team_away_badge,
+    match_hometeam_score,
+    match_awayteam_score,
+    match_date,
+    match_time,
+    match_id,
+  } = req.body;
+  const newMatch = new Match({
+    team_home_badge: team_home_badge,
+    team_away_badge: team_away_badge,
+    match_hometeam_score: match_hometeam_score,
+    match_awayteam_score: match_awayteam_score,
+    match_date: match_date,
+    match_time: match_time,
+    match_id: match_id,
+  });
+  await newMatch.save();
+});
+
+app.delete("/matchesList/:id", async (req, res) => {
+  const { id } = req.params;
+  await Match.findByIdAndDelete(id)
     .then((club) => res.json(club))
     .catch((err) => res.json(err));
 });
