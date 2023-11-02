@@ -2,30 +2,20 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const methodOverride = require("method-override");
+const jwt = require("jsonwebtoken");
+const Club = require("./models/clubListModel");
+const Match = require("./models/matchesListModel");
+// const clubList = require("../server/routes/clubList");
 
 app.use(cors());
 app.use(express.json());
 
-const { Schema } = mongoose;
-
-const clubListSchema = new Schema({
-  team_name: String,
-  team_badge: String,
-  team_key: String,
-});
-const Club = mongoose.model("Club", clubListSchema);
-
-const matchesListSchema = new Schema({
-  team_home_badge: String,
-  team_away_badge: String,
-  match_hometeam_score: String,
-  match_awayteam_score: String,
-  match_date: String,
-  match_time: String,
-  match_id: String,
-});
-const Match = mongoose.model("Match", matchesListSchema);
+// ---------------
+const catchAsync = (func) => {
+  return (req, res, next) => {
+    func(req, res, next).catch(next);
+  };
+};
 
 main().catch((err) => console.log(err));
 
@@ -100,6 +90,60 @@ app.delete("/matchesList/:id", async (req, res) => {
   await Match.findByIdAndDelete(id)
     .then((club) => res.json(club))
     .catch((err) => res.json(err));
+});
+
+// ---------------------------
+// users
+
+app.get("/register", async (req, res) => {
+  const user = await User.find();
+  res.send(user);
+});
+
+app.post(
+  "/register",
+  catchAsync(async (req, res) => {
+    try {
+      const { username, email, password } = req.body;
+      const user = new User({ email, username, password });
+      await user.save();
+      res.status(200).json({ status: "ok" });
+    } catch (e) {
+      res.status(400).json({ status: "error", error: e.message });
+    }
+  })
+);
+
+app.post("/login", async (req, res) => {
+  const user = await User.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  });
+  if (user) {
+    const token = jwt.sign(
+      {
+        name: user.name,
+        email: user.email,
+      },
+      "secret123"
+    );
+    return res.json({ status: "ok", user: token });
+  } else {
+    return res.json({ status: "error", user: false });
+  }
+});
+
+app.get("/username", async (req, res) => {
+  const token = req.headers["x-access-token"];
+  try {
+    const decoded = jwt.verify(token, "secret123");
+    const email = decoded.email;
+    const user = await User.findOne({ email: email });
+    return res.json({ status: "ok", username: user.username });
+  } catch (e) {
+    console.log(e);
+    res.json({ status: "error", error: "invalid token" });
+  }
 });
 
 app.listen(4000, () => {

@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import ClubsList from "./ClubsList";
 import { Container } from "@mui/system";
 import FavouriteMatchesList from "./FavouriteMatchesList";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,9 +32,37 @@ export default function HomePage({
   setYourFollowingMatches,
   setPlayerData,
 }) {
+  const [user, setUser] = useState({});
+
+  const navigate = useNavigate();
+  const populateQuote = async () => {
+    const req = await fetch("http://localhost:4000/username", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    });
+    const data = await req.json();
+    if (data.status === "ok") {
+      setUser(data);
+      console.log(data);
+    }
+  };
   useEffect(function () {
     setMatchesData({});
     setPlayerData({});
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const user = jwtDecode(token);
+      if (!user) {
+        localStorage.removeItem("token");
+        navigate("/");
+      } else {
+        populateQuote();
+      }
+    }
   }, []);
 
   return (
@@ -47,11 +77,22 @@ export default function HomePage({
       ) : (
         <>
           <Container className="ImageOnHomePage" maxWidth="xl">
-            {" "}
             <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
-              {" "}
-              Choose the league!
+              {user.username
+                ? `Hello ${user.username}, choose the league!`
+                : `Choose the league!`}
             </h1>
+            {user.username && (
+              <button
+                onClick={() => {
+                  setUser({});
+                  localStorage.removeItem("token");
+                }}
+              >
+                Log out
+              </button>
+            )}
+
             <h1 className="h1OnPage" style={{ marginBottom: "30px" }}>
               {yourClubsList.length
                 ? "Or pick one team from your list"

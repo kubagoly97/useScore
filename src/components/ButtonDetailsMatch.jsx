@@ -25,11 +25,21 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
       />
       <ListItemText
         id={labelId}
-        sx={{ color: "white", marginLeft: "20px" }}
+        sx={{
+          color:
+            (match.match_status == "Finished" && "white") ||
+            (match.match_status == "After ET" && "white") ||
+            (match.match_status.length && "#16DB65"),
+          marginLeft: "20px",
+        }}
         primary={
-          match.match_status !== "Finished"
-            ? `${match.match_time} | ${match.match_date}`
-            : `Finished`
+          (match.match_status == "Finished" && "Finished") ||
+          (match.match_status == "After ET" && "Finished") ||
+          (match.match_status == "Half Time" && "⚽️ LIVE! - Half Time") ||
+          (match.match_status.length &&
+            `⚽️ LIVE! - ${match.match_status}' ⏱️`) ||
+          (!match.match_status.length &&
+            `${match.match_time} | ${match.match_date}`)
         }
       />
     </ListItemButton>

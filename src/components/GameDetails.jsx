@@ -24,13 +24,13 @@ export function GameDetails({
     setYourFollowingMatches([
       ...yourFollowingMatches,
       {
-        team_home_badge,
-        team_away_badge,
-        match_hometeam_score,
-        match_awayteam_score,
-        match_date,
-        match_time,
-        match_id,
+        team_home_badge: match.team_home_badge,
+        team_away_badge: match.team_away_badge,
+        match_hometeam_score: match.match_hometeam_score,
+        match_awayteam_score: match.match_awayteam_score,
+        match_date: match.match_date,
+        match_time: match.match_time,
+        match_id: match.match_id,
       },
     ]);
     const res = await fetch("http://localhost:4000/matchesList", {
@@ -63,6 +63,7 @@ export function GameDetails({
   return (
     <div className="GameDetails">
       <div className="ClubVsClub">
+        {console.log(yourFollowingMatches)}
         <LeagueDetailsInMatchComponent
           handleShowTable={handleShowTable}
           match={match}

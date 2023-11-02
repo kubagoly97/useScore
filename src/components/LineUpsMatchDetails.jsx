@@ -21,32 +21,26 @@ export function LineUpsMatchDetails({ match }) {
                   src={match.team_home_badge}
                   alt=""
                   style={{ width: "11px" }}
-                />{" "}
+                />
                 {match.match_hometeam_name}
               </div>
               <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {match.lineup.home.starting_lineups.map((player, i) => (
                   <li key={i}>
-                    <div>
-                      {Number(player.lineup_number) !== 0 &&
-                        player.lineup_number}{" "}
-                      <span style={{ color: "green" }}>|</span>{" "}
-                      <Link
-                        to={`player?play=${player.player_key}`}
-                        style={{ color: "white", textDecoration: "none" }}
-                      >
-                        {player.lineup_player
-                          .split(" ")
-                          .splice(0, 1)
-                          .toString()
-                          .slice(0, 1)}
-                        .{" "}
-                        {player.lineup_player
-                          .split(" ")
-                          .splice(1, 2)
-                          .toString()}{" "}
-                      </Link>
-                    </div>
+                    {Number(player.lineup_number) !== 0 && player.lineup_number}{" "}
+                    <span style={{ color: "green" }}>|</span>
+                    <Link
+                      to={`player?play=${player.player_key}`}
+                      style={{ color: "white", textDecoration: "none" }}
+                    >
+                      {player.lineup_player
+                        .split(" ")
+                        .splice(0, 1)
+                        .toString()
+                        .slice(0, 1)}
+                      .{" "}
+                      {player.lineup_player.split(" ").splice(1, 2).toString()}{" "}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -103,7 +97,7 @@ export function LineUpsMatchDetails({ match }) {
           </Grid>
         </Grid>
       </Box>
-      <p
+      <div
         style={{
           fontSize: "12px",
           borderBottom: "0.5px solid #04471C",
@@ -111,7 +105,7 @@ export function LineUpsMatchDetails({ match }) {
         }}
       >
         Details
-      </p>
+      </div>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={6}>
@@ -121,6 +115,7 @@ export function LineUpsMatchDetails({ match }) {
                 <ul style={{ listStyleType: "none", textAlign: "left" }}>
                   {match.goalscorer.map((scorer, i) => (
                     <li
+                      key={i}
                       style={{
                         color: scorer.home_scorer ? "green" : "red",
                       }}

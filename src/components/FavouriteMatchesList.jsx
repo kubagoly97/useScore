@@ -16,8 +16,8 @@ export default function FavouriteMatchesList({
       method: "DELETE",
     });
     const resJSON = await res.json();
-    console.log(resJSON);
     if (res.ok) {
+      console.log(resJSON);
       setYourFollowingMatches(yourFollowingMatches.filter((m) => m._id !== id));
     } else {
       console.log("ERROR");
@@ -52,7 +52,10 @@ export default function FavouriteMatchesList({
                       border: "none",
                       cursor: "pointer",
                     }}
-                    onClick={() => handleDelete(match._id)}
+                    onClick={() => {
+                      handleDelete(match._id);
+                      console.log(yourFollowingMatches);
+                    }}
                   >
                     <FavoriteIcon
                       fontSize="large"

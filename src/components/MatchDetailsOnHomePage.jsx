@@ -39,6 +39,9 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
       setMatchInfo(resJSON);
     };
     fetchMatchInfo();
+    setInterval(() => {
+      fetchMatchInfo();
+    }, 5000);
   }, []);
 
   const handleClickOpen = () => {
@@ -50,15 +53,16 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
   };
 
   return (
-    <div>
+    <>
       {matchInfo.length && (
-        <>
+        <div>
           <ButtonDetailsMatch
             match={matchInfo[0]}
             labelId={labelId}
             func={handleClickOpen}
           />
           <Dialog
+            component="div"
             open={open}
             TransitionComponent={Transition}
             keepMounted
@@ -128,7 +132,7 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
                 {matchInfo[0].match_status === "Postponed" && (
                   <h2>Postponed</h2>
                 )}
-                {matchInfo[0].match_status === "Finished" ? (
+                {matchInfo[0].match_status.length ? (
                   <LineUpsMatchDetails match={matchInfo[0]} />
                 ) : (
                   <></>
@@ -141,8 +145,8 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
               </Button>
             </DialogActions>
           </Dialog>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import "../App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import * as React from "react";
 import dayjs from "dayjs";
@@ -8,6 +8,8 @@ import HomePage from "./HomePage";
 import NotFound from "./NotFound";
 import BasicGrid2 from "./BasicGrid2";
 import { PlayerPage } from "./PlayerPage";
+import LoginPage from "./LoginPage";
+import Register from "./Register";
 
 export default function App() {
   // -------------------------------
@@ -98,7 +100,7 @@ export default function App() {
       setYourClubsList(resJSON);
     };
     fetchData();
-  }, [yourClubsList]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,7 +109,7 @@ export default function App() {
       setYourFollowingMatches(resJSON);
     };
     fetchData();
-  }, [yourFollowingMatches]);
+  }, []);
 
   return (
     <Router>
@@ -167,7 +169,8 @@ export default function App() {
             <PlayerPage playerData={playerData} setPlayerData={setPlayerData} />
           }
         />
-
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
