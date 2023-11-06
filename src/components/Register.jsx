@@ -4,6 +4,8 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSignup } from "../hooks/useSignup";
+import { dividerClasses } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,29 +16,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Register() {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const { signup, error, isLoading } = useSignup();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const user = { username, email, password };
-    const res = await fetch("http://localhost:4000/register", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: { "Content-Type": "application/json" },
-    });
-    const json = await res.json();
-    if (!res.ok) {
-      setError(json.error);
-      console.log(error.error);
-    }
-    if (res.ok) {
-      setError(null);
-      console.log("added new user", json.status);
-      window.location.href = "/login";
-    }
+    await signup(email, password);
   };
 
   return (
@@ -52,26 +38,6 @@ export default function Register() {
               paddingTop: "15px",
             }}
           >
-            <label htmlFor="" style={{ color: "white" }}>
-              Username:{" "}
-              <input
-                value={username}
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </label>
-          </Item>
-          <Item
-            sx={{
-              borderRadius: "6px",
-              background: " #058C42 ",
-              border: "2px dashed #0D2818",
-              paddingBottom: "15px",
-              paddingTop: "15px",
-            }}
-          >
-            {" "}
             <label htmlFor="" style={{ color: "white" }}>
               Email:{" "}
               <input
@@ -103,7 +69,8 @@ export default function Register() {
             </label>
           </Item>
         </Stack>
-        <button>submit</button>
+        <button disabled={isLoading}>Sign Up</button>
+        {error && <div>{error}</div>}
       </form>
     </Box>
   );

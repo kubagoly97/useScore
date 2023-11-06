@@ -9,6 +9,10 @@ const matchesListSchema = new Schema({
   match_date: String,
   match_time: String,
   match_id: String,
+  user_id: {
+    type: String,
+    required: true,
+  },
 });
 
 const Match = mongoose.model("Match", matchesListSchema);

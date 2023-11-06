@@ -4,16 +4,21 @@ import ListItem from "@mui/material/ListItem";
 import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function FavouriteMatchesList({
   yourFollowingMatches,
   setYourFollowingMatches,
 }) {
+  const { user } = useAuthContext();
   const [showDetails, setShowDetails] = useState(false);
 
   const handleDelete = async (id) => {
     const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const resJSON = await res.json();
     if (res.ok) {

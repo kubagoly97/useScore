@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import "../App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import * as React from "react";
 import dayjs from "dayjs";
 import FootballBar from "./FootballBar";
@@ -10,8 +15,11 @@ import BasicGrid2 from "./BasicGrid2";
 import { PlayerPage } from "./PlayerPage";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { Home } from "@mui/icons-material";
 
 export default function App() {
+  const { user } = useAuthContext();
   // -------------------------------
   const [showClubList, setShowClubList] = useState(false);
   // -------------------------------
@@ -42,7 +50,6 @@ export default function App() {
     setClubList(resJson);
     setShowClubList(true);
     setIsLoading(false);
-    setIsOnList(true);
   };
   const fetchEnglishData = async () => {
     setIsLoading(true);
@@ -54,7 +61,6 @@ export default function App() {
     setClubList(resJson);
     setShowClubList(true);
     setIsLoading(false);
-    setIsOnList(true);
   };
   const fetchSpain2Data = async () => {
     setIsLoading(true);
@@ -66,7 +72,6 @@ export default function App() {
     setClubList(resJson);
     setShowClubList(true);
     setIsLoading(false);
-    setIsOnList(true);
   };
   const fetchGermanyData = async () => {
     setIsLoading(true);
@@ -78,7 +83,6 @@ export default function App() {
     setClubList(resJson);
     setShowClubList(true);
     setIsLoading(false);
-    setIsOnList(true);
   };
   const fetchEkstraklasaData = async () => {
     setIsLoading(true);
@@ -90,26 +94,33 @@ export default function App() {
     setClubList(resJson);
     setShowClubList(true);
     setIsLoading(false);
-    setIsOnList(true);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/clubList");
+      const res = await fetch("http://localhost:4000/clubList", {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       const resJSON = await res.json();
       setYourClubsList(resJSON);
     };
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/matchesList");
+      const res = await fetch("http://localhost:4000/matchesList", {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       const resJSON = await res.json();
       setYourFollowingMatches(resJSON);
     };
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   return (
     <Router>
@@ -169,8 +180,14 @@ export default function App() {
             <PlayerPage playerData={playerData} setPlayerData={setPlayerData} />
           }
         />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="login"
+          element={!user ? <LoginPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="register"
+          element={!user ? <Register /> : <Navigate to="/" />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

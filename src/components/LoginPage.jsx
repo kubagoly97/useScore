@@ -4,6 +4,8 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -15,24 +17,12 @@ const Item = styled(Paper)(({ theme }) => ({
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const user = { email, password };
-    const res = await fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: { "Content-Type": "application/json" },
-    });
-    const json = await res.json();
-    if (json.user) {
-      localStorage.setItem("token", json.user);
-      alert("login successful");
-      window.location.href = "/";
-    } else {
-      alert("please chech your username and password");
-    }
-    console.log(json);
+    await login(email, password);
+    window.location.replace("/");
   };
 
   return (
@@ -49,7 +39,7 @@ function LoginPage() {
             }}
           >
             <label htmlFor="" style={{ color: "white" }}>
-              Login:{" "}
+              Email:
               <input
                 type="text"
                 value={email}
@@ -77,7 +67,8 @@ function LoginPage() {
             </label>
           </Item>
         </Stack>
-        <button>Login</button>
+        <button disabled={isLoading}>Login</button>
+        {error && <div>{error}</div>}
       </form>
     </Box>
   );

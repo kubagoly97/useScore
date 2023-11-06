@@ -5,6 +5,7 @@ import { LeagueDetailsInMatchComponent } from "./LeagueDetailsInMatchComponent";
 import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export function GameDetails({
   match,
@@ -13,6 +14,8 @@ export function GameDetails({
   setYourFollowingMatches,
   handleFetch,
 }) {
+  const { user } = useAuthContext();
+
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -44,7 +47,10 @@ export function GameDetails({
         match_time,
         match_id,
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const json = await res.json();
   };
@@ -52,6 +58,9 @@ export function GameDetails({
   const handleDelete = async (id) => {
     const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     if (res.ok) {
       setYourFollowingMatches(yourFollowingMatches.filter((c) => c._id !== id));

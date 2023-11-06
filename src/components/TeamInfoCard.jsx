@@ -5,12 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function TeamInfoCard({
   club,
   yourClubsList,
   setYourClubsList,
 }) {
+  const { user } = useAuthContext();
+
   const handleAddClubOnYourFavouriteList = async () => {
     const team_badge = club.team_badge;
     const team_name = club.team_name;
@@ -19,7 +22,10 @@ export default function TeamInfoCard({
     const res = await fetch("http://localhost:4000/clubList", {
       method: "POST",
       body: JSON.stringify({ team_badge, team_name, team_key }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const json = await res.json();
   };

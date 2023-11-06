@@ -1,4 +1,4 @@
-const Club = require("../models/clubListModel");
+const Club = require("../models/clubList");
 const mongoose = require("mongoose");
 
 const getClubs = async (req, res) => {

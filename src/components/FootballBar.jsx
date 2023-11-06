@@ -15,6 +15,8 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function FootballBar({
   fetchEkstraklasaData,
@@ -26,7 +28,8 @@ export default function FootballBar({
   playerData,
 }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -213,6 +216,15 @@ export default function FootballBar({
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   Segunda Division
+                </Button>
+                <Button
+                  onClick={() => {
+                    logout();
+                    window.location.reload();
+                  }}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Log out {user && user.email}
                 </Button>
               </>
             )}

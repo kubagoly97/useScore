@@ -3,13 +3,16 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const Club = require("./models/clubListModel");
-const Match = require("./models/matchesListModel");
-// const clubList = require("../server/routes/clubList");
+const Club = require("./models/clubList");
+const Match = require("./models/matchesList");
+const User = require("./models/user");
+const userRoutes = require("../server/routes/user");
+const requireAuth = require("../server/middleware/requireAuth");
 
 app.use(cors());
 app.use(express.json());
-
+app.use("/", userRoutes);
+app.use(requireAuth);
 // ---------------
 const catchAsync = (func) => {
   return (req, res, next) => {
@@ -26,7 +29,8 @@ async function main() {
 }
 
 app.get("/clubList", async (req, res) => {
-  await Club.find()
+  const user_id = req.user._id;
+  await Club.find({ user_id })
     .then((clubs) => res.json(clubs))
     .catch((err) => res.json(err));
 });
@@ -39,11 +43,13 @@ app.get("/clubList/:id", async (req, res) => {
 });
 
 app.post("/clubList", async (req, res) => {
+  const user_id = req.user._id;
   const { team_badge, team_key, team_name } = req.body;
   const newClub = new Club({
     team_name: team_name,
     team_key: team_key,
     team_badge: team_badge,
+    user_id: user_id,
   });
   await newClub.save();
 });
@@ -58,12 +64,14 @@ app.delete("/clubList/:id", async (req, res) => {
 // Favourite matches:
 
 app.get("/matchesList", async (req, res) => {
-  await Match.find()
+  const user_id = req.user._id;
+  await Match.find({ user_id })
     .then((clubs) => res.json(clubs))
     .catch((err) => res.json(err));
 });
 
 app.post("/matchesList", async (req, res) => {
+  const user_id = req.user._id;
   const {
     team_home_badge,
     team_away_badge,
@@ -81,71 +89,20 @@ app.post("/matchesList", async (req, res) => {
     match_date: match_date,
     match_time: match_time,
     match_id: match_id,
+    user_id: user_id,
   });
   await newMatch.save();
 });
 
 app.delete("/matchesList/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   await Match.findByIdAndDelete(id)
     .then((club) => res.json(club))
     .catch((err) => res.json(err));
 });
 
 // ---------------------------
-// users
-
-app.get("/register", async (req, res) => {
-  const user = await User.find();
-  res.send(user);
-});
-
-app.post(
-  "/register",
-  catchAsync(async (req, res) => {
-    try {
-      const { username, email, password } = req.body;
-      const user = new User({ email, username, password });
-      await user.save();
-      res.status(200).json({ status: "ok" });
-    } catch (e) {
-      res.status(400).json({ status: "error", error: e.message });
-    }
-  })
-);
-
-app.post("/login", async (req, res) => {
-  const user = await User.findOne({
-    email: req.body.email,
-    password: req.body.password,
-  });
-  if (user) {
-    const token = jwt.sign(
-      {
-        name: user.name,
-        email: user.email,
-      },
-      "secret123"
-    );
-    return res.json({ status: "ok", user: token });
-  } else {
-    return res.json({ status: "error", user: false });
-  }
-});
-
-app.get("/username", async (req, res) => {
-  const token = req.headers["x-access-token"];
-  try {
-    const decoded = jwt.verify(token, "secret123");
-    const email = decoded.email;
-    const user = await User.findOne({ email: email });
-    return res.json({ status: "ok", username: user.username });
-  } catch (e) {
-    console.log(e);
-    res.json({ status: "error", error: "invalid token" });
-  }
-});
-
 app.listen(4000, () => {
-  console.log("Listening on port 4000");
+  console.log(`Listening on port 4000`);
 });

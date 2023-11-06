@@ -10,6 +10,7 @@ import { Container } from "@mui/system";
 import FavouriteMatchesList from "./FavouriteMatchesList";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -32,21 +33,10 @@ export default function HomePage({
   setYourFollowingMatches,
   setPlayerData,
 }) {
-  const [user, setUser] = useState({});
+  const { user } = useAuthContext();
 
   const navigate = useNavigate();
-  const populateQuote = async () => {
-    const req = await fetch("http://localhost:4000/username", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    });
-    const data = await req.json();
-    if (data.status === "ok") {
-      setUser(data);
-      console.log(data);
-    }
-  };
+
   useEffect(function () {
     setMatchesData({});
     setPlayerData({});
@@ -78,26 +68,16 @@ export default function HomePage({
         <>
           <Container className="ImageOnHomePage" maxWidth="xl">
             <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
-              {user.username
-                ? `Hello ${user.username}, choose the league!`
-                : `Choose the league!`}
+              {user
+                ? `Welcome back, ${user.email
+                    .slice(0, user.email.indexOf("@"))
+                    .charAt(0)
+                    .toUpperCase()}${user.email
+                    .slice(0, user.email.indexOf("@"))
+                    .slice(1)} 👑`
+                : `Welcome on useScore, choose the league!`}
             </h1>
-            {user.username && (
-              <button
-                onClick={() => {
-                  setUser({});
-                  localStorage.removeItem("token");
-                }}
-              >
-                Log out
-              </button>
-            )}
-
-            <h1 className="h1OnPage" style={{ marginBottom: "30px" }}>
-              {yourClubsList.length
-                ? "Or pick one team from your list"
-                : "And add team on your list"}
-            </h1>
+            <h1 className="h1OnPage" style={{ marginBottom: "30px" }}></h1>
             {yourClubsList.length ? (
               <ClubsList
                 yourClubsList={yourClubsList}

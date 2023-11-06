@@ -6,15 +6,22 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 export default function ClubsList({
   yourClubsList,
   setYourClubsList,
   clubs,
   setIsOnList,
 }) {
+  const { user } = useAuthContext();
+
   const handleDelete = async (id) => {
     const res = await fetch(`http://localhost:4000/clubList/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const resJSON = await res.json();
     console.log(resJSON);
@@ -26,67 +33,70 @@ export default function ClubsList({
   };
 
   return (
-    <List
-      dense
-      sx={{
-        marginTop: "50px",
-        flexGrow: 1,
-        width: "100%",
-        maxWidth: 360,
-        backgroundColor: "rgba(0,0,0,0.4)",
-        borderRadius: "6px",
-        border: "2px dashed #0D2818",
-      }}
-    >
-      {yourClubsList.length &&
-        yourClubsList.map((club, i) => {
-          const labelId = `checkbox-list-secondary-label-${club}`;
-          return (
-            <ListItem
-              key={i}
-              disablePadding
-              secondaryAction={
-                <button
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => handleDelete(club._id)}
-                >
-                  <DeleteForeverIcon
-                    fontSize="large"
-                    sx={{ color: "rgba(201, 26, 26,0.9)" }}
-                  />
-                </button>
-              }
-            >
-              <ListItemButton
-                href={`/${club.team_key}`}
-                onClick={() => {
-                  {
-                    clubs.map((c) => c.team_name).includes(club.team_name)
-                      ? setIsOnList(true)
-                      : setIsOnList(false);
-                  }
-                }}
+    <>
+      <h1>Your teams</h1>
+      <List
+        dense
+        sx={{
+          marginTop: "50px",
+          flexGrow: 1,
+          width: "100%",
+          maxWidth: 360,
+          backgroundColor: "rgba(0,0,0,0.4)",
+          borderRadius: "6px",
+          border: "2px dashed #0D2818",
+        }}
+      >
+        {yourClubsList.length &&
+          yourClubsList.map((club, i) => {
+            const labelId = `checkbox-list-secondary-label-${club}`;
+            return (
+              <ListItem
+                key={i}
+                disablePadding
+                secondaryAction={
+                  <button
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleDelete(club._id)}
+                  >
+                    <DeleteForeverIcon
+                      fontSize="large"
+                      sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                    />
+                  </button>
+                }
               >
-                <ListItemAvatar>
-                  <Avatar
-                    variant="square"
-                    sx={{ width: 70, height: 70, marginRight: "10px" }}
-                    src={club.team_badge}
+                <ListItemButton
+                  href={`/${club.team_key}`}
+                  onClick={() => {
+                    {
+                      clubs.map((c) => c.team_name).includes(club.team_name)
+                        ? setIsOnList(true)
+                        : setIsOnList(false);
+                    }
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      variant="square"
+                      sx={{ width: 70, height: 70, marginRight: "10px" }}
+                      src={club.team_badge}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    id={labelId}
+                    sx={{ color: "white" }}
+                    primary={club.team_name}
                   />
-                </ListItemAvatar>
-                <ListItemText
-                  id={labelId}
-                  sx={{ color: "white" }}
-                  primary={club.team_name}
-                />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
-    </List>
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+      </List>
+    </>
   );
 }
