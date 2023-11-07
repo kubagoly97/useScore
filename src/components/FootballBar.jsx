@@ -184,7 +184,13 @@ export default function FootballBar({
           >
             useScore
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justify: "space-beetwen",
+            }}
+          >
             {!matchesData.length && !playerData.length && (
               <>
                 <Button
@@ -217,15 +223,40 @@ export default function FootballBar({
                 >
                   Segunda Division
                 </Button>
-                <Button
-                  onClick={() => {
-                    logout();
-                    window.location.reload();
-                  }}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Log out {user && user.email}
-                </Button>
+                {user ? (
+                  <Button
+                    variant="text"
+                    onClick={() => {
+                      logout();
+                      window.location.reload();
+                    }}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Log out {user && user.email}
+                  </Button>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      sx={{ textDecoration: "none", color: "white" }}
+                    >
+                      <Button
+                        variant="text"
+                        sx={{ my: 2, color: "white", underline: "none" }}
+                      >
+                        Log in
+                      </Button>
+                    </Link>
+                    <Link to="/register">
+                      <Button
+                        variant="text"
+                        sx={{ my: 2, color: "white", underline: "none" }}
+                      >
+                        Register
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </>
             )}
           </Box>

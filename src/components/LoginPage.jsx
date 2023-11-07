@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -18,11 +19,14 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
-
+  const { user } = useAuthContext();
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     await login(email, password);
-    window.location.replace("/");
+    if(user){
+      window.location.replace("/");
+    }
   };
 
   return (

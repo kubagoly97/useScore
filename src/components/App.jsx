@@ -16,7 +16,6 @@ import { PlayerPage } from "./PlayerPage";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Home } from "@mui/icons-material";
 
 export default function App() {
   const { user } = useAuthContext();

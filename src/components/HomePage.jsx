@@ -11,14 +11,8 @@ import FavouriteMatchesList from "./FavouriteMatchesList";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import { Grid } from "@mui/joy";
+import LeaguesList from "./LeaguesList";
 
 export default function HomePage({
   clubs,
@@ -66,6 +60,12 @@ export default function HomePage({
         </>
       ) : (
         <>
+          {/* <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={1}>
+              <Grid xs={3} md={3} sx={{ marginTop: "2em" }}>
+                <LeaguesList />
+              </Grid>
+              <Grid xs={9} md={9}> */}
           <Container className="ImageOnHomePage" maxWidth="xl">
             <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
               {user
@@ -98,6 +98,9 @@ export default function HomePage({
               <></>
             )}
           </Container>
+          {/* </Grid>
+            </Grid>
+          </Box> */}
         </>
       )}
     </>

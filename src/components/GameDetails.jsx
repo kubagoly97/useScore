@@ -98,7 +98,7 @@ export function GameDetails({
           >
             {match.match_awayteam_name}
           </a>
-          <Button
+          {user ? ( <Button
             onClick={() => {
               if (
                 yourFollowingMatches
@@ -125,7 +125,8 @@ export function GameDetails({
             ) : (
               <FavoriteBorderIcon fontSize="large" sx={{ color: "white" }} />
             )}
-          </Button>
+          </Button>):(<></>) }
+         
         </h1>
         <Box
           sx={{

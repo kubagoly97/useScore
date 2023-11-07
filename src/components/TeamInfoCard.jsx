@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Link } from "react-router-dom";
 
 export default function TeamInfoCard({
   club,
@@ -63,7 +64,7 @@ export default function TeamInfoCard({
         </Typography>
       </CardContent>
       <CardActions>
-        {!yourClubsList.map((c) => c.team_key).includes(club.team_key) ? (
+        {user ? (!yourClubsList.map((c) => c.team_key).includes(club.team_key) ? (
           <form action="">
             {" "}
             <Button
@@ -76,7 +77,8 @@ export default function TeamInfoCard({
           <Button disabled sx={{ color: "white" }} size="small">
             {`${club.team_name} is already on your list`}
           </Button>
-        )}
+        )) :(<Link to='/login'><Button sx={{ color: "white", marginTop: "30px" }}>You must be logged in</Button></Link>)}
+        {}
       </CardActions>
     </Card>
   );
