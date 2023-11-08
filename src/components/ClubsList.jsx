@@ -34,7 +34,6 @@ export default function ClubsList({
 
   return (
     <>
-      <h1>Your teams</h1>
       <List
         dense
         sx={{

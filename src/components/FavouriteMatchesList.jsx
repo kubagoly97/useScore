@@ -30,7 +30,6 @@ export default function FavouriteMatchesList({
   };
   return (
     <>
-      <h1>Your games</h1>
       <List
         dense
         sx={{

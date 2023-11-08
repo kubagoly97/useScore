@@ -1,18 +1,15 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import BasicGrid from "./BasicGrid";
 import Loading from "./Loading";
 import { useEffect, useState } from "react";
-import ClubsList from "./ClubsList";
 import { Container } from "@mui/system";
-import FavouriteMatchesList from "./FavouriteMatchesList";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Grid } from "@mui/joy";
 import LeaguesList from "./LeaguesList";
+import SwitchPanels from "./SwitchPanels";
 
 export default function HomePage({
   clubs,
@@ -77,20 +74,13 @@ export default function HomePage({
                     .slice(1)} 👑`
                 : `Welcome on useScore, choose the league!`}
             </h1>
-            <h1 className="h1OnPage" style={{ marginBottom: "30px" }}></h1>
-            {yourClubsList.length ? (
-              <ClubsList
+            {user ? (
+              <SwitchPanels
                 yourClubsList={yourClubsList}
                 setYourClubsList={setYourClubsList}
                 clubs={clubs}
                 setIsOnList={setIsOnList}
                 isOnList={isOnList}
-              />
-            ) : (
-              ""
-            )}
-            {yourFollowingMatches.length ? (
-              <FavouriteMatchesList
                 yourFollowingMatches={yourFollowingMatches}
                 setYourFollowingMatches={setYourFollowingMatches}
               />

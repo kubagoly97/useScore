@@ -13,9 +13,9 @@ import HomePage from "./HomePage";
 import NotFound from "./NotFound";
 import BasicGrid2 from "./BasicGrid2";
 import { PlayerPage } from "./PlayerPage";
-import LoginPage from "./LoginPage";
 import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
+import LoginCard from "./LoginCard";
 
 export default function App() {
   const { user } = useAuthContext();
@@ -181,7 +181,7 @@ export default function App() {
         />
         <Route
           path="login"
-          element={!user ? <LoginPage /> : <Navigate to="/" />}
+          element={!user ? <LoginCard /> : <Navigate to="/" />}
         />
         <Route
           path="register"
