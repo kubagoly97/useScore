@@ -94,6 +94,94 @@ export default function App() {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetch2BundesligaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=171&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetch1LigaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=263&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchSerieAData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=207&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchSerieBData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=206&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchChampionshipData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=153&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchLigueOneData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=168&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetch2LigaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=261&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchSwitzerlandData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=308&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -146,6 +234,14 @@ export default function App() {
               fetchSpain2Data={fetchSpain2Data}
               fetchGermanyData={fetchGermanyData}
               fetchEkstraklasaData={fetchEkstraklasaData}
+              fetch2BundesligaData={fetch2BundesligaData}
+              fetch1LigaData={fetch1LigaData}
+              fetchSerieAData={fetchSerieAData}
+              fetchChampionshipData={fetchChampionshipData}
+              fetchLigueOneData={fetchLigueOneData}
+              fetch2LigaData={fetch2LigaData}
+              fetchSwitzerlandData={fetchSwitzerlandData}
+              fetchSerieBData={fetchSerieBData}
               showClubList={showClubList}
               setShowClubList={setShowClubList}
               isLoading={isLoading}

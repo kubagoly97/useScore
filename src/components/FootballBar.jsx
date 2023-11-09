@@ -48,7 +48,7 @@ export default function FootballBar({
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
           <SportsSoccerIcon
             fontSize="large"
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -102,6 +102,7 @@ export default function FootballBar({
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
+                justifyContent: "space-between",
                 display: { xs: "block", md: "none" },
               }}
             >
@@ -193,36 +194,6 @@ export default function FootballBar({
           >
             {!matchesData.length && !playerData.length && (
               <>
-                <Button
-                  onClick={fetchEnglishData}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Premier League
-                </Button>
-                <Button
-                  onClick={fetchSpainData}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  La Liga
-                </Button>
-                <Button
-                  onClick={fetchGermanyData}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Bundesliga
-                </Button>
-                <Button
-                  onClick={fetchEkstraklasaData}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Ekstraklasa
-                </Button>
-                <Button
-                  onClick={fetchSpain2Data}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Segunda Division
-                </Button>
                 {user ? (
                   <Button
                     variant="text"

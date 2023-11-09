@@ -1,24 +1,22 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
 const Club = require("./models/clubList");
 const Match = require("./models/matchesList");
-const User = require("./models/user");
 const userRoutes = require("../server/routes/user");
 const requireAuth = require("../server/middleware/requireAuth");
 
 app.use(cors());
 app.use(express.json());
 app.use("/", userRoutes);
+
 app.use(requireAuth);
+
 // ---------------
-const catchAsync = (func) => {
-  return (req, res, next) => {
-    func(req, res, next).catch(next);
-  };
-};
 
 main().catch((err) => console.log(err));
 
@@ -103,6 +101,7 @@ app.delete("/matchesList/:id", async (req, res) => {
 });
 
 // ---------------------------
-app.listen(4000, () => {
-  console.log(`Listening on port 4000`);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port ${process.env.PORT}`);
 });
