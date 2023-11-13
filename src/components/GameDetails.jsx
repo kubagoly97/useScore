@@ -6,16 +6,22 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
-
+import { useEffect } from "react";
 export function GameDetails({
   match,
   handleShowTable,
   yourFollowingMatches,
   setYourFollowingMatches,
   handleFetch,
+  setMatchCountryDetails,
+  table,
+  setTable,
+  club,
+  setShowTable,
+  showTable,
 }) {
   const { user } = useAuthContext();
-
+  console.log(table);
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -69,13 +75,67 @@ export function GameDetails({
     }
   };
 
+  useEffect(() => {
+    function isThisTeam(team) {
+      return team.team_id === club.team_key;
+    }
+    const fetchTab = async () => {
+      const url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${
+        match.league_id
+      }&APIkey=${import.meta.env.VITE_API_KEY}`;
+      const res = await fetch(url);
+      const resJSON = await res.json();
+      if (resJSON.find(isThisTeam).country_name === "eurocups") {
+        let findTeam = resJSON.find(isThisTeam).overall_league_position;
+        console.log(
+          "euro table: ",
+          Number(findTeam) === 1
+            ? setTable(
+                resJSON.slice(
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key),
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 4
+                )
+              )
+            : Number(findTeam) === 2
+            ? setTable(
+                resJSON.slice(
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
+                    1,
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 3
+                )
+              )
+            : Number(findTeam) === 3
+            ? setTable(
+                resJSON.slice(
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
+                    2,
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 2
+                )
+              )
+            : Number(findTeam) === 4 &&
+              setTable(
+                resJSON.slice(
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
+                    3,
+                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 1
+                )
+              )
+        );
+      } else {
+        setTable(resJSON);
+      }
+    };
+    fetchTab();
+  }, [showTable]);
+
   return (
     <div className="GameDetails">
       <div className="ClubVsClub">
-        {console.log(yourFollowingMatches)}
         <LeagueDetailsInMatchComponent
           handleShowTable={handleShowTable}
           match={match}
+          setMatchCountryDetails={setMatchCountryDetails}
+          setShowTable={setShowTable}
         />
         <h1>
           <a
@@ -98,35 +158,38 @@ export function GameDetails({
           >
             {match.match_awayteam_name}
           </a>
-          {user ? ( <Button
-            onClick={() => {
-              if (
-                yourFollowingMatches
-                  .map((m) => m.match_id)
-                  .includes(match.match_id)
-              ) {
-                {
-                  handleDelete(
-                    yourFollowingMatches.find(
-                      ({ match_id }) => match_id === match.match_id
-                    )._id
-                  );
+          {user ? (
+            <Button
+              onClick={() => {
+                if (
+                  yourFollowingMatches
+                    .map((m) => m.match_id)
+                    .includes(match.match_id)
+                ) {
+                  {
+                    handleDelete(
+                      yourFollowingMatches.find(
+                        ({ match_id }) => match_id === match.match_id
+                      )._id
+                    );
+                  }
+                } else {
+                  handleFetch(match.match_id);
+                  handleAddMatchOnYourFavouriteList();
                 }
-              } else {
-                handleFetch(match.match_id);
-                handleAddMatchOnYourFavouriteList();
-              }
-            }}
-          >
-            {yourFollowingMatches
-              .map((m) => m.match_id)
-              .includes(match.match_id) ? (
-              <FavoriteIcon fontSize="large" sx={{ color: "red" }} />
-            ) : (
-              <FavoriteBorderIcon fontSize="large" sx={{ color: "white" }} />
-            )}
-          </Button>):(<></>) }
-         
+              }}
+            >
+              {yourFollowingMatches
+                .map((m) => m.match_id)
+                .includes(match.match_id) ? (
+                <FavoriteIcon fontSize="large" sx={{ color: "red" }} />
+              ) : (
+                <FavoriteBorderIcon fontSize="large" sx={{ color: "white" }} />
+              )}
+            </Button>
+          ) : (
+            <></>
+          )}
         </h1>
         <Box
           sx={{

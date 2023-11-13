@@ -78,7 +78,7 @@ export default function SwitchPanels({
           <Tab label="Matches" {...a11yProps(1)} sx={{ color: "white" }} />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
+      <CustomTabPanel component={"div"} value={value} index={0}>
         {yourClubsList.length ? (
           <>
             {isLoading && <Loading />}
@@ -91,12 +91,12 @@ export default function SwitchPanels({
             />
           </>
         ) : (
-          <h2 style={{ color: "#16DB65" }}>
+          <span style={{ color: "#16DB65" }}>
             You don't have any teams on your list
-          </h2>
+          </span>
         )}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
+      <CustomTabPanel component={"div"} value={value} index={1}>
         {yourFollowingMatches.length ? (
           <>
             {isLoading && <Loading />}

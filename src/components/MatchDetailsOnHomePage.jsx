@@ -55,8 +55,9 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
   return (
     <>
       {matchInfo.length && (
-        <div>
+        <>
           <ButtonDetailsMatch
+            component={"div"}
             match={matchInfo[0]}
             labelId={labelId}
             func={handleClickOpen}
@@ -69,7 +70,10 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
           >
-            <DialogTitle sx={{ backgroundColor: "black", color: "white" }}>
+            <DialogTitle
+              component={"div"}
+              sx={{ backgroundColor: "black", color: "white" }}
+            >
               <img
                 src={matchInfo[0].team_home_badge}
                 alt=""
@@ -90,6 +94,7 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
             </DialogTitle>
             <DialogContent sx={{ backgroundColor: "black", color: "white" }}>
               <DialogContentText
+                component={"div"}
                 id="alert-dialog-slide-description"
                 sx={{ backgroundColor: "black", color: "white" }}
               >
@@ -145,7 +150,7 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
               </Button>
             </DialogActions>
           </Dialog>
-        </div>
+        </>
       )}
     </>
   );

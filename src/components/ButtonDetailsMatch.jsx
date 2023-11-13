@@ -3,6 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
+import { Box } from "@mui/system";
 
 export function ButtonDetailsMatch({ match, labelId, func }) {
   return (
@@ -14,10 +15,10 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
           src={match.team_home_badge}
         />
       </ListItemAvatar>
-      <div style={{ fontSize: "23px" }}>
+      <Box style={{ fontSize: "23px" }}>
         {match.match_hometeam_score ? match.match_hometeam_score : "- "}:
         {match.match_awayteam_score ? match.match_awayteam_score : " -"}
-      </div>
+      </Box>
       <Avatar
         variant="square"
         sx={{ width: 40, height: 40, marginLeft: "10px" }}

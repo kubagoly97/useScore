@@ -1,6 +1,10 @@
 import * as React from "react";
 
-export function LeagueDetailsInMatchComponent({ handleShowTable, match }) {
+export function LeagueDetailsInMatchComponent({
+  handleShowTable,
+  match,
+  setShowTable,
+}) {
   return (
     <section
       style={{
@@ -14,8 +18,7 @@ export function LeagueDetailsInMatchComponent({ handleShowTable, match }) {
     >
       <img
         onClick={() => {
-          handleShowTable(match.league_id);
-          console.log(match.league_id);
+          setShowTable(true);
         }}
         style={{
           maxWidth: "25%",

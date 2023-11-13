@@ -31,20 +31,22 @@ export default function BasicGrid2({
   yourFollowingMatches,
 }) {
   const [showTable, setShowTable] = useState(false);
-  const [table, setTable] = useState({});
+  const [table, setTable] = useState([]);
   const [clubInfo, setClubInfo] = useState([]);
+  const [matchCountryDetails, setMatchCountryDetails] = useState({});
 
   let { id } = useParams();
 
-  const handleShowTable = async (key) => {
-    setShowTable(true);
-    const url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${key}&APIkey=${
-      import.meta.env.VITE_API_KEY
-    }`;
-    const res = await fetch(url);
-    const resJSON = await res.json();
-    setTable(resJSON);
-  };
+  // const handleShowTable = async (key) => {
+  //   setShowTable(true);
+  //   const url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${key}&APIkey=${
+  //     import.meta.env.VITE_API_KEY
+  //   }`;
+  //   const res = await fetch(url);
+  //   const resJSON = await res.json();
+  //   setTable(resJSON);
+  //   console.log(resJSON);
+  // };
 
   const handleFetch = async (matchId) => {
     const res = await fetch(
@@ -137,12 +139,17 @@ export default function BasicGrid2({
                     (match, i) =>
                       value == match.match_date && (
                         <GameDetails
+                          table={table}
+                          setTable={setTable}
                           match={match}
-                          handleShowTable={handleShowTable}
                           yourFollowingMatches={yourFollowingMatches}
                           setYourFollowingMatches={setYourFollowingMatches}
                           handleFetch={handleFetch}
+                          setMatchCountryDetails={setMatchCountryDetails}
                           key={i}
+                          club={clubInfo[0]}
+                          setShowTable={setShowTable}
+                          showTable={showTable}
                         />
                       )
                   )
@@ -162,7 +169,12 @@ export default function BasicGrid2({
                 }}
               >
                 {clubInfo.length && (
-                  <LeagueTable table={table} club={clubInfo[0]} />
+                  <LeagueTable
+                    table={table}
+                    setTable={setTable}
+                    club={clubInfo[0]}
+                    showTable={showTable}
+                  />
                 )}
               </Item>
             </Grid>
