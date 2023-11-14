@@ -9,23 +9,25 @@ const Club = require("./models/clubList");
 const Match = require("./models/matchesList");
 const userRoutes = require("../server/routes/user");
 const requireAuth = require("../server/middleware/requireAuth");
+const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
 
 app.use(cors());
 app.use(express.json());
 app.use("/", userRoutes);
+app.use(express.urlencoded({ extended: true }));
 
 app.use(requireAuth);
 
 // ---------------
 
 main().catch((err) => console.log(err));
-
+//
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/use-score");
+  await mongoose.connect(dbURL);
   console.log("MONGO CONNECTION OPEN");
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-
+//
 app.get("/clubList", async (req, res) => {
   const user_id = req.user._id;
   await Club.find({ user_id })
