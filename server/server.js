@@ -11,7 +11,13 @@ const userRoutes = require("../server/routes/user");
 const requireAuth = require("../server/middleware/requireAuth");
 const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://use-score.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use("/", userRoutes);
 app.use(express.urlencoded({ extended: true }));
