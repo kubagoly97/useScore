@@ -36,7 +36,7 @@ async function main() {
 //
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json("Hello World!");
 });
 
 app.get("/clubList", async (req, res) => {
