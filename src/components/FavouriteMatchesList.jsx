@@ -33,7 +33,7 @@ export default function FavouriteMatchesList({
       <List
         dense
         sx={{
-          marginTop: "50px",
+          marginTop: "10px",
           flexGrow: 1,
           width: "100%",
           maxWidth: 360,

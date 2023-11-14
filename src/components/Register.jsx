@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -133,6 +134,7 @@ export default function Register() {
           </CardActions>
         </form>
       </Card>
+      <RedirectButtonOnRegisterAndLoginPages text="or login" to="/login" />
     </Box>
   );
 }

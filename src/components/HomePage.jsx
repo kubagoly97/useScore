@@ -65,7 +65,7 @@ export default function HomePage({
       {isLoading && <Loading />}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
-          <Grid xs={3} md={3} sx={{ marginTop: "2em" }}>
+          <Grid xs={0} sm={4} md={3} sx={{ marginTop: "2em" }}>
             <LeaguesList
               setShowClubList={setShowClubList}
               fetchEnglishData={fetchEnglishData}
@@ -83,7 +83,7 @@ export default function HomePage({
               fetchSerieBData={fetchSerieBData}
             />
           </Grid>
-          <Grid xs={9} md={9}>
+          <Grid xs={11.5} sm={8} md={9}>
             {showClubList ? (
               <Box sx={{ flexGrow: 1, marginTop: "40px" }}>
                 <BasicGrid clubs={clubs} />

@@ -218,6 +218,15 @@ export default function App() {
           fetchSpain2Data={fetchSpain2Data}
           fetchGermanyData={fetchGermanyData}
           fetchEkstraklasaData={fetchEkstraklasaData}
+          fetch2BundesligaData={fetch2BundesligaData}
+          fetch1LigaData={fetch1LigaData}
+          fetchSerieAData={fetchSerieAData}
+          fetchChampionshipData={fetchChampionshipData}
+          fetchLigueOneData={fetchLigueOneData}
+          fetch2LigaData={fetch2LigaData}
+          fetchSwitzerlandData={fetchSwitzerlandData}
+          fetchSerieBData={fetchSerieBData}
+          setShowClubList={setShowClubList}
           matchesData={matchesData}
           playerData={playerData}
         />

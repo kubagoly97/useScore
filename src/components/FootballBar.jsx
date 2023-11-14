@@ -17,13 +17,23 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { MenuLeaguePosition } from "./MenuLeaguePosition";
 
 export default function FootballBar({
-  fetchEkstraklasaData,
   fetchEnglishData,
   fetchSpainData,
-  fetchGermanyData,
   fetchSpain2Data,
+  fetchGermanyData,
+  fetchEkstraklasaData,
+  fetch2BundesligaData,
+  fetch1LigaData,
+  fetchSerieAData,
+  fetchChampionshipData,
+  setShowClubList,
+  fetchLigueOneData,
+  fetch2LigaData,
+  fetchSwitzerlandData,
+  fetchSerieBData,
   matchesData,
   playerData,
 }) {
@@ -37,6 +47,22 @@ export default function FootballBar({
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const leaguesListWithFuncs = [
+    { leagueName: "Premier League", func: fetchEnglishData },
+    { leagueName: "Championship", func: fetchChampionshipData },
+    { leagueName: "La Liga", func: fetchSpainData },
+    { leagueName: "Segunda Division", func: fetchSpain2Data },
+    { leagueName: "Bundesliga", func: fetchGermanyData },
+    { leagueName: "2. Bundesliga", func: fetch2BundesligaData },
+    { leagueName: "PKO Ekstraklasa", func: fetchEkstraklasaData },
+    { leagueName: "1. Liga", func: fetch1LigaData },
+    { leagueName: "2. Liga", func: fetch2LigaData },
+    { leagueName: "Serie A", func: fetchSerieAData },
+    { leagueName: "Serie B", func: fetchSerieBData },
+    { leagueName: "Ligue 1", func: fetchLigueOneData },
+    { leagueName: "Super League", func: fetchSwitzerlandData },
+  ];
 
   return (
     <AppBar
@@ -74,7 +100,7 @@ export default function FootballBar({
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", sm: "none", md: "none" },
             }}
           >
             <IconButton
@@ -107,7 +133,10 @@ export default function FootballBar({
               }}
             >
               {matchesData.length || playerData.length ? (
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem
+                  onClick={handleCloseNavMenu}
+                  sx={{ bgcolor: "black" }}
+                >
                   <Typography textAlign="center">
                     <Link
                       to="/"
@@ -119,46 +148,56 @@ export default function FootballBar({
                 </MenuItem>
               ) : (
                 <div>
-                  <MenuItem
-                    onClick={() => {
-                      fetchEnglishData();
-                      handleCloseNavMenu();
-                    }}
-                  >
-                    <Typography textAlign="center">Premier League</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      fetchSpainData();
-                      handleCloseNavMenu();
-                    }}
-                  >
-                    <Typography textAlign="center">La Liga</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      fetchGermanyData();
-                      handleCloseNavMenu();
-                    }}
-                  >
-                    <Typography textAlign="center">Bundesliga</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      fetchEkstraklasaData();
-                      handleCloseNavMenu();
-                    }}
-                  >
-                    <Typography textAlign="center">Ekstraklasa</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      fetchSpain2Data();
-                      handleCloseNavMenu();
-                    }}
-                  >
-                    <Typography textAlign="center">Segunda Division</Typography>
-                  </MenuItem>
+                  {!user ? (
+                    <>
+                      <MenuItem
+                        onClick={() => {
+                          window.location.replace("/login");
+                          handleCloseNavMenu();
+                        }}
+                      >
+                        <Typography textAlign="center">Login</Typography>
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          window.location.replace("/register");
+                          handleCloseNavMenu();
+                        }}
+                      >
+                        <Typography textAlign="center">Register</Typography>
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem
+                        onClick={() => {
+                          logout();
+                          window.location.reload();
+                          handleCloseNavMenu();
+                        }}
+                      >
+                        <Typography textAlign="center">
+                          Logout {user.email}
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setShowClubList(false);
+                          handleCloseNavMenu();
+                        }}
+                      >
+                        <Typography textAlign="center">User's panel</Typography>
+                      </MenuItem>
+                    </>
+                  )}
+
+                  {leaguesListWithFuncs.map((league) => (
+                    <MenuLeaguePosition
+                      func={league.func}
+                      leagueName={league.leagueName}
+                      handleCloseNavMenu={handleCloseNavMenu}
+                    />
+                  ))}
                 </div>
               )}
             </Menu>
@@ -188,7 +227,7 @@ export default function FootballBar({
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", sm: "flex", md: "flex" },
               justify: "space-beetwen",
             }}
           >

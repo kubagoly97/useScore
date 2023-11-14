@@ -64,9 +64,15 @@ export default function SwitchPanels({
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
+          textColor="none"
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "#16DB65",
+            },
+          }}
         >
           <Tab
             label="Teams"

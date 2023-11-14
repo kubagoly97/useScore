@@ -9,6 +9,7 @@ import { useLogin } from "../hooks/useLogin";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 
 export default function LoginCard() {
   const [email, setEmail] = useState("");
@@ -128,6 +129,10 @@ export default function LoginCard() {
           </CardActions>
         </form>
       </Card>
+      <RedirectButtonOnRegisterAndLoginPages
+        text="or register"
+        to="/register"
+      />
     </Box>
   );
 }
