@@ -9,6 +9,7 @@ const Club = require("./models/clubList");
 const Match = require("./models/matchesList");
 const userRoutes = require("../server/routes/user");
 const requireAuth = require("../server/middleware/requireAuth");
+const port = process.env.PORT || 4000;
 const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
 
 app.use(cors());
@@ -109,6 +110,6 @@ app.delete("/matchesList/:id", async (req, res) => {
 
 // ---------------------------
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
