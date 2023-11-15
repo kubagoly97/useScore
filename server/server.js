@@ -1,6 +1,11 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
+async function main() {
+  await mongoose.connect(dbURL);
+  console.log("MONGO CONNECTION OPEN");
+  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+}
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -23,11 +28,7 @@ app.use(requireAuth);
 
 main().catch((err) => console.log(err));
 //
-async function main() {
-  await mongoose.connect(dbURL);
-  console.log("MONGO CONNECTION OPEN");
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
+
 //
 
 app.get("/", (req, res) => {
