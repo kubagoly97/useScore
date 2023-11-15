@@ -20,18 +20,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requireAuth);
 
+main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(dbURL).catch((error) => handleError(error));
-  console.log("MONGO CONNECTION OPEN");
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+  await mongoose.connect(dbURL);
 }
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  console.log("Database connected!");
+});
 
 // ---------------
-
-main().catch((err) => console.log(err));
-//
-
-//
 
 app.get("/", (req, res) => {
   res.json("Hello World!");
