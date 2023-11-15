@@ -42,7 +42,7 @@ export function GameDetails({
         match_id: match.match_id,
       },
     ]);
-    const res = await fetch("http://localhost:4000/matchesList", {
+    const res = await fetch(`${import.meta.env.SERVER_HTTP}matchesList`, {
       method: "POST",
       body: JSON.stringify({
         team_home_badge,
@@ -62,7 +62,7 @@ export function GameDetails({
   };
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
+    const res = await fetch(`${import.meta.env.SERVER_HTTP}matchesList/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,

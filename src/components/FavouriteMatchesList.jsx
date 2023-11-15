@@ -14,7 +14,7 @@ export default function FavouriteMatchesList({
   const [showDetails, setShowDetails] = useState(false);
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
+    const res = await fetch(`${import.meta.env.SERVER_HTTP}matchesList/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,
