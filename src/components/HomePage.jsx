@@ -64,7 +64,7 @@ export default function HomePage({
     <>
       {isLoading && <Loading />}
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={0}>
+        <Grid container spacing={showClubList ? 1 : 0}>
           <Grid xs={0} sm={4} md={3} sx={{ marginTop: "2em" }}>
             <LeaguesList
               setShowClubList={setShowClubList}
