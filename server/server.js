@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const Club = require("./models/clubList");
 const Match = require("./models/matchesList");
-const userRoutes = require("../server/routes/user");
-const requireAuth = require("../server/middleware/requireAuth");
+const userRoutes = require("./routes/user");
+const requireAuth = require("./middleware/requireAuth");
 const port = process.env.PORT || 4000;
 const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
 
