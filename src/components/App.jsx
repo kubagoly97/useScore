@@ -185,7 +185,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/clubList", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}clubList`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const resJSON = await res.json();
@@ -198,7 +198,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/matchesList", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}matchesList`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const resJSON = await res.json();

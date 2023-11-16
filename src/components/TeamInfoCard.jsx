@@ -20,7 +20,7 @@ export default function TeamInfoCard({
     const team_name = club.team_name;
     const team_key = club.team_key;
     setYourClubsList([...yourClubsList, { team_badge, team_key, team_name }]);
-    const res = await fetch("http://localhost:4000/clubList", {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}clubList`, {
       method: "POST",
       body: JSON.stringify({ team_badge, team_name, team_key }),
       headers: {
@@ -64,20 +64,28 @@ export default function TeamInfoCard({
         </Typography>
       </CardContent>
       <CardActions>
-        {user ? (!yourClubsList.map((c) => c.team_key).includes(club.team_key) ? (
-          <form action="">
-            {" "}
-            <Button
-              sx={{ color: "white" }}
-              size="small"
-              onClick={() => handleAddClubOnYourFavouriteList()}
-            >{`Add ${club.team_name} on your list`}</Button>
-          </form>
+        {user ? (
+          !yourClubsList.map((c) => c.team_key).includes(club.team_key) ? (
+            <form action="">
+              {" "}
+              <Button
+                sx={{ color: "white" }}
+                size="small"
+                onClick={() => handleAddClubOnYourFavouriteList()}
+              >{`Add ${club.team_name} on your list`}</Button>
+            </form>
+          ) : (
+            <Button disabled sx={{ color: "white" }} size="small">
+              {`${club.team_name} is already on your list`}
+            </Button>
+          )
         ) : (
-          <Button disabled sx={{ color: "white" }} size="small">
-            {`${club.team_name} is already on your list`}
-          </Button>
-        )) :(<Link to='/login'><Button sx={{ color: "white", marginTop: "30px" }}>You must be logged in</Button></Link>)}
+          <Link to="/login">
+            <Button sx={{ color: "white", marginTop: "30px" }}>
+              You must be logged in
+            </Button>
+          </Link>
+        )}
         {}
       </CardActions>
     </Card>

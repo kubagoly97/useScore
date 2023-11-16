@@ -11,15 +11,17 @@ export default function FavouriteMatchesList({
   setYourFollowingMatches,
 }) {
   const { user } = useAuthContext();
-  const [showDetails, setShowDetails] = useState(false);
 
   const handleDelete = async (id) => {
-    const res = await fetch(`${import.meta.env.SERVER_HTTP}matchesList/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}matchesList/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     const resJSON = await res.json();
     if (res.ok) {
       console.log(resJSON);
@@ -58,7 +60,6 @@ export default function FavouriteMatchesList({
                     }}
                     onClick={() => {
                       handleDelete(match._id);
-                      console.log(yourFollowingMatches);
                     }}
                   >
                     <FavoriteIcon

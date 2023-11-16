@@ -20,7 +20,7 @@ export function GameDetails({
   showTable,
 }) {
   const { user } = useAuthContext();
- 
+
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -41,7 +41,7 @@ export function GameDetails({
         match_id: match.match_id,
       },
     ]);
-    const res = await fetch(`http://localhost:4000/matchesList`, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}matchesList`, {
       method: "POST",
       body: JSON.stringify({
         team_home_badge,
@@ -61,12 +61,15 @@ export function GameDetails({
   };
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:4000/matchesList/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}matchesList/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     if (res.ok) {
       setYourFollowingMatches(yourFollowingMatches.filter((c) => c._id !== id));
     } else {

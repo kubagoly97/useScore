@@ -17,12 +17,15 @@ export default function ClubsList({
   const { user } = useAuthContext();
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:4000/clubList/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const res = await fetch(
+      `https://use-score-backend.onrender.com/clubList/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     const resJSON = await res.json();
     console.log(resJSON);
     if (res.ok) {

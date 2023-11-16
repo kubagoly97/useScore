@@ -242,7 +242,7 @@ export default function FootballBar({
                     }}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
-                    Log out {user && user.email}
+                    Log out || {user && user.email}
                   </Button>
                 ) : (
                   <>
