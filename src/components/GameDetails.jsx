@@ -126,7 +126,6 @@ export function GameDetails({
     };
     fetchTab();
   }, [showTable]);
-
   return (
     <div className="GameDetails">
       <div className="ClubVsClub">
