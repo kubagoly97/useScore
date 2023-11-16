@@ -17,7 +17,7 @@ export default function ClubsList({
   const { user } = useAuthContext();
 
   const handleDelete = async (id) => {
-    const res = await fetch(`${import.meta.env.SERVER_HTTP}/clubList/${id}`, {
+    const res = await fetch(`http://localhost:4000/clubList/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,

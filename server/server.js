@@ -11,7 +11,7 @@ const Match = require("./models/matchesList");
 const userRoutes = require("./routes/user");
 const requireAuth = require("./middleware/requireAuth");
 const port = process.env.PORT || 4000;
-const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
+const uri = process.env.DB_URL || "mongodb://127.0.0.1:27017/use-score";
 
 app.use(cors());
 app.use(express.json());
@@ -20,15 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requireAuth);
 
-main().catch((err) => console.log(err));
+main().catch(err => console.log(err));
+
 async function main() {
-  await mongoose.connect(dbURL);
+    await mongoose.connect(uri);
+    console.log('MONGO CONNECTION OPEN')
+    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  console.log("Database connected!");
-});
 
 // ---------------
 
