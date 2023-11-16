@@ -23,7 +23,7 @@ app.use(requireAuth);
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).catch(error=>console.log(error));
     console.log('MONGO CONNECTION OPEN')
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
