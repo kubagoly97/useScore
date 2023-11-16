@@ -13,7 +13,6 @@ export function GameDetails({
   yourFollowingMatches,
   setYourFollowingMatches,
   handleFetch,
-  setMatchCountryDetails,
   table,
   setTable,
   club,
@@ -21,7 +20,7 @@ export function GameDetails({
   showTable,
 }) {
   const { user } = useAuthContext();
-  console.log(table);
+ 
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -134,7 +133,6 @@ export function GameDetails({
         <LeagueDetailsInMatchComponent
           handleShowTable={handleShowTable}
           match={match}
-          setMatchCountryDetails={setMatchCountryDetails}
           setShowTable={setShowTable}
         />
         <h1>
