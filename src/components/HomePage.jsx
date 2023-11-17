@@ -83,9 +83,9 @@ export default function HomePage({
               fetchSerieBData={fetchSerieBData}
             />
           </Grid>
-          <Grid xs={12} sm={8} md={9}>
+          <Grid xs={11.5} sm={8} md={9}>
             {showClubList ? (
-              <Box sx={{ flexGrow: 1, marginTop: "40px" }}>
+              <Box sx={{ flexGrow: 1, marginTop: "30px" }}>
                 <BasicGrid clubs={clubs} />
               </Box>
             ) : (
