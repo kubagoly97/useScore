@@ -1,7 +1,7 @@
 #root {
   /* max-width: 1280px; */
   /* margin: 0 auto; */
- 
+
   /* text-align: center; */
 }
 html {
@@ -9,9 +9,11 @@ html {
   color: #16db65;
   font-family: "Roboto", sans-serif;
 }
+
 .h1OnPage {
   color: white;
   text-align: center;
+  font-size: 24.4px;
 }
 .HomePage {
   background-color: #0d2818;
@@ -69,7 +71,7 @@ html {
   height: auto;
   background-size: cover;
   color: white;
-  padding: 20px;
+  padding: 0px;
   margin-top: 2em;
 }
 .LeaguesListOnHomePage {
@@ -84,4 +86,8 @@ html {
 }
 .css-k7y545-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: #19d27c;
+}
+
+.MuiBox-root css-19kzrtu {
+  padding: "20px";
 }

@@ -61,10 +61,15 @@ export default function SwitchPanels({
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box
+      sx={{
+        width: 1,
+        "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
+      }}
+    >
+      <Box sx={{ borderBottom: 0.5, borderColor: "divider" }}>
         <Tabs
-          textColor="none"
+          textColor="inherit"
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"

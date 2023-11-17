@@ -191,8 +191,9 @@ export default function FootballBar({
                     </>
                   )}
 
-                  {leaguesListWithFuncs.map((league) => (
+                  {leaguesListWithFuncs.map((league, i) => (
                     <MenuLeaguePosition
+                      key={i}
                       func={league.func}
                       leagueName={league.leagueName}
                       handleCloseNavMenu={handleCloseNavMenu}

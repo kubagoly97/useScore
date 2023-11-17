@@ -35,13 +35,10 @@ export default function FavouriteMatchesList({
       <List
         dense
         sx={{
-          marginTop: "10px",
           flexGrow: 1,
-          width: "100%",
-          maxWidth: 360,
-          backgroundColor: "rgba(0,0,0,0.4)",
-          borderRadius: "6px",
-          border: "2px dashed #0D2818",
+          backgroundColor: "rgba(0,0,0,0.2)",
+          borderTop: "2px dashed #0D2818",
+          borderBottom: "2px dashed #0D2818",
         }}
       >
         {yourFollowingMatches.length &&

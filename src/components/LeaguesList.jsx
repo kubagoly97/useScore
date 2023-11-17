@@ -29,7 +29,7 @@ export default function LeaguesList({
     <List
       sx={{
         width: "100%",
-        maxWidth: 360,
+        maxWidth: "100%",
         bgcolor: "black",
         position: "relative",
         overflow: "auto",

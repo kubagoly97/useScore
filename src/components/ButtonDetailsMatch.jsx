@@ -27,6 +27,7 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
       <ListItemText
         id={labelId}
         sx={{
+          display: { xs: "none", sm: "flex" },
           color:
             (match.match_status == "Finished" && "white") ||
             (match.match_status == "After ET" && "white") ||
