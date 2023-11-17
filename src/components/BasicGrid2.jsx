@@ -68,7 +68,6 @@ export default function BasicGrid2({
         }`
       );
       const resJSON = await res.json();
-      console.log(resJSON);
       setMatchesData(resJSON);
     }
     fetchDetails();
