@@ -117,9 +117,9 @@ export default function SwitchPanels({
             />
           </>
         ) : (
-          <h2 style={{ color: "#16DB65" }}>
+          <span style={{ color: "#16DB65" }}>
             You don't have any matches on your list
-          </h2>
+          </span>
         )}
       </CustomTabPanel>
     </Box>

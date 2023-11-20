@@ -1,10 +1,6 @@
 import * as React from "react";
 
-export function LeagueDetailsInMatchComponent({
-  handleShowTable,
-  match,
-  setShowTable,
-}) {
+export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
   return (
     <section
       style={{

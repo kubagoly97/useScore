@@ -190,7 +190,6 @@ export default function FootballBar({
                       </MenuItem>
                     </>
                   )}
-
                   {leaguesListWithFuncs.map((league, i) => (
                     <MenuLeaguePosition
                       key={i}
