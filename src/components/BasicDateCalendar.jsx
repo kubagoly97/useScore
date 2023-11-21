@@ -15,30 +15,14 @@ function fakeFetch(matchesData, date, { signal }) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = date.daysInMonth();
-      console.log(
-        date,
-        `${date.$M === 11 ? date.$y + 1 : date.$y}-${
-          date.$M < 8 ? "0" : ""
-        }${date.$M === 11 ? "01" : date.$M + 2}`
-      );
       // console.log(
-      //   matchesData.slice(
-      //     matchesData.findIndex((match) =>
-      //       match.match_date.includes(
-      //         `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
-      //       )
-      //     ),
-      //     matchesData.findIndex((match) =>
-      //       match.match_date.includes(
-      //         `${date.$M === 11 ? date.$y + 1 : date.$y}-${
-      //           date.$M < 9 ? "0" : ""
-      //         }${date.$M === 11 ? "01" : date.$M + 2}`
-      //       )
-      //     )
-      //   )
+      //   date,
+      //   `${date.$M === 11 ? date.$y + 1 : date.$y}-${date.$M < 8 ? "0" : ""}${
+      //     date.$M === 11 ? "01" : date.$M + 2
+      //   }`
       // );
-      let daysToHighlight = matchesData
-        .slice(
+      console.log(
+        matchesData.slice(
           matchesData.findIndex((match) =>
             match.match_date.includes(
               `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
@@ -51,8 +35,83 @@ function fakeFetch(matchesData, date, { signal }) {
               }${date.$M === 11 ? "01" : date.$M + 2}`
             )
           )
-        )
-        .map((match) => Number(match.match_date.slice(8)));
+        ).length > 10
+          ? matchesData.slice(
+              matchesData.findIndex((match) =>
+                match.match_date.includes(
+                  `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+                )
+              ),
+              matchesData.findIndex((match) =>
+                match.match_date.includes(
+                  `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+                    date.$M < 8 ? "0" : ""
+                  }${date.$M === 11 ? "02" : date.$M + 2}`
+                )
+              )
+            )
+          : matchesData.slice(
+              matchesData.findIndex((match) =>
+                match.match_date.includes(
+                  `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+                )
+              ),
+              matchesData.findIndex((match) =>
+                match.match_date.includes(
+                  `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+                    date.$M < 8 ? "0" : ""
+                  }${date.$M === 11 ? "01" : date.$M + 2}`
+                )
+              )
+            )
+      );
+      let daysToHighlight =
+        matchesData.slice(
+          matchesData.findIndex((match) =>
+            match.match_date.includes(
+              `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+            )
+          ),
+          matchesData.findIndex((match) =>
+            match.match_date.includes(
+              `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+                date.$M < 8 ? "0" : ""
+              }${date.$M === 11 ? "01" : date.$M + 2}`
+            )
+          )
+        ).length > 10
+          ? matchesData
+              .slice(
+                matchesData.findIndex((match) =>
+                  match.match_date.includes(
+                    `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+                  )
+                ),
+                matchesData.findIndex((match) =>
+                  match.match_date.includes(
+                    `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+                      date.$M < 8 ? "0" : ""
+                    }${date.$M === 11 ? "02" : date.$M + 2}`
+                  )
+                )
+              )
+              .map((match) => Number(match.match_date.slice(8)))
+          : matchesData
+              .slice(
+                matchesData.findIndex((match) =>
+                  match.match_date.includes(
+                    `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+                  )
+                ),
+                matchesData.findIndex((match) =>
+                  match.match_date.includes(
+                    `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+                      date.$M < 8 ? "0" : ""
+                    }${date.$M === 11 ? "01" : date.$M + 2}`
+                  )
+                )
+              )
+              .map((match) => Number(match.match_date.slice(8)));
       resolve({ daysToHighlight });
     }, 500);
     signal.onabort = () => {
@@ -91,10 +150,11 @@ export default function DateCalendarServerRequest({
   setValue,
   setShowTable,
   matchesData,
+  month,
 }) {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [highlightedDays, setHighlightedDays] = useState([1, 2, 3]);
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 3, 4, 5, 6]);
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -129,15 +189,17 @@ export default function DateCalendarServerRequest({
     fetchHighlightedDays(date);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     fetchHighlightedDays(initialValue);
-    handleMonthChange;
     // abort request on unmount
     return () => requestAbortController.current?.abort();
   }, []);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      sx={{ flexGrow: 1, color: "white" }}
+    >
       <DateCalendar
         sx={{
           color: "white",

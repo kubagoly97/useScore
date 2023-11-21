@@ -9,6 +9,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -37,6 +38,9 @@ export default function Register() {
             {error}
           </Alert>
         )}
+        <Box sx={{ marginTop: "15px" }}>
+          {isLoading && <CircularProgress color="success" />}
+        </Box>
         <Card
           sx={{
             display: "inline-block",
