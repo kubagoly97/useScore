@@ -11,7 +11,8 @@ import TeamInfoCard from "./TeamInfoCard";
 import { useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { GameDetails } from "./GameDetails";
-
+import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
+import SwitchSquadBG2 from "./SwitchSquadBG2";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -35,6 +36,11 @@ export default function BasicGrid2({
   const [clubInfo, setClubInfo] = useState([]);
 
   let { id } = useParams();
+
+  const boxStyle = {
+    backgroundColor: " #04471C",
+    border: "2px dashed #0D2818",
+  };
 
   const handleFetch = async (matchId) => {
     const res = await fetch(
@@ -79,12 +85,7 @@ export default function BasicGrid2({
         <Grid container spacing={2}>
           <Grid item xs={12} sm={5}>
             <Stack spacing={2}>
-              <Item
-                sx={{
-                  backgroundColor: " #04471C",
-                  border: "2px dashed #0D2818",
-                }}
-              >
+              <Item sx={boxStyle}>
                 {clubInfo.length ? (
                   <TeamInfoCard
                     yourClubsList={yourClubsList}
@@ -97,12 +98,7 @@ export default function BasicGrid2({
                   </>
                 )}
               </Item>
-              <Item
-                sx={{
-                  backgroundColor: " #04471C",
-                  border: "2px dashed #0D2818",
-                }}
-              >
+              <Item sx={boxStyle}>
                 {matchesData.length ? (
                   <BasicDateCalendar
                     value={value}
@@ -119,45 +115,55 @@ export default function BasicGrid2({
           </Grid>
           {!showTable ? (
             <Grid item xs={12} sm={7}>
-              <Item
-                sx={{
-                  backgroundColor: " #04471C",
-                  border: "2px dashed #0D2818",
-                }}
-              >
-                {matchesData.length ? (
-                  matchesData.map(
-                    (match, i) =>
-                      value == match.match_date && (
-                        <GameDetails
-                          table={table}
-                          setTable={setTable}
-                          match={match}
-                          yourFollowingMatches={yourFollowingMatches}
-                          setYourFollowingMatches={setYourFollowingMatches}
-                          handleFetch={handleFetch}
-                          key={i}
-                          club={clubInfo[0]}
-                          setShowTable={setShowTable}
-                          showTable={showTable}
-                        />
-                      )
-                  )
-                ) : (
-                  <>
-                    <CircularProgress color="success" />
-                  </>
-                )}
-              </Item>
+              <Stack>
+                <Item
+                  sx={{
+                    borderRadius: "5px 5px 0px 0px",
+                    backgroundColor: " #04471C",
+                    border: "2px dashed #0D2818",
+                    borderBottom: "0px",
+                  }}
+                >
+                  {matchesData.length ? (
+                    matchesData.map(
+                      (match, i) =>
+                        value == match.match_date && (
+                          <GameDetails
+                            table={table}
+                            setTable={setTable}
+                            match={match}
+                            yourFollowingMatches={yourFollowingMatches}
+                            setYourFollowingMatches={setYourFollowingMatches}
+                            handleFetch={handleFetch}
+                            key={i}
+                            club={clubInfo[0]}
+                            setShowTable={setShowTable}
+                            showTable={showTable}
+                          />
+                        )
+                    )
+                  ) : (
+                    <>
+                      <CircularProgress color="success" />
+                    </>
+                  )}
+                </Item>
+                <Item
+                  component="div"
+                  sx={{
+                    borderRadius: "0px",
+                    backgroundColor: " #04471C",
+                    border: "2px dashed #0D2818",
+                    borderTop: "0px",
+                  }}
+                >
+                  {clubInfo.length && <SwitchSquadBG2 club={clubInfo[0]} />}
+                </Item>
+              </Stack>
             </Grid>
           ) : (
             <Grid item xs={12} sm={7}>
-              <Item
-                sx={{
-                  backgroundColor: "#04471C",
-                  border: "2px dashed #0D2818",
-                }}
-              >
+              <Item sx={boxStyle}>
                 {clubInfo.length && (
                   <LeagueTable
                     table={table}

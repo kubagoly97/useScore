@@ -6,13 +6,13 @@ import Loading from "./Loading";
 import { Item } from "./BasicGrid2";
 import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
+import Stack from "@mui/material/Stack";
 
 export function PlayerPage({ playerData, setPlayerData }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");
-
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(playerData);
   useEffect(() => {
     const fetchPlayerData = async () => {
       setIsLoading(true);
@@ -85,11 +85,18 @@ export function PlayerPage({ playerData, setPlayerData }) {
               </section>
             </Item>
           </div>{" "}
-          <Link to="/">
-            <Button sx={{ color: "#16DB65", marginTop: "30px" }}>
-              ← Home Page
-            </Button>
-          </Link>
+          <Stack>
+            <Link to="/">
+              <Button sx={{ color: "#16DB65", marginTop: "30px" }}>
+                ← Home Page
+              </Button>
+            </Link>
+            <Link to={`/${playerData[index].team_key}`}>
+              <Button sx={{ color: "#16DB65", marginTop: "5px" }}>
+                {`← ${playerData[index].team_name}'s page`}
+              </Button>
+            </Link>
+          </Stack>
         </>
       )}
     </>
