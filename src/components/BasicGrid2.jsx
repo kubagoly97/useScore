@@ -103,13 +103,17 @@ export default function BasicGrid2({
                   border: "2px dashed #0D2818",
                 }}
               >
-                <BasicDateCalendar
-                  value={value}
-                  setValue={setValue}
-                  matchesData={matchesData}
-                  setMatchesData={setMatchesData}
-                  setShowTable={setShowTable}
-                />
+                {matchesData.length ? (
+                  <BasicDateCalendar
+                    value={value}
+                    setValue={setValue}
+                    matchesData={matchesData}
+                    setMatchesData={setMatchesData}
+                    setShowTable={setShowTable}
+                  />
+                ) : (
+                  <CircularProgress color="success" />
+                )}
               </Item>
             </Stack>
           </Grid>
