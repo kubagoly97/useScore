@@ -75,7 +75,7 @@ export default function BasicGrid2({
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, marginTop: "40px" }}>
+      <Box sx={{ flexGrow: 1, marginTop: "15px" }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={5}>
             <Stack spacing={2}>
