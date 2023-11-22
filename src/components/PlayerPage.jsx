@@ -93,7 +93,7 @@ export function PlayerPage({ playerData, setPlayerData }) {
             </Link>
             <Link to={`/${playerData[index].team_key}`}>
               <Button sx={{ color: "#16DB65", marginTop: "5px" }}>
-                {`← ${playerData[index].team_name}'s page`}
+                {`← ${playerData[index].team_name} page`}
               </Button>
             </Link>
           </Stack>
