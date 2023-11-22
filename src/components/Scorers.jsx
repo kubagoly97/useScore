@@ -2,7 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Item } from "./BasicGrid2";
+import { Link } from "react-router-dom";
+
 export function Scorers({ match }) {
+  const linkStyle = { color: "white", textDecoration: "none" };
+
   return (
     <Box>
       <Grid container spacing={1}>
@@ -15,11 +19,16 @@ export function Scorers({ match }) {
             }}
           >
             {match.goalscorer.map((scorer, i) => (
-              <p key={i} style={{ fontSize: "9px" }}>
-                {scorer.home_scorer && scorer.time && `⚽️ ${scorer.time}' `}
-                {scorer.home_scorer && scorer.home_scorer}{" "}
-                {scorer.home_assist && `(a. ${scorer.home_assist})`}
-              </p>
+              <Link
+                style={linkStyle}
+                to={`/player?play=${scorer.home_scorer_id}`}
+              >
+                <p key={i} style={{ fontSize: "9px" }}>
+                  {scorer.home_scorer && scorer.time && `⚽️ ${scorer.time}' `}
+                  {scorer.home_scorer && scorer.home_scorer}{" "}
+                  {scorer.home_assist && `(a. ${scorer.home_assist})`}
+                </p>
+              </Link>
             ))}
           </Item>
         </Grid>
@@ -32,11 +41,16 @@ export function Scorers({ match }) {
             }}
           >
             {match.goalscorer.map((scorer, i) => (
-              <p key={i} style={{ fontSize: "9px" }}>
-                {scorer.away_scorer && scorer.time && `⚽️ ${scorer.time}' `}
-                {scorer.away_scorer && scorer.away_scorer}{" "}
-                {scorer.away_assist && `(a. ${scorer.away_assist})`}
-              </p>
+              <Link
+                to={`/player?play=${scorer.away_scorer_id}`}
+                style={linkStyle}
+              >
+                <p key={i} style={{ fontSize: "9px" }}>
+                  {scorer.away_scorer && scorer.time && `⚽️ ${scorer.time}' `}
+                  {scorer.away_scorer && scorer.away_scorer}{" "}
+                  {scorer.away_assist && `(a. ${scorer.away_assist})`}
+                </p>
+              </Link>
             ))}
           </Item>
         </Grid>

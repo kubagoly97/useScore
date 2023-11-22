@@ -7,6 +7,12 @@ import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
 import { useState, useEffect } from "react";
+import updateLocale from "dayjs/plugin/updateLocale";
+
+dayjs.extend(updateLocale);
+dayjs.updateLocale("en", {
+  weekStart: 1,
+});
 
 function fakeFetch(matchesData, date, { signal }) {
   return new Promise((resolve, reject) => {
@@ -136,40 +142,45 @@ export default function DateCalendarServerRequest({
   }, []);
 
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      sx={{ flexGrow: 1, color: "white" }}
-    >
-      <DateCalendar
-        sx={{
-          color: "white",
-          "& .MuiButtonBase-root": { bgcolor: "#058C42" },
-          "& .Mui-selected": { bgcolor: "#16DB65" },
-          "& .MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
-          "& .Mui-selected:hover": { bgcolor: "#16DB65" },
-          maxWidth: "100%",
-        }}
-        defaultValue={initialValue}
-        onChange={(newValue) => {
-          setValue(
-            `${newValue.$y}-${newValue.$M + 1 < 10 ? 0 : ""}${
-              newValue.$M + 1
-            }-${newValue.$D < 10 ? 0 : ""}${newValue.$D}`
-          );
-          setShowTable(false);
-        }}
-        loading={isLoading}
-        onMonthChange={handleMonthChange}
-        renderLoading={() => <DayCalendarSkeleton />}
-        slots={{
-          day: ServerDay,
-        }}
-        slotProps={{
-          day: {
-            highlightedDays,
-          },
-        }}
-      />
-    </LocalizationProvider>
+    <>
+      <h4 style={{ color: "#16DB65" }}>
+        Pick a matchday with ball icon from callendar below ↓
+      </h4>
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}
+        sx={{ flexGrow: 1, color: "white" }}
+      >
+        <DateCalendar
+          sx={{
+            color: "white",
+            "& .MuiButtonBase-root": { bgcolor: "#058C42" },
+            "& .Mui-selected": { bgcolor: "#16DB65" },
+            "& .MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
+            "& .Mui-selected:hover": { bgcolor: "#16DB65" },
+            maxWidth: "100%",
+          }}
+          defaultValue={initialValue}
+          onChange={(newValue) => {
+            setValue(
+              `${newValue.$y}-${newValue.$M + 1 < 10 ? 0 : ""}${
+                newValue.$M + 1
+              }-${newValue.$D < 10 ? 0 : ""}${newValue.$D}`
+            );
+            setShowTable(false);
+          }}
+          loading={isLoading}
+          onMonthChange={handleMonthChange}
+          renderLoading={() => <DayCalendarSkeleton />}
+          slots={{
+            day: ServerDay,
+          }}
+          slotProps={{
+            day: {
+              highlightedDays,
+            },
+          }}
+        />
+      </LocalizationProvider>
+    </>
   );
 }

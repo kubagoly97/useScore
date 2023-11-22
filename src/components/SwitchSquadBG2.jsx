@@ -4,10 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import ClubsList from "./ClubsList";
-import FavouriteMatchesList from "./FavouriteMatchesList";
 import { useState } from "react";
-import Loading from "./Loading";
 import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
 
 function CustomTabPanel(props) {
@@ -61,45 +58,47 @@ export default function SwitchSquadBG2({ club }) {
   ];
 
   return (
-    <Box
-      sx={{
-        width: 1,
-        "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
-      }}
-    >
+    <>
       <Box
         sx={{
-          borderBottom: 0.5,
-          borderColor: "divider",
+          width: 1,
+          "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
         }}
       >
-        <Tabs
-          variant="scrollable"
-          textColor="inherit"
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "#16DB65",
-            },
+        <Box
+          sx={{
+            borderBottom: 0.5,
+            borderColor: "divider",
           }}
         >
-          {tabsContent.map((tab, i) => (
-            <Tab
-              key={i}
-              label={tab.playersType}
-              {...a11yProps(1)}
-              sx={{ color: "white" }}
-            />
-          ))}
-        </Tabs>
+          <Tabs
+            variant="scrollable"
+            textColor="inherit"
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "#16DB65",
+              },
+            }}
+          >
+            {tabsContent.map((tab, i) => (
+              <Tab
+                key={i}
+                label={tab.playersType}
+                {...a11yProps(1)}
+                sx={{ color: "white" }}
+              />
+            ))}
+          </Tabs>
+        </Box>
+        {tabsContent.map((tab, i) => (
+          <CustomTabPanel component={"div"} value={value} index={i} key={i}>
+            <TeamSquadOnBasicGrid2 club={club} playersType={tab.playersType} />
+          </CustomTabPanel>
+        ))}
       </Box>
-      {tabsContent.map((tab, i) => (
-        <CustomTabPanel component={"div"} value={value} index={i} key={i}>
-          <TeamSquadOnBasicGrid2 club={club} playersType={tab.playersType} />
-        </CustomTabPanel>
-      ))}
-    </Box>
+    </>
   );
 }

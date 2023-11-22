@@ -7,6 +7,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
+
 export function GameDetails({
   match,
   handleShowTable,
