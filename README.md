@@ -7,10 +7,8 @@ To run app - in project's folder:
 - npm i
 - npm run dev
 
-<img width="730" alt="Zrzut ekranu 2023-11-13 o 13 17 27" src="https://github.com/kubagoly97/useScore/assets/142389870/60a36861-94d4-4dea-b8f3-1c24884732ff">
 
-<img width="731" alt="Zrzut ekranu 2023-11-13 o 13 17 45" src="https://github.com/kubagoly97/useScore/assets/142389870/3ee7903b-77ac-4f1b-a2ae-bf3de12cb2f4">
-
-<img width="727" alt="Zrzut ekranu 2023-11-13 o 13 17 06" src="https://github.com/kubagoly97/useScore/assets/142389870/16110a4c-099d-47f9-99e0-a22287651e8b">
-
-
+<img width="787" alt="Zrzut ekranu 2023-11-22 o 13 40 32" src="https://github.com/kubagoly97/useScore/assets/142389870/e8302c4a-0206-44a5-aafa-22599d2c5c30">
+<img width="789" alt="Zrzut ekranu 2023-11-22 o 13 40 18" src="https://github.com/kubagoly97/useScore/assets/142389870/9c5a44bc-13ff-4677-a1a2-e67a5b74a5ea">
+<img width="759" alt="Zrzut ekranu 2023-11-22 o 13 39 30" src="https://github.com/kubagoly97/useScore/assets/142389870/70fd9adf-1f42-4431-9f35-1e15664d2b3c">
+<img width="756" alt="Zrzut ekranu 2023-11-22 o 13 39 17" src="https://github.com/kubagoly97/useScore/assets/142389870/bf6eea9a-b81e-404f-a5b4-47c929835fd3">
