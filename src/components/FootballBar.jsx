@@ -119,6 +119,7 @@ export default function FootballBar({
               fetch2LigaData={fetch2LigaData}
               fetchSwitzerlandData={fetchSwitzerlandData}
               fetchSerieBData={fetchSerieBData}
+              homePageFootballBar={homePageFootballBar}
             />
           </Box>
           <SportsSoccerIcon
@@ -164,27 +165,7 @@ export default function FootballBar({
                     Log out || {user && user.email}
                   </Button>
                 ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      sx={{ textDecoration: "none", color: "white" }}
-                    >
-                      <Button
-                        variant="text"
-                        sx={{ my: 2, color: "white", underline: "none" }}
-                      >
-                        Log in
-                      </Button>
-                    </Link>
-                    <Link to="/register">
-                      <Button
-                        variant="text"
-                        sx={{ my: 2, color: "white", underline: "none" }}
-                      >
-                        Register
-                      </Button>
-                    </Link>
-                  </>
+                  <></>
                 )}
               </>
             )}

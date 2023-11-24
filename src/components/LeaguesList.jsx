@@ -3,10 +3,12 @@ import List from "@mui/material/List";
 import { LeagueOnHomePageList } from "./LeagueOnHomePageList";
 import { CoutryOnHomePageList } from "./CoutryOnHomePageList";
 import ListSubheader from "@mui/material/ListSubheader";
+import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
+import { Subheader } from "./Subheader";
 
 export default function LeaguesList({
   fetchEnglishData,
@@ -25,6 +27,7 @@ export default function LeaguesList({
   fetchSerieBData,
 }) {
   const { user } = useAuthContext();
+  const { logout } = useLogout();
   return (
     <List
       sx={{
@@ -40,28 +43,58 @@ export default function LeaguesList({
     >
       <li>
         <ul>
-          {user && (
-            <ListSubheader
-              sx={{
-                fontSize: "10px",
-                bgcolor: "black",
-                color: "white",
-                fontWeight: "900",
-                height: "30px",
-                paddingBottom: "40px",
-                borderBottom: "0.5px solid grey",
-                textAlign: "center",
-              }}
-            >
-              <Link
-                onClick={() => setShowClubList(false)}
-                style={{ color: "white", textDecoration: "none" }}
+          {user ? (
+            <>
+              <ListSubheader
+                sx={{
+                  bgcolor: "black",
+                  textAlign: "center",
+                  color: "white",
+                  fontWeight: "900",
+                  height: "30px",
+                  paddingBottom: "45px",
+                  borderBottom: "0.5px solid grey",
+                }}
               >
-                <Box style={{ display: "inline-block", paddingTop: "5px" }}>
-                  <HomeIcon />
-                </Box>
-              </Link>
-            </ListSubheader>
+                <Link
+                  onClick={() => {
+                    logout();
+                    window.location.reload();
+                  }}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <Box style={{ display: "inline-block", paddingTop: "5px" }}>
+                    Logout
+                  </Box>
+                </Link>
+              </ListSubheader>
+              <ListSubheader
+                sx={{
+                  fontSize: "10px",
+                  bgcolor: "black",
+                  color: "white",
+                  fontWeight: "900",
+                  height: "30px",
+                  paddingBottom: "40px",
+                  borderBottom: "0.5px solid grey",
+                  textAlign: "center",
+                }}
+              >
+                <Link
+                  onClick={() => setShowClubList(false)}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <Box style={{ display: "inline-block", paddingTop: "5px" }}>
+                    <HomeIcon />
+                  </Box>
+                </Link>
+              </ListSubheader>
+            </>
+          ) : (
+            <>
+              <Subheader text="Login" to="/login" />
+              <Subheader text="Register" to="/register" />
+            </>
           )}
           <CoutryOnHomePageList src="Anglia.png" text="England" />
           <LeagueOnHomePageList

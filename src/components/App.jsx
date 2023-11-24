@@ -37,7 +37,7 @@ export default function App() {
   const [homePageFootballBar, setHomePageFootballBar] = useState(true);
   // ---------------------------
   const date = new Date();
-  const [value, setValue] = React.useState(
+  const [value, setValue] = useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
   );
 
