@@ -18,6 +18,7 @@ import "@fontsource/roboto/700.css";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { MenuLeaguePosition } from "./MenuLeaguePosition";
+import LeftDrawer from "./LeftDrawer";
 
 export default function FootballBar({
   fetchEnglishData,
@@ -97,112 +98,28 @@ export default function FootballBar({
           >
             useScore
           </Typography>
-
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: "flex", sm: "none", md: "none" },
             }}
           >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                justifyContent: "space-between",
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {matchesData.length || playerData.length ? (
-                <MenuItem
-                  onClick={handleCloseNavMenu}
-                  sx={{ bgcolor: "black" }}
-                >
-                  <Typography textAlign="center">
-                    <Link
-                      to="/"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      Home Page
-                    </Link>
-                  </Typography>
-                </MenuItem>
-              ) : (
-                <div>
-                  {!user ? (
-                    <>
-                      <MenuItem
-                        onClick={() => {
-                          window.location.replace("/login");
-                          handleCloseNavMenu();
-                        }}
-                      >
-                        <Typography textAlign="center">Login</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          window.location.replace("/register");
-                          handleCloseNavMenu();
-                        }}
-                      >
-                        <Typography textAlign="center">Register</Typography>
-                      </MenuItem>
-                    </>
-                  ) : (
-                    <>
-                      <MenuItem
-                        onClick={() => {
-                          logout();
-                          window.location.reload();
-                          handleCloseNavMenu();
-                        }}
-                      >
-                        <Typography textAlign="center">
-                          Logout {user.email}
-                        </Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          setShowClubList(false);
-                          handleCloseNavMenu();
-                        }}
-                      >
-                        <Typography textAlign="center">User's panel</Typography>
-                      </MenuItem>
-                    </>
-                  )}
-                  {homePageFootballBar &&
-                    leaguesListWithFuncs.map((league, i) => (
-                      <MenuLeaguePosition
-                        key={i}
-                        func={league.func}
-                        leagueName={league.leagueName}
-                        handleCloseNavMenu={handleCloseNavMenu}
-                      />
-                    ))}
-                </div>
-              )}
-            </Menu>
+            <LeftDrawer
+              setShowClubList={setShowClubList}
+              fetchEnglishData={fetchEnglishData}
+              fetchSpainData={fetchSpainData}
+              fetchSpain2Data={fetchSpain2Data}
+              fetchGermanyData={fetchGermanyData}
+              fetchEkstraklasaData={fetchEkstraklasaData}
+              fetch2BundesligaData={fetch2BundesligaData}
+              fetch1LigaData={fetch1LigaData}
+              fetchSerieAData={fetchSerieAData}
+              fetchChampionshipData={fetchChampionshipData}
+              fetchLigueOneData={fetchLigueOneData}
+              fetch2LigaData={fetch2LigaData}
+              fetchSwitzerlandData={fetchSwitzerlandData}
+              fetchSerieBData={fetchSerieBData}
+            />
           </Box>
           <SportsSoccerIcon
             fontSize="large"
