@@ -36,6 +36,7 @@ export default function FootballBar({
   fetchSerieBData,
   matchesData,
   playerData,
+  homePageFootballBar,
 }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { logout } = useLogout();
@@ -190,14 +191,15 @@ export default function FootballBar({
                       </MenuItem>
                     </>
                   )}
-                  {leaguesListWithFuncs.map((league, i) => (
-                    <MenuLeaguePosition
-                      key={i}
-                      func={league.func}
-                      leagueName={league.leagueName}
-                      handleCloseNavMenu={handleCloseNavMenu}
-                    />
-                  ))}
+                  {homePageFootballBar &&
+                    leaguesListWithFuncs.map((league, i) => (
+                      <MenuLeaguePosition
+                        key={i}
+                        func={league.func}
+                        leagueName={league.leagueName}
+                        handleCloseNavMenu={handleCloseNavMenu}
+                      />
+                    ))}
                 </div>
               )}
             </Menu>

@@ -34,6 +34,8 @@ export default function App() {
   // ---------------------------
   const [playerData, setPlayerData] = useState({});
   // ---------------------------
+  const [homePageFootballBar, setHomePageFootballBar] = useState(true);
+  // ---------------------------
   const date = new Date();
   const [value, setValue] = React.useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
@@ -229,6 +231,7 @@ export default function App() {
           setShowClubList={setShowClubList}
           matchesData={matchesData}
           playerData={playerData}
+          homePageFootballBar={homePageFootballBar}
         />
       </nav>
       <Routes>
@@ -260,6 +263,7 @@ export default function App() {
               yourFollowingMatches={yourFollowingMatches}
               setYourFollowingMatches={setYourFollowingMatches}
               setPlayerData={setPlayerData}
+              setHomePageFootballBar={setHomePageFootballBar}
             />
           }
         />
@@ -275,22 +279,39 @@ export default function App() {
               setMatchesData={setMatchesData}
               yourFollowingMatches={yourFollowingMatches}
               setYourFollowingMatches={setYourFollowingMatches}
+              setHomePageFootballBar={setHomePageFootballBar}
             />
           }
         />
         <Route
           path="player"
           element={
-            <PlayerPage playerData={playerData} setPlayerData={setPlayerData} />
+            <PlayerPage
+              playerData={playerData}
+              setPlayerData={setPlayerData}
+              setHomePageFootballBar={setHomePageFootballBar}
+            />
           }
         />
         <Route
           path="login"
-          element={!user ? <LoginCard /> : <Navigate to="/" />}
+          element={
+            !user ? (
+              <LoginCard setHomePageFootballBar={setHomePageFootballBar} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route
           path="register"
-          element={!user ? <Register /> : <Navigate to="/" />}
+          element={
+            !user ? (
+              <Register setHomePageFootballBar={setHomePageFootballBar} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

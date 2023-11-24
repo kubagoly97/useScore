@@ -8,7 +8,11 @@ import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
 import Stack from "@mui/material/Stack";
 
-export function PlayerPage({ playerData, setPlayerData }) {
+export function PlayerPage({
+  playerData,
+  setPlayerData,
+  setHomePageFootballBar,
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");
   const [isLoading, setIsLoading] = useState(false);
@@ -24,10 +28,13 @@ export function PlayerPage({ playerData, setPlayerData }) {
       const resJSON = await res.json();
       setPlayerData(resJSON);
       setIsLoading(false);
-      console.log(resJSON);
     };
 
     fetchPlayerData();
+  }, []);
+
+  useEffect(() => {
+    setHomePageFootballBar(false);
   }, []);
 
   const index = playerData.length - 1;

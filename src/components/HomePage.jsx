@@ -38,6 +38,7 @@ export default function HomePage({
   fetch2LigaData,
   fetchSwitzerlandData,
   fetchSerieBData,
+  setHomePageFootballBar,
 }) {
   const { user } = useAuthContext();
 
@@ -46,6 +47,7 @@ export default function HomePage({
   useEffect(function () {
     setMatchesData({});
     setPlayerData({});
+    setHomePageFootballBar(true);
   }, []);
 
   useEffect(() => {

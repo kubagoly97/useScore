@@ -133,7 +133,6 @@ export function GameDetails({
 
   return (
     <div className="GameDetails">
-      {console.log(match)}
       <div className="ClubVsClub">
         <LeagueDetailsInMatchComponent
           handleShowTable={handleShowTable}

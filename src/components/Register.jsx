@@ -4,14 +4,14 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function Register() {
+export default function Register({ setHomePageFootballBar }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signup, error, isLoading } = useSignup();
@@ -24,7 +24,9 @@ export default function Register() {
       window.location.replace("/");
     }
   };
-
+  useEffect(() => {
+    setHomePageFootballBar(false);
+  }, []);
   return (
     <>
       <Box style={{ textAlign: "center", width: "100%" }}>

@@ -30,6 +30,7 @@ export default function BasicGrid2({
   setMatchesData,
   setYourFollowingMatches,
   yourFollowingMatches,
+  setHomePageFootballBar,
 }) {
   const [showTable, setShowTable] = useState(false);
   const [table, setTable] = useState([]);
@@ -79,6 +80,9 @@ export default function BasicGrid2({
     fetchDetails();
   }, []);
 
+  useEffect(() => {
+    setHomePageFootballBar(false);
+  }, []);
   return (
     <>
       <Box sx={{ flexGrow: 1, marginTop: "15px" }}>
