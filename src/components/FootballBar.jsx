@@ -34,6 +34,7 @@ export default function FootballBar({
   fetchLigueOneData,
   fetch2LigaData,
   fetchSwitzerlandData,
+  fetchCroatiaData,
   fetchSerieBData,
   matchesData,
   playerData,
@@ -120,6 +121,7 @@ export default function FootballBar({
               fetchSwitzerlandData={fetchSwitzerlandData}
               fetchSerieBData={fetchSerieBData}
               homePageFootballBar={homePageFootballBar}
+              fetchCroatiaData={fetchCroatiaData}
             />
           </Box>
           <SportsSoccerIcon

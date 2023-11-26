@@ -184,6 +184,17 @@ export default function App() {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetchCroatiaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=124&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -228,6 +239,7 @@ export default function App() {
           fetch2LigaData={fetch2LigaData}
           fetchSwitzerlandData={fetchSwitzerlandData}
           fetchSerieBData={fetchSerieBData}
+          fetchCroatiaData={fetchCroatiaData}
           setShowClubList={setShowClubList}
           matchesData={matchesData}
           playerData={playerData}
@@ -254,6 +266,7 @@ export default function App() {
               fetch2LigaData={fetch2LigaData}
               fetchSwitzerlandData={fetchSwitzerlandData}
               fetchSerieBData={fetchSerieBData}
+              fetchCroatiaData={fetchCroatiaData}
               showClubList={showClubList}
               setShowClubList={setShowClubList}
               isLoading={isLoading}

@@ -38,6 +38,7 @@ export default function HomePage({
   fetch2LigaData,
   fetchSwitzerlandData,
   fetchSerieBData,
+  fetchCroatiaData,
   setHomePageFootballBar,
 }) {
   const { user } = useAuthContext();
@@ -84,6 +85,7 @@ export default function HomePage({
               fetch2LigaData={fetch2LigaData}
               fetchSwitzerlandData={fetchSwitzerlandData}
               fetchSerieBData={fetchSerieBData}
+              fetchCroatiaData={fetchCroatiaData}
             />
           </Grid>
           <Grid xs={11.5} sm={8} md={9}>

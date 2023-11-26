@@ -22,6 +22,7 @@ export default function LeftDrawer({
   fetch2LigaData,
   fetchSwitzerlandData,
   fetchSerieBData,
+  fetchCroatiaData,
   homePageFootballBar,
 }) {
   const [state, setState] = React.useState({
@@ -72,6 +73,7 @@ export default function LeftDrawer({
             fetchSwitzerlandData={fetchSwitzerlandData}
             fetchSerieBData={fetchSerieBData}
             homePageFootballBar={homePageFootballBar}
+            fetchCroatiaData={fetchCroatiaData}
           />
         </>
       ) : (

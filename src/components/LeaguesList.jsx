@@ -25,6 +25,7 @@ export default function LeaguesList({
   fetch2LigaData,
   fetchSwitzerlandData,
   fetchSerieBData,
+  fetchCroatiaData,
 }) {
   const { user } = useAuthContext();
   const { logout } = useLogout();
@@ -45,29 +46,6 @@ export default function LeaguesList({
         <ul>
           {user ? (
             <>
-              <ListSubheader
-                sx={{
-                  bgcolor: "black",
-                  textAlign: "center",
-                  color: "white",
-                  fontWeight: "900",
-                  height: "30px",
-                  paddingBottom: "45px",
-                  borderBottom: "0.5px solid grey",
-                }}
-              >
-                <Link
-                  onClick={() => {
-                    logout();
-                    window.location.reload();
-                  }}
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-                  <Box style={{ display: "inline-block", paddingTop: "5px" }}>
-                    Logout
-                  </Box>
-                </Link>
-              </ListSubheader>
               <ListSubheader
                 sx={{
                   fontSize: "10px",
@@ -137,6 +115,33 @@ export default function LeaguesList({
             primary="Super League"
             onClick={fetchSwitzerlandData}
           />
+          <CoutryOnHomePageList src="Croatia.png" text="Croatia" />
+          <LeagueOnHomePageList primary="1. HNL" onClick={fetchCroatiaData} />
+          {user && (
+            <ListSubheader
+              sx={{
+                bgcolor: "black",
+                textAlign: "center",
+                color: "white",
+                fontWeight: "900",
+                height: "30px",
+                paddingBottom: "45px",
+                borderBottom: "0.5px solid grey",
+              }}
+            >
+              <Link
+                onClick={() => {
+                  logout();
+                  window.location.reload();
+                }}
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Box style={{ display: "inline-block", paddingTop: "5px" }}>
+                  Logout
+                </Box>
+              </Link>
+            </ListSubheader>
+          )}
         </ul>
       </li>
     </List>

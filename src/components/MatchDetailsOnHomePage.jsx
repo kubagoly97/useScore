@@ -72,7 +72,10 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
           >
             <DialogTitle
               component={"div"}
-              sx={{ backgroundColor: "black", color: "white" }}
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+              }}
             >
               <img
                 src={matchInfo[0].team_home_badge}
