@@ -44,7 +44,6 @@ export default function HomePage({
   fetchMLSData,
 }) {
   const { user } = useAuthContext();
-
   const navigate = useNavigate();
 
   useEffect(function () {

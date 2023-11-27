@@ -16,9 +16,11 @@ import { PlayerPage } from "./PlayerPage";
 import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LoginCard from "./LoginCard";
-
+export const Context = React.createContext();
 export default function App() {
   const { user } = useAuthContext();
+  // -------------------------------
+  const [context, setContext] = useState(true);
   // -------------------------------
   const [showClubList, setShowClubList] = useState(false);
   // -------------------------------

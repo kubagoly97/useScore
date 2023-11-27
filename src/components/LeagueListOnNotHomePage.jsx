@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
-
+import PersonIcon from "@mui/icons-material/Person";
 export default function LeaguesListOnNotHomePage({}) {
   const { user } = useAuthContext();
   return (

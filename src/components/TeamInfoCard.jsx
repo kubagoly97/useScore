@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
+import StarIcon from "@mui/icons-material/Star";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
 export default function TeamInfoCard({
   club,
@@ -72,11 +74,15 @@ export default function TeamInfoCard({
                 sx={{ color: "white" }}
                 size="small"
                 onClick={() => handleAddClubOnYourFavouriteList()}
-              >{`Add ${club.team_name} on your list`}</Button>
+              >
+                {`Add ${club.team_name} on your list`}
+                <StarOutlineIcon />
+              </Button>
             </form>
           ) : (
             <Button disabled sx={{ color: "white" }} size="small">
               {`${club.team_name} is already on your list`}
+              <StarIcon />
             </Button>
           )
         ) : (
