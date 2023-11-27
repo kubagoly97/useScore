@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LeaguesList from "./LeaguesList";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LeaguesListOnNotHomePage from "./LeagueListOnNotHomePage";
+
 export default function LeftDrawer({
   setShowClubList,
   fetchEnglishData,
@@ -47,9 +48,6 @@ export default function LeftDrawer({
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 170,
-        "& .css-4t3x6l-MuiPaper-root-MuiDrawer-paper": {
-          backgroundColor: "black",
-        },
       }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -90,9 +88,18 @@ export default function LeftDrawer({
     <div>
       <React.Fragment key={"left"}>
         <Button onClick={toggleDrawer("left", true)}>
-          <MenuIcon sx={{ color: "white" }} />
+          <MenuIcon
+            sx={{
+              color: "white",
+            }}
+          />
         </Button>
         <Drawer
+          PaperProps={{
+            sx: {
+              backgroundColor: "black",
+            },
+          }}
           anchor={"left"}
           open={state["left"]}
           onClose={toggleDrawer("left", false)}
