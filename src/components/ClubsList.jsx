@@ -5,7 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import StarIcon from "@mui/icons-material/Star";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function ClubsList({
@@ -66,9 +66,9 @@ export default function ClubsList({
                     }}
                     onClick={() => handleDelete(club._id)}
                   >
-                    <DeleteForeverIcon
+                    <StarIcon
                       fontSize="large"
-                      sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                      sx={{ color: "rgba(255, 223, 0,1)" }}
                     />
                   </button>
                 }

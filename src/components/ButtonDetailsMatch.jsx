@@ -16,8 +16,9 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
         />
       </ListItemAvatar>
       <Box style={{ fontSize: "23px" }}>
-        {match.match_hometeam_score ? match.match_hometeam_score : "- "}:
-        {match.match_awayteam_score ? match.match_awayteam_score : " -"}
+        {match.match_hometeam_score && match.match_hometeam_score}
+        {match.match_hometeam_score ? ":" : "-"}
+        {match.match_awayteam_score && match.match_awayteam_score}
       </Box>
       <Avatar
         variant="square"
@@ -27,7 +28,7 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
       <ListItemText
         id={labelId}
         sx={{
-          display: { xs: "none", sm: "flex" },
+          display: { xs: "fle", sm: "flex" },
           color:
             (match.match_status == "Finished" && "white") ||
             (match.match_status == "After ET" && "white") ||
@@ -39,7 +40,7 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
           (match.match_status == "After ET" && "Finished") ||
           (match.match_status == "Half Time" && "⚽️ LIVE! - Half Time") ||
           (match.match_status.length &&
-            `⚽️ LIVE! - ${match.match_status}' ⏱️`) ||
+            `🔴 LIVE! - ${match.match_status}' ⏱️`) ||
           (!match.match_status.length &&
             `${match.match_time} | ${match.match_date}`)
         }
