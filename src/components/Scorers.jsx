@@ -20,10 +20,11 @@ export function Scorers({ match }) {
           >
             {match.goalscorer.map((scorer, i) => (
               <Link
+                key={i}
                 style={linkStyle}
                 to={`/player?play=${scorer.home_scorer_id}`}
               >
-                <p key={i} style={{ fontSize: "9px" }}>
+                <p style={{ fontSize: "9px" }}>
                   {scorer.home_scorer && scorer.time && `⚽️ ${scorer.time}' `}
                   {scorer.home_scorer && scorer.home_scorer}{" "}
                   {scorer.home_assist && `(a. ${scorer.home_assist})`}
@@ -42,10 +43,11 @@ export function Scorers({ match }) {
           >
             {match.goalscorer.map((scorer, i) => (
               <Link
+                key={i}
                 to={`/player?play=${scorer.away_scorer_id}`}
                 style={linkStyle}
               >
-                <p key={i} style={{ fontSize: "9px" }}>
+                <p style={{ fontSize: "9px" }}>
                   {scorer.away_scorer && scorer.time && `⚽️ ${scorer.time}' `}
                   {scorer.away_scorer && scorer.away_scorer}{" "}
                   {scorer.away_assist && `(a. ${scorer.away_assist})`}

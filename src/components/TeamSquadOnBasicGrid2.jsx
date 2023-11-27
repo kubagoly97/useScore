@@ -29,7 +29,12 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
           <TableHead>
             <TableRow style={{ backgroundColor: "black" }}>
               <TableCell style={{ color: "white" }} align="left">
-                <img src={club.team_badge} alt="" className="BadgeInTable" />{" "}
+                <img
+                  src={club.team_badge}
+                  alt=""
+                  className="BadgeInTable"
+                  style={{ width: "20px" }}
+                />{" "}
                 {playersType}
               </TableCell>
               {tableHeadCell.map((tab, i) => (
