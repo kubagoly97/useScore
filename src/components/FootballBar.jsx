@@ -39,6 +39,8 @@ export default function FootballBar({
   matchesData,
   playerData,
   homePageFootballBar,
+  fetchSaudiData,
+  fetchMLSData,
 }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { logout } = useLogout();
@@ -50,22 +52,6 @@ export default function FootballBar({
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const leaguesListWithFuncs = [
-    { leagueName: "Premier League", func: fetchEnglishData },
-    { leagueName: "Championship", func: fetchChampionshipData },
-    { leagueName: "La Liga", func: fetchSpainData },
-    { leagueName: "Segunda Division", func: fetchSpain2Data },
-    { leagueName: "Bundesliga", func: fetchGermanyData },
-    { leagueName: "2. Bundesliga", func: fetch2BundesligaData },
-    { leagueName: "PKO Ekstraklasa", func: fetchEkstraklasaData },
-    { leagueName: "1. Liga", func: fetch1LigaData },
-    { leagueName: "2. Liga", func: fetch2LigaData },
-    { leagueName: "Serie A", func: fetchSerieAData },
-    { leagueName: "Serie B", func: fetchSerieBData },
-    { leagueName: "Ligue 1", func: fetchLigueOneData },
-    { leagueName: "Super League", func: fetchSwitzerlandData },
-  ];
 
   return (
     <AppBar
@@ -106,6 +92,7 @@ export default function FootballBar({
             }}
           >
             <LeftDrawer
+              fetchMLSData={fetchMLSData}
               setShowClubList={setShowClubList}
               fetchEnglishData={fetchEnglishData}
               fetchSpainData={fetchSpainData}
@@ -122,6 +109,7 @@ export default function FootballBar({
               fetchSerieBData={fetchSerieBData}
               homePageFootballBar={homePageFootballBar}
               fetchCroatiaData={fetchCroatiaData}
+              fetchSaudiData={fetchSaudiData}
             />
           </Box>
           <SportsSoccerIcon

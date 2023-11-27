@@ -14,9 +14,9 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
   };
 
   const tableHeadCell = [
-    { cellText: "Rating" },
     { cellText: "Matches" },
     { cellText: "Goals" },
+    { cellText: "Rating" },
     { cellText: "🟨" },
     { cellText: "🟥" },
   ];
@@ -73,13 +73,13 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
                     </a>
                   </TableCell>
                   <TableCell style={{ color: "white" }} align="right">
-                    {player.player_rating ? player.player_rating : "⏤"}
-                  </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
                     {player.player_match_played}
                   </TableCell>
                   <TableCell style={{ color: "white" }} align="right">
                     {player.player_goals}
+                  </TableCell>
+                  <TableCell style={{ color: "white" }} align="right">
+                    {player.player_rating ? player.player_rating : "⏤"}
                   </TableCell>
                   <TableCell style={{ color: "white" }} align="right">
                     {player.player_yellow_cards}

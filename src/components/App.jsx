@@ -195,6 +195,28 @@ export default function App() {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetchSaudiData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=278&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchMLSData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=332&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -240,7 +262,9 @@ export default function App() {
           fetchSwitzerlandData={fetchSwitzerlandData}
           fetchSerieBData={fetchSerieBData}
           fetchCroatiaData={fetchCroatiaData}
+          fetchSaudiData={fetchSaudiData}
           setShowClubList={setShowClubList}
+          fetchMLSData={fetchMLSData}
           matchesData={matchesData}
           playerData={playerData}
           homePageFootballBar={homePageFootballBar}
@@ -253,6 +277,8 @@ export default function App() {
             <HomePage
               value={value}
               clubs={clubs}
+              fetchMLSData={fetchMLSData}
+              fetchSaudiData={fetchSaudiData}
               fetchEnglishData={fetchEnglishData}
               fetchSpainData={fetchSpainData}
               fetchSpain2Data={fetchSpain2Data}

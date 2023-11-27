@@ -26,6 +26,8 @@ export default function LeaguesList({
   fetchSwitzerlandData,
   fetchSerieBData,
   fetchCroatiaData,
+  fetchSaudiData,
+  fetchMLSData,
 }) {
   const { user } = useAuthContext();
   const { logout } = useLogout();
@@ -117,6 +119,13 @@ export default function LeaguesList({
           />
           <CoutryOnHomePageList src="Croatia.png" text="Croatia" />
           <LeagueOnHomePageList primary="1. HNL" onClick={fetchCroatiaData} />
+          <CoutryOnHomePageList src="SaudiArabia.png" text="Saudi Arabia" />
+          <LeagueOnHomePageList
+            primary="Saudi League"
+            onClick={fetchSaudiData}
+          />
+          <CoutryOnHomePageList src="USA.png" text="USA" />
+          <LeagueOnHomePageList primary="MLS" onClick={fetchMLSData} />
           {user && (
             <ListSubheader
               sx={{

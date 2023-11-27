@@ -200,7 +200,7 @@ export function GameDetails({
             width: "100%",
             paddingTop: "10px",
             paddingBottom: "10px",
-            backgroundColor: "rgba(0,0,0,0.5)",
+            backgroundColor: "rgba(0,0,0,0.6)",
             borderTop: "1px solid black",
             borderBottom: "1px solid black",
           }}
@@ -233,7 +233,7 @@ export function GameDetails({
             fontSize: "50px",
             paddingTop: "10px",
             paddingBottom: "10px",
-            backgroundColor: "rgba(0,0,0,0.5)",
+            backgroundColor: "rgba(0,0,0,0.6)",
             borderTop: "1px solid black",
             borderBottom: "1px solid black",
           }}

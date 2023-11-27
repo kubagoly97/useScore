@@ -8,8 +8,7 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
         flexDirection: "row",
         fontFamily: "sans-serif",
         borderRadius: "3px",
-        backgroundColor: "rgba(0,0,0,0.5)",
-        borderBottom: "1px solid black",
+        backgroundColor: "rgba(0,0,0,0.6)",
       }}
     >
       <img
