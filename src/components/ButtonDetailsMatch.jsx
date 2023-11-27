@@ -39,7 +39,7 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
           (match.match_status == "Finished" && "Finished") ||
           (match.match_status == "After ET" && "Finished") ||
           (match.match_status == "Half Time" && "⚽️ LIVE! - Half Time") ||
-          (match.match_status.length && `🔴 ${match.match_status}' ⏱️`) ||
+          (match.match_status.length && `🔴 ${match.match_status}'`) ||
           (!match.match_status.length &&
             `${match.match_time} | ${match.match_date}`)
         }
