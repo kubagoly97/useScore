@@ -9,13 +9,12 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export default function TeamInfoCard({
-  club,
-  yourClubsList,
-  setYourClubsList,
-}) {
+export default function TeamInfoCard({ club }) {
   const { user } = useAuthContext();
+  const { setYourClubsList, yourClubsList } = useContext(Context);
 
   const handleAddClubOnYourFavouriteList = async () => {
     const team_badge = club.team_badge;

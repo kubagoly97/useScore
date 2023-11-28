@@ -11,6 +11,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { LineUpsMatchDetails } from "./LineUpsMatchDetails";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -77,23 +78,37 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
                 color: "white",
               }}
             >
-              <img
-                src={matchInfo[0].team_home_badge}
-                alt=""
-                style={{ width: "30px" }}
-              />
-              {` ${matchInfo[0].match_hometeam_name} ${
+              <Link
+                to={`/${matchInfo[0].match_hometeam_id}`}
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <img
+                  src={matchInfo[0].team_home_badge}
+                  alt=""
+                  style={{ width: "30px" }}
+                />
+                {` ${matchInfo[0].match_hometeam_name} `}
+              </Link>
+              {`${
                 matchInfo[0].match_hometeam_score &&
                 matchInfo[0].match_hometeam_score
-              }-${
+              }`}
+              -
+              {`${
                 matchInfo[0].match_awayteam_score &&
                 matchInfo[0].match_awayteam_score
-              } ${matchInfo[0].match_awayteam_name} `}
-              <img
-                src={matchInfo[0].team_away_badge}
-                alt=""
-                style={{ width: "30px" }}
-              />
+              }`}{" "}
+              <Link
+                to={`/${matchInfo[0].match_awayteam_id}`}
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                {`${matchInfo[0].match_awayteam_name} `}
+                <img
+                  src={matchInfo[0].team_away_badge}
+                  alt=""
+                  style={{ width: "30px" }}
+                />
+              </Link>
             </DialogTitle>
             <DialogContent sx={{ backgroundColor: "black", color: "white" }}>
               <DialogContentText

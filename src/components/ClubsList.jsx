@@ -7,14 +7,12 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export default function ClubsList({
-  yourClubsList,
-  setYourClubsList,
-  clubs,
-  setIsOnList,
-}) {
+export default function ClubsList() {
   const { user } = useAuthContext();
+  const { yourClubsList, setYourClubsList } = useContext(Context);
 
   const handleDelete = async (id) => {
     const res = await fetch(
@@ -38,6 +36,7 @@ export default function ClubsList({
   return (
     <>
       <List
+        component={"ul"}
         dense
         sx={{
           paddingLeft: "0px",
@@ -55,6 +54,7 @@ export default function ClubsList({
             const labelId = `checkbox-list-secondary-label-${club}`;
             return (
               <ListItem
+                component="span"
                 key={i}
                 disablePadding
                 secondaryAction={
@@ -73,18 +73,10 @@ export default function ClubsList({
                   </button>
                 }
               >
-                <ListItemButton
-                  href={`/${club.team_key}`}
-                  onClick={() => {
-                    {
-                      clubs.map((c) => c.team_name).includes(club.team_name)
-                        ? setIsOnList(true)
-                        : setIsOnList(false);
-                    }
-                  }}
-                >
+                <ListItemButton href={`/${club.team_key}`}>
                   <ListItemAvatar>
                     <Avatar
+                      component="span"
                       variant="square"
                       sx={{ width: 70, height: 70, marginRight: "10px" }}
                       src={club.team_badge}

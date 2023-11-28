@@ -11,12 +11,15 @@ import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export default function LoginCard({ setHomePageFootballBar }) {
+export default function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
   const { user } = useAuthContext();
+  const { setHomePageFootballBar } = useContext(Context);
 
   const handleLogin = async (e) => {
     e.preventDefault();

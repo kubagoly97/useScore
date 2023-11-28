@@ -13,6 +13,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { GameDetails } from "./GameDetails";
 import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
+import { useContext } from "react";
+import { Context } from "./App";
+
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -21,17 +24,16 @@ export const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function BasicGrid2({
-  value,
-  setValue,
-  setYourClubsList,
-  yourClubsList,
-  matchesData,
-  setMatchesData,
-  setYourFollowingMatches,
-  yourFollowingMatches,
-  setHomePageFootballBar,
-}) {
+export default function BasicGrid2() {
+  const {
+    value,
+    matchesData,
+    setMatchesData,
+    setYourFollowingMatches,
+    yourFollowingMatches,
+    setHomePageFootballBar,
+  } = useContext(Context);
+
   const [showTable, setShowTable] = useState(false);
   const [table, setTable] = useState([]);
   const [clubInfo, setClubInfo] = useState([]);
@@ -83,6 +85,7 @@ export default function BasicGrid2({
   useEffect(() => {
     setHomePageFootballBar(false);
   }, []);
+
   return (
     <>
       <Box sx={{ flexGrow: 1, marginTop: "15px" }}>
@@ -91,11 +94,7 @@ export default function BasicGrid2({
             <Stack spacing={2}>
               <Item sx={boxStyle}>
                 {clubInfo.length ? (
-                  <TeamInfoCard
-                    yourClubsList={yourClubsList}
-                    club={clubInfo[0]}
-                    setYourClubsList={setYourClubsList}
-                  />
+                  <TeamInfoCard club={clubInfo[0]} />
                 ) : (
                   <>
                     <CircularProgress color="success" />
@@ -104,13 +103,7 @@ export default function BasicGrid2({
               </Item>
               <Item sx={boxStyle}>
                 {matchesData.length ? (
-                  <BasicDateCalendar
-                    value={value}
-                    setValue={setValue}
-                    matchesData={matchesData}
-                    setMatchesData={setMatchesData}
-                    setShowTable={setShowTable}
-                  />
+                  <BasicDateCalendar setShowTable={setShowTable} />
                 ) : (
                   <CircularProgress color="success" />
                 )}
@@ -133,11 +126,8 @@ export default function BasicGrid2({
                       (match, i) =>
                         value == match.match_date && (
                           <GameDetails
-                            table={table}
                             setTable={setTable}
                             match={match}
-                            yourFollowingMatches={yourFollowingMatches}
-                            setYourFollowingMatches={setYourFollowingMatches}
                             handleFetch={handleFetch}
                             key={i}
                             club={clubInfo[0]}
@@ -169,12 +159,7 @@ export default function BasicGrid2({
             <Grid item xs={12} sm={7}>
               <Item sx={boxStyle}>
                 {clubInfo.length && (
-                  <LeagueTable
-                    table={table}
-                    setTable={setTable}
-                    club={clubInfo[0]}
-                    showTable={showTable}
-                  />
+                  <LeagueTable table={table} club={clubInfo[0]} />
                 )}
               </Item>
             </Grid>

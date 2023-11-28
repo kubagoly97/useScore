@@ -2,49 +2,27 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import { Link } from "react-router-dom";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { MenuLeaguePosition } from "./MenuLeaguePosition";
 import LeftDrawer from "./LeftDrawer";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export default function FootballBar({
-  fetchEnglishData,
-  fetchSpainData,
-  fetchSpain2Data,
-  fetchGermanyData,
-  fetchEkstraklasaData,
-  fetch2BundesligaData,
-  fetch1LigaData,
-  fetchSerieAData,
-  fetchChampionshipData,
-  setShowClubList,
-  fetchLigueOneData,
-  fetch2LigaData,
-  fetchSwitzerlandData,
-  fetchCroatiaData,
-  fetchSerieBData,
-  matchesData,
-  playerData,
-  homePageFootballBar,
-  fetchSaudiData,
-  fetchMLSData,
-}) {
+export default function FootballBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { logout } = useLogout();
+
   const { user } = useAuthContext();
+  const { matchesData, playerData } = useContext(Context);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -91,26 +69,7 @@ export default function FootballBar({
               display: { xs: "flex", sm: "none", md: "none" },
             }}
           >
-            <LeftDrawer
-              fetchMLSData={fetchMLSData}
-              setShowClubList={setShowClubList}
-              fetchEnglishData={fetchEnglishData}
-              fetchSpainData={fetchSpainData}
-              fetchSpain2Data={fetchSpain2Data}
-              fetchGermanyData={fetchGermanyData}
-              fetchEkstraklasaData={fetchEkstraklasaData}
-              fetch2BundesligaData={fetch2BundesligaData}
-              fetch1LigaData={fetch1LigaData}
-              fetchSerieAData={fetchSerieAData}
-              fetchChampionshipData={fetchChampionshipData}
-              fetchLigueOneData={fetchLigueOneData}
-              fetch2LigaData={fetch2LigaData}
-              fetchSwitzerlandData={fetchSwitzerlandData}
-              fetchSerieBData={fetchSerieBData}
-              homePageFootballBar={homePageFootballBar}
-              fetchCroatiaData={fetchCroatiaData}
-              fetchSaudiData={fetchSaudiData}
-            />
+            <LeftDrawer />
           </Box>
           <SportsSoccerIcon
             fontSize="large"

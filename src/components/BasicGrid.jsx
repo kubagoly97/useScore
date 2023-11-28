@@ -4,7 +4,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { Context } from "./App";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -13,7 +14,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function BasicGrid({ clubs }) {
+export default function BasicGrid() {
+  const { clubs } = useContext(Context);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
@@ -38,7 +41,6 @@ function ClubCard({ club }) {
               opacity: [0.8, 0.8, 0.8],
             },
           }}
-          onClick={() => console.log(club)}
         >
           <img
             className="ClubImageOnList"

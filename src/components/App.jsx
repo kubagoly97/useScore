@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "../App.css";
 import {
   BrowserRouter as Router,
@@ -16,11 +16,11 @@ import { PlayerPage } from "./PlayerPage";
 import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LoginCard from "./LoginCard";
-export const Context = React.createContext();
+
+export const Context = createContext();
+
 export default function App() {
   const { user } = useAuthContext();
-  // -------------------------------
-  const [context, setContext] = useState(true);
   // -------------------------------
   const [showClubList, setShowClubList] = useState(false);
   // -------------------------------
@@ -247,115 +247,63 @@ export default function App() {
   }, [user]);
 
   return (
-    <Router>
-      <nav>
-        <FootballBar
-          fetchEnglishData={fetchEnglishData}
-          fetchSpainData={fetchSpainData}
-          fetchSpain2Data={fetchSpain2Data}
-          fetchGermanyData={fetchGermanyData}
-          fetchEkstraklasaData={fetchEkstraklasaData}
-          fetch2BundesligaData={fetch2BundesligaData}
-          fetch1LigaData={fetch1LigaData}
-          fetchSerieAData={fetchSerieAData}
-          fetchChampionshipData={fetchChampionshipData}
-          fetchLigueOneData={fetchLigueOneData}
-          fetch2LigaData={fetch2LigaData}
-          fetchSwitzerlandData={fetchSwitzerlandData}
-          fetchSerieBData={fetchSerieBData}
-          fetchCroatiaData={fetchCroatiaData}
-          fetchSaudiData={fetchSaudiData}
-          setShowClubList={setShowClubList}
-          fetchMLSData={fetchMLSData}
-          matchesData={matchesData}
-          playerData={playerData}
-          homePageFootballBar={homePageFootballBar}
-        />
-      </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              value={value}
-              clubs={clubs}
-              fetchMLSData={fetchMLSData}
-              fetchSaudiData={fetchSaudiData}
-              fetchEnglishData={fetchEnglishData}
-              fetchSpainData={fetchSpainData}
-              fetchSpain2Data={fetchSpain2Data}
-              fetchGermanyData={fetchGermanyData}
-              fetchEkstraklasaData={fetchEkstraklasaData}
-              fetch2BundesligaData={fetch2BundesligaData}
-              fetch1LigaData={fetch1LigaData}
-              fetchSerieAData={fetchSerieAData}
-              fetchChampionshipData={fetchChampionshipData}
-              fetchLigueOneData={fetchLigueOneData}
-              fetch2LigaData={fetch2LigaData}
-              fetchSwitzerlandData={fetchSwitzerlandData}
-              fetchSerieBData={fetchSerieBData}
-              fetchCroatiaData={fetchCroatiaData}
-              showClubList={showClubList}
-              setShowClubList={setShowClubList}
-              isLoading={isLoading}
-              setMatchesData={setMatchesData}
-              yourClubsList={yourClubsList}
-              setYourClubsList={setYourClubsList}
-              yourFollowingMatches={yourFollowingMatches}
-              setYourFollowingMatches={setYourFollowingMatches}
-              setPlayerData={setPlayerData}
-              setHomePageFootballBar={setHomePageFootballBar}
-            />
-          }
-        />
-        <Route
-          path="/:id"
-          element={
-            <BasicGrid2
-              value={value}
-              setValue={setValue}
-              yourClubsList={yourClubsList}
-              setYourClubsList={setYourClubsList}
-              matchesData={matchesData}
-              setMatchesData={setMatchesData}
-              yourFollowingMatches={yourFollowingMatches}
-              setYourFollowingMatches={setYourFollowingMatches}
-              setHomePageFootballBar={setHomePageFootballBar}
-            />
-          }
-        />
-        <Route
-          path="player"
-          element={
-            <PlayerPage
-              playerData={playerData}
-              setPlayerData={setPlayerData}
-              setHomePageFootballBar={setHomePageFootballBar}
-            />
-          }
-        />
-        <Route
-          path="login"
-          element={
-            !user ? (
-              <LoginCard setHomePageFootballBar={setHomePageFootballBar} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
-        <Route
-          path="register"
-          element={
-            !user ? (
-              <Register setHomePageFootballBar={setHomePageFootballBar} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Context.Provider
+      value={{
+        showClubList,
+        setShowClubList,
+        isLoading,
+        setIsLoading,
+        clubs,
+        setClubList,
+        matchesData,
+        setMatchesData,
+        yourClubsList,
+        setYourClubsList,
+        yourFollowingMatches,
+        setYourFollowingMatches,
+        value,
+        setValue,
+        playerData,
+        setPlayerData,
+        setHomePageFootballBar,
+        homePageFootballBar,
+        fetchEnglishData,
+        fetchSpainData,
+        fetchSpain2Data,
+        fetchGermanyData,
+        fetchEkstraklasaData,
+        fetch2BundesligaData,
+        fetch1LigaData,
+        fetchSerieAData,
+        fetchChampionshipData,
+        fetchLigueOneData,
+        fetch2LigaData,
+        fetchSwitzerlandData,
+        fetchSerieBData,
+        fetchCroatiaData,
+        fetchSaudiData,
+        fetchMLSData,
+      }}
+    >
+      <Router>
+        <nav>
+          <FootballBar />
+        </nav>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:id" element={<BasicGrid2 />} />
+          <Route path="player" element={<PlayerPage />} />
+          <Route
+            path="login"
+            element={!user ? <LoginCard /> : <Navigate to="/" />}
+          />
+          <Route
+            path="register"
+            element={!user ? <Register /> : <Navigate to="/" />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </Context.Provider>
   );
 }

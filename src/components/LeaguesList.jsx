@@ -9,27 +9,30 @@ import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export default function LeaguesList({
-  fetchEnglishData,
-  fetchSpainData,
-  fetchSpain2Data,
-  fetchGermanyData,
-  fetchEkstraklasaData,
-  fetch2BundesligaData,
-  fetch1LigaData,
-  fetchSerieAData,
-  fetchChampionshipData,
-  setShowClubList,
-  fetchLigueOneData,
-  fetch2LigaData,
-  fetchSwitzerlandData,
-  fetchSerieBData,
-  fetchCroatiaData,
-  fetchSaudiData,
-  fetchMLSData,
-}) {
+export default function LeaguesList() {
   const { user } = useAuthContext();
+  const {
+    setShowClubList,
+    fetchEnglishData,
+    fetchSpainData,
+    fetchSpain2Data,
+    fetchGermanyData,
+    fetchEkstraklasaData,
+    fetch2BundesligaData,
+    fetch1LigaData,
+    fetchSerieAData,
+    fetchChampionshipData,
+    fetchLigueOneData,
+    fetch2LigaData,
+    fetchSwitzerlandData,
+    fetchSerieBData,
+    fetchCroatiaData,
+    fetchSaudiData,
+    fetchMLSData,
+  } = useContext(Context);
   const { logout } = useLogout();
   return (
     <List

@@ -6,8 +6,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import updateLocale from "dayjs/plugin/updateLocale";
+import { Context } from "./App";
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale("en", {
@@ -98,15 +99,12 @@ function ServerDay(props) {
   );
 }
 
-export default function DateCalendarServerRequest({
-  value,
-  setValue,
-  setShowTable,
-  matchesData,
-}) {
+export default function DateCalendarServerRequest({ setShowTable }) {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [highlightedDays, setHighlightedDays] = useState([]);
+
+  const { setValue, matchesData } = useContext(Context);
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -130,7 +128,6 @@ export default function DateCalendarServerRequest({
       console.log(`${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`);
       requestAbortController.current.abort();
     }
-
     setIsLoading(true);
     setHighlightedDays([]);
     fetchHighlightedDays(date);

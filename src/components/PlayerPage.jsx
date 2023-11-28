@@ -7,16 +7,17 @@ import { Item } from "./BasicGrid2";
 import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
 import Stack from "@mui/material/Stack";
+import { useContext } from "react";
+import { Context } from "./App";
 
-export function PlayerPage({
-  playerData,
-  setPlayerData,
-  setHomePageFootballBar,
-}) {
+export function PlayerPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");
   const [isLoading, setIsLoading] = useState(false);
-  console.log(playerData);
+
+  const { playerData, setPlayerData, setHomePageFootballBar } =
+    useContext(Context);
+
   useEffect(() => {
     const fetchPlayerData = async () => {
       setIsLoading(true);

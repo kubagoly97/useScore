@@ -7,33 +7,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LeaguesList from "./LeaguesList";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LeaguesListOnNotHomePage from "./LeagueListOnNotHomePage";
+import { useState, useContext } from "react";
+import { Context } from "./App";
 
-export default function LeftDrawer({
-  setShowClubList,
-  fetchEnglishData,
-  fetchSpainData,
-  fetchSpain2Data,
-  fetchGermanyData,
-  fetchEkstraklasaData,
-  fetch2BundesligaData,
-  fetch1LigaData,
-  fetchSerieAData,
-  fetchChampionshipData,
-  fetchLigueOneData,
-  fetch2LigaData,
-  fetchSwitzerlandData,
-  fetchSerieBData,
-  fetchCroatiaData,
-  homePageFootballBar,
-  fetchSaudiData,
-  fetchMLSData,
-}) {
-  const [state, setState] = React.useState({
+export default function LeftDrawer() {
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+
+  const { homePageFootballBar } = useContext(Context);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -57,26 +42,7 @@ export default function LeftDrawer({
     >
       {homePageFootballBar ? (
         <>
-          <LeaguesList
-            setShowClubList={setShowClubList}
-            fetchEnglishData={fetchEnglishData}
-            fetchSpainData={fetchSpainData}
-            fetchSpain2Data={fetchSpain2Data}
-            fetchGermanyData={fetchGermanyData}
-            fetchEkstraklasaData={fetchEkstraklasaData}
-            fetch2BundesligaData={fetch2BundesligaData}
-            fetch1LigaData={fetch1LigaData}
-            fetchSerieAData={fetchSerieAData}
-            fetchChampionshipData={fetchChampionshipData}
-            fetchLigueOneData={fetchLigueOneData}
-            fetch2LigaData={fetch2LigaData}
-            fetchSwitzerlandData={fetchSwitzerlandData}
-            fetchSerieBData={fetchSerieBData}
-            homePageFootballBar={homePageFootballBar}
-            fetchCroatiaData={fetchCroatiaData}
-            fetchSaudiData={fetchSaudiData}
-            fetchMLSData={fetchMLSData}
-          />
+          <LeaguesList />
         </>
       ) : (
         <>

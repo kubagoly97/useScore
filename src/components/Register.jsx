@@ -4,18 +4,20 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Context } from "./App";
 
-export default function Register({ setHomePageFootballBar }) {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signup, error, isLoading } = useSignup();
   const { user } = useAuthContext();
+  const { setHomePageFootballBar } = useContext(Context);
 
   const handleRegister = async (e) => {
     e.preventDefault();

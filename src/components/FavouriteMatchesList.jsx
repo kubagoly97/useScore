@@ -3,15 +3,13 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Context } from "./App";
 
-export default function FavouriteMatchesList({
-  yourFollowingMatches,
-  setYourFollowingMatches,
-}) {
+export default function FavouriteMatchesList() {
   const { user } = useAuthContext();
-
+  const { yourFollowingMatches, setYourFollowingMatches } = useContext(Context);
   const handleDelete = async (id) => {
     const res = await fetch(
       `${import.meta.env.VITE_BASE_URL}matchesList/${id}`,

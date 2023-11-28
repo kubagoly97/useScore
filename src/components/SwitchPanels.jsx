@@ -6,8 +6,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import ClubsList from "./ClubsList";
 import FavouriteMatchesList from "./FavouriteMatchesList";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Loading from "./Loading";
+import { Context } from "./App";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,17 +43,11 @@ function a11yProps(index) {
   };
 }
 
-export default function SwitchPanels({
-  yourClubsList,
-  setYourClubsList,
-  clubs,
-  setIsOnList,
-  isOnList,
-  yourFollowingMatches,
-  setYourFollowingMatches,
-}) {
-  const [value, setValue] = React.useState(0);
+export default function SwitchPanels() {
+  const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { yourClubsList, yourFollowingMatches } = useContext(Context);
 
   const handleChange = (event, newValue) => {
     setIsLoading(true);
@@ -93,13 +88,7 @@ export default function SwitchPanels({
         {yourClubsList.length ? (
           <>
             {isLoading && <Loading />}
-            <ClubsList
-              yourClubsList={yourClubsList}
-              setYourClubsList={setYourClubsList}
-              clubs={clubs}
-              setIsOnList={setIsOnList}
-              isOnList={isOnList}
-            />
+            <ClubsList />
           </>
         ) : (
           <span style={{ color: "#16DB65" }}>
@@ -111,10 +100,7 @@ export default function SwitchPanels({
         {yourFollowingMatches.length ? (
           <>
             {isLoading && <Loading />}
-            <FavouriteMatchesList
-              yourFollowingMatches={yourFollowingMatches}
-              setYourFollowingMatches={setYourFollowingMatches}
-            />
+            <FavouriteMatchesList />
           </>
         ) : (
           <span style={{ color: "#16DB65" }}>
