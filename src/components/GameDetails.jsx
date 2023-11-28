@@ -250,15 +250,16 @@ export function GameDetails({
               : " - "
           })`}
         </h3>
-        <Scorers match={match} />
-        <h4>
-          Referee:{" "}
-          {match.match_referee
-            ? match.match_referee
-            : "More details before the game"}
-        </h4>
-        <h5>{match.match_stadium}</h5>
-        <h6>{match.match_status}</h6>
+        {match.match_referee ? (
+          <>
+            <Scorers match={match} />
+            <h4>Referee: {match.match_referee} </h4>
+            <h5>{match.match_stadium}</h5>
+            <h6>{match.match_status}</h6>
+          </>
+        ) : (
+          <h4>More details before the game</h4>
+        )}
       </div>
     </div>
   );

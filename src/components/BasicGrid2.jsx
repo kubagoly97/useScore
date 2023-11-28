@@ -148,9 +148,14 @@ export default function BasicGrid2() {
                     borderRadius: "0px",
                     backgroundColor: " #04471C",
                     border: "2px dashed #0D2818",
-                    borderTop: "0px",
+                    borderTop: "3px dashed white",
                   }}
                 >
+                  {clubInfo.length && (
+                    <h3 style={{ color: "white" }}>
+                      Manager: {clubInfo[0].coaches[0].coach_name}
+                    </h3>
+                  )}
                   {clubInfo.length && <SwitchSquadBG2 club={clubInfo[0]} />}
                 </Item>
               </Stack>
