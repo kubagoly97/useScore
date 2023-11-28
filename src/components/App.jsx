@@ -109,6 +109,17 @@ export default function App() {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetch3BundesligaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=176&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
   const fetch1LigaData = async () => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=263&APIkey=${
@@ -145,6 +156,17 @@ export default function App() {
   const fetchChampionshipData = async () => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=153&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchLeagueOneData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=154&APIkey=${
       import.meta.env.VITE_API_KEY
     }`;
     const res = await fetch(url);
@@ -200,6 +222,39 @@ export default function App() {
   const fetchSaudiData = async () => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=278&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchCzechData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=134&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchEredivisieData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=244&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchPortugalData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=266&APIkey=${
       import.meta.env.VITE_API_KEY
     }`;
     const res = await fetch(url);
@@ -283,6 +338,11 @@ export default function App() {
         fetchCroatiaData,
         fetchSaudiData,
         fetchMLSData,
+        fetchCzechData,
+        fetchEredivisieData,
+        fetchPortugalData,
+        fetchLeagueOneData,
+        fetch3BundesligaData,
       }}
     >
       <Router>

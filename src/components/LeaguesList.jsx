@@ -22,6 +22,7 @@ export default function LeaguesList() {
     fetchGermanyData,
     fetchEkstraklasaData,
     fetch2BundesligaData,
+    fetch3BundesligaData,
     fetch1LigaData,
     fetchSerieAData,
     fetchChampionshipData,
@@ -32,6 +33,10 @@ export default function LeaguesList() {
     fetchCroatiaData,
     fetchSaudiData,
     fetchMLSData,
+    fetchCzechData,
+    fetchEredivisieData,
+    fetchPortugalData,
+    fetchLeagueOneData,
   } = useContext(Context);
   const { logout } = useLogout();
   return (
@@ -88,6 +93,10 @@ export default function LeaguesList() {
             primary="Championship"
             onClick={fetchChampionshipData}
           />
+          <LeagueOnHomePageList
+            primary="League One"
+            onClick={fetchLeagueOneData}
+          />
           <CoutryOnHomePageList src="Spain.png" text="Spain" />
           <LeagueOnHomePageList primary="La Liga" onClick={fetchSpainData} />
           <LeagueOnHomePageList
@@ -102,6 +111,10 @@ export default function LeaguesList() {
           <LeagueOnHomePageList
             primary="2. Bundesliga"
             onClick={fetch2BundesligaData}
+          />
+          <LeagueOnHomePageList
+            primary="3. Liga"
+            onClick={fetch3BundesligaData}
           />
           <CoutryOnHomePageList src="Poland.png" text="Poland" />
           <LeagueOnHomePageList
@@ -129,6 +142,21 @@ export default function LeaguesList() {
           />
           <CoutryOnHomePageList src="USA.png" text="USA" />
           <LeagueOnHomePageList primary="MLS" onClick={fetchMLSData} />
+          <CoutryOnHomePageList src="Czech.webp" text="Czechia" />
+          <LeagueOnHomePageList
+            primary="Czech League"
+            onClick={fetchCzechData}
+          />
+          <CoutryOnHomePageList src="Netherlands.png" text="Netherlands" />
+          <LeagueOnHomePageList
+            primary="Eredivisie"
+            onClick={fetchEredivisieData}
+          />
+          <CoutryOnHomePageList src="Portugal.png" text="Portugal" />
+          <LeagueOnHomePageList
+            primary="Primeira Liga"
+            onClick={fetchPortugalData}
+          />
           {user && (
             <ListSubheader
               sx={{
