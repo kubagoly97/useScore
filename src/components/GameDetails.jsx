@@ -7,7 +7,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useContext } from "react";
-import { Context } from "./App";
+//import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export function GameDetails({
   match,

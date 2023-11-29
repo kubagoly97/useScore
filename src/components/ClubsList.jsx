@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useContext } from "react";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function ClubsList() {
   const { user } = useAuthContext();

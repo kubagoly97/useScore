@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import { useContext } from "react";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();

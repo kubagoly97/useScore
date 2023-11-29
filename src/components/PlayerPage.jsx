@@ -8,8 +8,8 @@ import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
 import Stack from "@mui/material/Stack";
 import { useContext } from "react";
-import { Context } from "./App";
-
+//import { Context } from "./App";
+import { Context } from "../context/Context";
 export function PlayerPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");

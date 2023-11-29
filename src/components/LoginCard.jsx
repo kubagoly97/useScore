@@ -12,7 +12,8 @@ import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useContext } from "react";
-import { Context } from "./App";
+//import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function LoginCard() {
   const [email, setEmail] = useState("");

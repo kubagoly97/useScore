@@ -14,7 +14,7 @@ import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LeftDrawer from "./LeftDrawer";
 import { useContext } from "react";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function FootballBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

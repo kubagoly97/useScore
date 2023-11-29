@@ -10,7 +10,8 @@ import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Context } from "./App";
+//import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function Register() {
   const [email, setEmail] = useState("");

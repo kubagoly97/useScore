@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import { useContext } from "react";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function TeamInfoCard({ club }) {
   const { user } = useAuthContext();

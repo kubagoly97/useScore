@@ -8,7 +8,7 @@ import ClubsList from "./ClubsList";
 import FavouriteMatchesList from "./FavouriteMatchesList";
 import { useState, useContext } from "react";
 import Loading from "./Loading";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

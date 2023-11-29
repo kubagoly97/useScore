@@ -3,9 +3,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import MatchDetailsOnHomePage from "./MatchDetailsOnHomePage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function FavouriteMatchesList() {
   const { user } = useAuthContext();

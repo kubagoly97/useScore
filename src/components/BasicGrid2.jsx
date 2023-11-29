@@ -14,7 +14,8 @@ import { GameDetails } from "./GameDetails";
 import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
 import { useContext } from "react";
-import { Context } from "./App";
+//import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

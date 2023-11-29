@@ -11,7 +11,7 @@ import { Grid } from "@mui/joy";
 import LeaguesList from "./LeaguesList";
 import SwitchPanels from "./SwitchPanels";
 import { LogoutButtonStackOnHomePage } from "./LogoutButtonStackOnHomePage";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 export default function HomePage() {
   const { user } = useAuthContext();

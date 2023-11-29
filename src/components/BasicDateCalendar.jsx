@@ -8,7 +8,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
 import { useState, useEffect, useContext } from "react";
 import updateLocale from "dayjs/plugin/updateLocale";
-import { Context } from "./App";
+import { Context } from "../context/Context";
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale("en", {
