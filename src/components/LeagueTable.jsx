@@ -83,7 +83,9 @@ export default function LeagueTable({ table, club }) {
                           (team.overall_promotion.includes("Promotion") &&
                             "blue") ||
                           (team.overall_promotion.includes("Relegation") &&
-                            "red"),
+                            "red") ||
+                          (team.overall_promotion.includes("Final Series") &&
+                            "blue"),
                       }}
                     >
                       {team.overall_league_position}.

@@ -33,7 +33,7 @@ export default function FootballBar() {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
         borderRadius: "6px",
         background: "linear-gradient(2deg,#0D2818, #058C42 )",
