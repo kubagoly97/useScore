@@ -15,6 +15,10 @@ export function LeagueOnHomePageList({ primary, onClick }) {
     paddingBottom: "3px",
     paddingLeft: "7px",
     color: "white",
+    ":hover": {
+      bgcolor: "rgba(255,255,255,0.2)",
+      color: "white",
+    },
   };
   return (
     <ListItem sx={leaguesStyle}>

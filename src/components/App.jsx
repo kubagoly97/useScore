@@ -14,6 +14,7 @@ import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LoginCard from "./LoginCard";
 import { ContextProvider } from "../context/Context";
+import { FootballFooter } from "./FootballFooter";
 
 export default function App() {
   const { user } = useAuthContext();
@@ -38,6 +39,7 @@ export default function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FootballFooter />
       </Router>
     </ContextProvider>
   );

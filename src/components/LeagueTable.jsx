@@ -42,27 +42,8 @@ export default function LeagueTable({ table, club }) {
                   style={{
                     color: "white",
                     backgroundColor:
-                      ((!team.league_name === "UEFA Champions League"
-                        ? Number(team.overall_league_position) >=
-                            table.length - 2 && "rgba(141, 0, 0, 0.589)"
-                        : team.overall_promotion ===
-                            "Promotion - Champions League (Play Offs: 1/8-finals)" &&
-                          "rgba(232, 196, 35,0.3)") &&
-                        team.overall_promotion ===
-                          "Promotion - Europa League (Play Offs: 1/16-finals)" &&
-                        "rgba(79, 8, 11, 0.4)") ||
-                      (team.league_name === "UEFA Europa League" &&
-                        team.overall_promotion ===
-                          "Promotion - Europa League (Play Offs: 1/8-finals)" &&
-                        "rgba(232, 196, 35,0.3)") ||
-                      (team.overall_promotion ===
-                        "Promotion - Europa League (Play Offs: 1/16-finals)" &&
-                        "rgba(232, 196, 35,0.3)") ||
-                      (team.overall_promotion ===
-                        "Promotion - Europa Conference League (Play Offs: 1/16-finals)" &&
-                        "rgba(79, 8, 11, 0.4)") ||
-                      (team.team_id == club.team_key &&
-                        "rgba(0, 0, 255, 0.589)"),
+                      team.team_id === club.team_key &&
+                      "rgba(32, 32, 145, 0.8)",
                   }}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
@@ -71,7 +52,43 @@ export default function LeagueTable({ table, club }) {
                     component="th"
                     scope="row"
                   >
-                    {team.overall_league_position}.{"  "}
+                    {console.log(table)}
+                    <span
+                      style={{
+                        padding: "3px",
+                        borderRadius: "3px",
+                        backgroundColor:
+                          (team.overall_promotion.includes(
+                            "Promotion - Champions League (Play Offs: 1/8-finals)"
+                          ) &&
+                            "blue") ||
+                          (team.overall_promotion.includes(
+                            "Promotion - Europa League (Play Offs: 1/16-finals)"
+                          ) &&
+                            "#913a20") ||
+                          (team.overall_promotion.includes(
+                            "Promotion - Europa League (Play Offs: 1/8-finals)"
+                          ) &&
+                            "#913a20") ||
+                          (team.overall_promotion.includes(
+                            "Promotion - Europa Conference League (Play Offs: 1/16-finals)"
+                          ) &&
+                            "#00ab36") ||
+                          (team.overall_promotion.includes(
+                            "Promotion - Europa Conference League (Play Offs: 1/8-finals)"
+                          ) &&
+                            "#00ab36") ||
+                          (team.overall_promotion.includes("Qualifiers") &&
+                            "blue") ||
+                          (team.overall_promotion.includes("Promotion") &&
+                            "blue") ||
+                          (team.overall_promotion.includes("Relegation") &&
+                            "red"),
+                      }}
+                    >
+                      {team.overall_league_position}.
+                    </span>
+                    {"  "}
                     <img
                       src={team.team_badge}
                       alt={team.team_name}
