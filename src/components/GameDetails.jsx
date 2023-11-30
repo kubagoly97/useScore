@@ -251,8 +251,7 @@ export function GameDetails({
               : " - "
           })`}
         </h3>
-        {/* <SwitchGameDetails match={match} /> */}
-        {match.goalscorer.length ? <Scorers match={match} /> : <></>}
+        <SwitchGameDetails match={match} />
       </div>
     </div>
   );

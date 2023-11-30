@@ -7,6 +7,10 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { Scorers } from "./Scorers";
 import { Grid } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import { Item } from "./MatchDetailsOnHomePage";
+import { StartingAwaySquad } from "./StartingAwaySquad";
+import { StartingHomeSquad } from "./StartingHomeSquad";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,9 +56,9 @@ export default function SwitchGameDetails({ club, match }) {
   };
 
   const tabsContent = [
-    { playersType: "Details" },
+    { playersType: "Stats" },
     { playersType: "Squads" },
-    { playersType: "Midfielders" },
+    { playersType: "Details" },
     { playersType: "Forwards" },
   ];
 
@@ -95,8 +99,34 @@ export default function SwitchGameDetails({ club, match }) {
             ))}
           </Tabs>
         </Box>
-
         <CustomTabPanel component={"div"} value={value} index={0}>
+          <Box sx={{ width: "100%" }}>
+            <Stack spacing={0}>
+              {match.statistics.map((stat, i) => (
+                <Item
+                  sx={{
+                    bgcolor: "#0D2818",
+                    color: "white",
+                    borderRadius: "0px",
+                  }}
+                >
+                  <Grid container>
+                    <Grid xs={1} sx={{ borderRight: "1px solid white" }}>
+                      {stat.home}
+                    </Grid>
+                    <Grid xs={10} sx={{ fontWeight: "800" }}>
+                      {stat.type}
+                    </Grid>
+                    <Grid xs={1} sx={{ borderLeft: "1px solid white" }}>
+                      {stat.away}
+                    </Grid>
+                  </Grid>
+                </Item>
+              ))}
+            </Stack>
+          </Box>
+        </CustomTabPanel>
+        <CustomTabPanel component={"div"} value={value} index={2}>
           {match.match_referee && (
             <>
               <Scorers match={match} />
@@ -108,22 +138,8 @@ export default function SwitchGameDetails({ club, match }) {
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={1}>
           <Grid container spacing={0.1}>
-            <Grid item xs={6} sx={{ textAlign: "left" }}>
-              {match.match_hometeam_name}
-              {match.lineup.home.starting_lineups.map((player, i) => (
-                <li key={i} style={{ listStyleType: "none", fontSize: "13px" }}>
-                  {player.lineup_player}
-                </li>
-              ))}
-            </Grid>
-            <Grid item xs={6} sx={{ textAlign: "right" }}>
-              {match.match_awayteam_name}
-              {match.lineup.away.starting_lineups.map((player, i) => (
-                <li key={i} style={{ listStyleType: "none", fontSize: "13px" }}>
-                  {player.lineup_player}
-                </li>
-              ))}
-            </Grid>
+            <StartingHomeSquad match={match} />
+            <StartingAwaySquad match={match} />
           </Grid>
         </CustomTabPanel>
       </Box>
