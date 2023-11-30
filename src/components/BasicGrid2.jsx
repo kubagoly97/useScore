@@ -146,7 +146,7 @@ export default function BasicGrid2() {
                     borderRadius: "0px",
                     backgroundColor: " #04471C",
                     border: "2px dashed #0D2818",
-                    borderTop: "3px dashed white",
+                    marginTop: "15px",
                   }}
                 >
                   {clubInfo.length && (

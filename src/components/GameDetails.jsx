@@ -8,6 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
 import useProps from "../hooks/useProps";
+import SwitchGameDetails from "./SwitchGameDetails";
 
 export function GameDetails({
   match,
@@ -250,16 +251,8 @@ export function GameDetails({
               : " - "
           })`}
         </h3>
-        {match.match_referee ? (
-          <>
-            <Scorers match={match} />
-            <h4>Referee: {match.match_referee} </h4>
-            <h5>{match.match_stadium}</h5>
-            <h6>{match.match_status}</h6>
-          </>
-        ) : (
-          <h4>More details before the game</h4>
-        )}
+        {/* <SwitchGameDetails match={match} /> */}
+        {match.goalscorer.length ? <Scorers match={match} /> : <></>}
       </div>
     </div>
   );

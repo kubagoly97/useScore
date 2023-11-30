@@ -26,7 +26,7 @@ export function LineUpsMatchDetails({ match }) {
               </div>
               <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {match.lineup.home.starting_lineups.map((player, i) => (
-                  <li key={i}>
+                  <li key={i} style={{ fontSize: "10px" }}>
                     {Number(player.lineup_number) !== 0 && player.lineup_number}{" "}
                     <span style={{ color: "green" }}>|</span>
                     <Link
@@ -69,7 +69,7 @@ export function LineUpsMatchDetails({ match }) {
               </div>
               <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {match.lineup.away.starting_lineups.map((player, i) => (
-                  <li key={i}>
+                  <li key={i} style={{ fontSize: "10px" }}>
                     {Number(player.lineup_number) !== 0 && player.lineup_number}{" "}
                     <span style={{ color: "green" }}>|</span>{" "}
                     <Link
