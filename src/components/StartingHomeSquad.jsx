@@ -37,24 +37,29 @@ export function StartingHomeSquad({ match }) {
         <Box sx={{ width: "100%" }}>
           <Stack spacing={0}>
             {match.lineup.home.starting_lineups.map((player, i) => (
-              <Item
-                sx={{
-                  backgroundColor: "#0D2818",
-                  color: "white",
-                  paddingTop: "0px",
-                  textAlign: "left",
-                }}
+              <a
+                href={`player?play=${player.player_key}`}
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <span
-                  style={{
-                    paddingRight: "3px",
-                    borderRight: "0.5px solid #16DB65",
+                <Item
+                  sx={{
+                    backgroundColor: "#0D2818",
+                    color: "white",
+                    paddingTop: "0px",
+                    textAlign: "left",
                   }}
                 >
-                  {player.lineup_number}
-                </span>{" "}
-                {player.lineup_player}
-              </Item>
+                  <span
+                    style={{
+                      paddingRight: "3px",
+                      borderRight: "0.5px solid #16DB65",
+                    }}
+                  >
+                    {player.lineup_number}
+                  </span>{" "}
+                  {player.lineup_player}
+                </Item>
+              </a>
             ))}
           </Stack>
         </Box>

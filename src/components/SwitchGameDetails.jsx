@@ -59,7 +59,6 @@ export default function SwitchGameDetails({ club, match }) {
     { playersType: "Stats" },
     { playersType: "Squads" },
     { playersType: "Details" },
-    { playersType: "Forwards" },
   ];
 
   return (

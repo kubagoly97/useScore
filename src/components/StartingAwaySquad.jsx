@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { Item } from "./MatchDetailsOnHomePage";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+
 export function StartingAwaySquad({ match }) {
   return (
     <>
@@ -29,24 +31,29 @@ export function StartingAwaySquad({ match }) {
         <Box sx={{ width: "100%" }}>
           <Stack spacing={0}>
             {match.lineup.away.starting_lineups.map((player, i) => (
-              <Item
-                sx={{
-                  backgroundColor: "#0D2818",
-                  color: "white",
-                  paddingTop: "0px",
-                  textAlign: "left",
-                }}
+              <a
+                href={`player?play=${player.player_key}`}
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <span
-                  style={{
-                    borderRight: "0.5px solid #16DB65",
-                    paddingRight: "3px",
+                <Item
+                  sx={{
+                    backgroundColor: "#0D2818",
+                    color: "white",
+                    paddingTop: "0px",
+                    textAlign: "left",
                   }}
                 >
-                  {player.lineup_number}
-                </span>{" "}
-                {player.lineup_player}
-              </Item>
+                  <span
+                    style={{
+                      borderRight: "0.5px solid #16DB65",
+                      paddingRight: "3px",
+                    }}
+                  >
+                    {player.lineup_number}
+                  </span>{" "}
+                  {player.lineup_player}
+                </Item>
+              </a>
             ))}
           </Stack>
         </Box>
