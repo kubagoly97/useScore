@@ -22,9 +22,7 @@ export default function App() {
   return (
     <ContextProvider>
       <Router>
-        <nav>
-          <FootballBar />
-        </nav>
+        <FootballBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<BasicGrid2 />} />
