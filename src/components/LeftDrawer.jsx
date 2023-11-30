@@ -6,8 +6,8 @@ import Divider from "@mui/material/Divider";
 import MenuIcon from "@mui/icons-material/Menu";
 import LeaguesList from "./LeaguesList";
 import LeaguesListOnNotHomePage from "./LeagueListOnNotHomePage";
-import { useState, useContext } from "react";
-import { Context } from "../context/Context";
+import { useState } from "react";
+import useProps from "../hooks/useProps";
 
 export default function LeftDrawer() {
   const [state, setState] = useState({
@@ -17,7 +17,7 @@ export default function LeftDrawer() {
     right: false,
   });
 
-  const { homePageFootballBar } = useContext(Context);
+  const { homePageFootballBar } = useProps();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (

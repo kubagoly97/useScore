@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
-import { useContext } from "react";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();
@@ -37,7 +36,7 @@ export default function LeaguesList() {
     fetchEredivisieData,
     fetchPortugalData,
     fetchLeagueOneData,
-  } = useContext(Context);
+  } = useProps();
   const { logout } = useLogout();
   return (
     <List

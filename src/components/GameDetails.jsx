@@ -6,8 +6,8 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useEffect, useContext } from "react";
-import { Context } from "../context/Context";
+import { useEffect } from "react";
+import useProps from "../hooks/useProps";
 
 export function GameDetails({
   match,
@@ -19,7 +19,7 @@ export function GameDetails({
   showTable,
 }) {
   const { user } = useAuthContext();
-  const { setYourFollowingMatches, yourFollowingMatches } = useContext(Context);
+  const { setYourFollowingMatches, yourFollowingMatches } = useProps();
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;

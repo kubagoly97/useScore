@@ -11,7 +11,7 @@ import { Grid } from "@mui/joy";
 import LeaguesList from "./LeaguesList";
 import SwitchPanels from "./SwitchPanels";
 import { LogoutButtonStackOnHomePage } from "./LogoutButtonStackOnHomePage";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 export default function HomePage() {
   const { user } = useAuthContext();
@@ -22,7 +22,7 @@ export default function HomePage() {
     setHomePageFootballBar,
     isLoading,
     showClubList,
-  } = useContext(Context);
+  } = useProps();
 
   useEffect(function () {
     setMatchesData({});

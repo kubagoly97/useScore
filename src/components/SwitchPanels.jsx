@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import ClubsList from "./ClubsList";
 import FavouriteMatchesList from "./FavouriteMatchesList";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import Loading from "./Loading";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +47,7 @@ export default function SwitchPanels() {
   const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { yourClubsList, yourFollowingMatches } = useContext(Context);
+  const { yourClubsList, yourFollowingMatches } = useProps();
 
   const handleChange = (event, newValue) => {
     setIsLoading(true);

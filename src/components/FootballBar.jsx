@@ -13,15 +13,14 @@ import "@fontsource/roboto/700.css";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LeftDrawer from "./LeftDrawer";
-import { useContext } from "react";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 export default function FootballBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { logout } = useLogout();
 
   const { user } = useAuthContext();
-  const { matchesData, playerData } = useContext(Context);
+  const { matchesData, playerData } = useProps();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

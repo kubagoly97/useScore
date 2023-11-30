@@ -4,8 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function BasicGrid() {
-  const { clubs } = useContext(Context);
+  const { clubs } = useProps();
 
   return (
     <Box sx={{ flexGrow: 1 }}>

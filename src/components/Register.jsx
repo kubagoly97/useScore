@@ -10,15 +10,14 @@ import { Stack } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
-//import { Context } from "./App";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signup, error, isLoading } = useSignup();
   const { user } = useAuthContext();
-  const { setHomePageFootballBar } = useContext(Context);
+  const { setHomePageFootballBar } = useProps();
 
   const handleRegister = async (e) => {
     e.preventDefault();

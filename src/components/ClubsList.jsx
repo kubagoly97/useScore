@@ -7,12 +7,11 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useContext } from "react";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 export default function ClubsList() {
   const { user } = useAuthContext();
-  const { yourClubsList, setYourClubsList } = useContext(Context);
+  const { yourClubsList, setYourClubsList } = useProps();
 
   const handleDelete = async (id) => {
     const res = await fetch(

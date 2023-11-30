@@ -7,16 +7,14 @@ import { Item } from "./BasicGrid2";
 import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
 import Stack from "@mui/material/Stack";
-import { useContext } from "react";
-//import { Context } from "./App";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
+
 export function PlayerPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const playerId = searchParams.get("play");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { playerData, setPlayerData, setHomePageFootballBar } =
-    useContext(Context);
+  const { playerData, setPlayerData, setHomePageFootballBar } = useProps();
 
   useEffect(() => {
     const fetchPlayerData = async () => {

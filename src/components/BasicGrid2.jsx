@@ -13,10 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { GameDetails } from "./GameDetails";
 import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
-import { useContext } from "react";
-//import { Context } from "./App";
-import { Context } from "../context/Context";
-
+import useProps from "../hooks/useProps";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -33,7 +30,7 @@ export default function BasicGrid2() {
     setYourFollowingMatches,
     yourFollowingMatches,
     setHomePageFootballBar,
-  } = useContext(Context);
+  } = useProps();
 
   const [showTable, setShowTable] = useState(false);
   const [table, setTable] = useState([]);
