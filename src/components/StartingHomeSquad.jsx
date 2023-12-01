@@ -56,7 +56,8 @@ export function StartingHomeSquad({ match }) {
                     }}
                   >
                     {player.lineup_number}
-                  </span>{" "}
+                  </span>
+                  {"  "}
                   {player.lineup_player}
                 </Item>
               </a>
