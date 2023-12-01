@@ -12,7 +12,6 @@ export function StartingAwaySquad({ match }) {
         <Item
           sx={{
             borderBottom: "0.5px solid white",
-            marginBottom: "3px",
             marginBottom: "10px",
             bgcolor: "black",
             color: "white",

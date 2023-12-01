@@ -56,9 +56,9 @@ export default function SwitchGameDetails({ club, match }) {
   };
 
   const tabsContent = [
-    { playersType: "Stats" },
-    { playersType: "Squads" },
     { playersType: "Details" },
+    { playersType: "Squads" },
+    { playersType: "Stats" },
   ];
 
   return (
@@ -98,7 +98,7 @@ export default function SwitchGameDetails({ club, match }) {
             ))}
           </Tabs>
         </Box>
-        <CustomTabPanel component={"div"} value={value} index={0}>
+        <CustomTabPanel component={"div"} value={value} index={2}>
           <Box sx={{ width: "100%" }}>
             <Stack spacing={0}>
               {match.statistics.map((stat, i) => (
@@ -125,7 +125,7 @@ export default function SwitchGameDetails({ club, match }) {
             </Stack>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel component={"div"} value={value} index={2}>
+        <CustomTabPanel component={"div"} value={value} index={0}>
           {match.match_referee && (
             <>
               <Scorers match={match} />
