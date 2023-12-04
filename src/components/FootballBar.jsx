@@ -38,10 +38,6 @@ export default function FootballBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-          <SportsSoccerIcon
-            fontSize="large"
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
           <Typography
             variant="h4"
             noWrap
@@ -57,6 +53,10 @@ export default function FootballBar() {
               textDecoration: "none",
             }}
           >
+            <SportsSoccerIcon
+              fontSize="large"
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
             useScore
           </Typography>
           <Box
@@ -67,10 +67,7 @@ export default function FootballBar() {
           >
             <LeftDrawer />
           </Box>
-          <SportsSoccerIcon
-            fontSize="large"
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-          />
+
           <Typography
             variant="h4"
             noWrap
@@ -78,8 +75,9 @@ export default function FootballBar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", sm: "flex", md: "none" },
               flexGrow: 1,
+              textAlign: "left",
               fontFamily: "roboto",
               fontWeight: 700,
               letterSpacing: ".1rem",
@@ -87,17 +85,22 @@ export default function FootballBar() {
               textDecoration: "none",
             }}
           >
+            {" "}
+            <SportsSoccerIcon
+              fontSize="large"
+              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+            />
             useScore
           </Typography>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "flex", md: "flex" },
-              justify: "space-beetwen",
-            }}
-          >
-            <LanguageSwitch />
-          </Box>
+          {/* <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", sm: "flex", md: "flex" },
+                justify: "space-beetwen",
+              }}
+            > */}
+          <LanguageSwitch />
+          {/* </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

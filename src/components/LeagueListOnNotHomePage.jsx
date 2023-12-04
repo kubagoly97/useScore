@@ -51,7 +51,6 @@ export default function LeaguesListOnNotHomePage({}) {
           ) : (
             <Subheader text={`${user.email}`} withLink={false} />
           )}
-          <SwitchLanguageOnLeagueList />
         </ul>
       </li>
     </List>

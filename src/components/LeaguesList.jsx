@@ -200,7 +200,6 @@ export default function LeaguesList() {
             primary="Primeira Liga"
             onClick={fetchPortugalData}
           />
-          <SwitchLanguageOnLeagueList />
           {user && (
             <ListSubheader
               sx={{

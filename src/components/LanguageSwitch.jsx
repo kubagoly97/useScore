@@ -32,9 +32,10 @@ export default function LanguageSwitch() {
         <img
           src="Anglia.png"
           alt=""
-          style={{ width: "22px", borderRadius: "2px" }}
+          style={{ width: "18px", borderRadius: "2px" }}
         />
         <Switch
+          size="small"
           sx={{
             "&.MuiSwitch-root .MuiSwitch-switchBase": {
               color: "#16DB65",
@@ -52,7 +53,7 @@ export default function LanguageSwitch() {
         <img
           src="Poland.png"
           alt=""
-          style={{ width: "22px", borderRadius: "2px" }}
+          style={{ width: "18px", borderRadius: "2px" }}
         />
       </span>
     </div>
