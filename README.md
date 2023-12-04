@@ -56,6 +56,10 @@ Welcome to **useScore**, your go-to application for tracking real-time football 
    ```
 
 5. **Explore useScore:**
+
+Open your browser and navigate to https://usescore.netlify.app/ to explore and enjoy the app.
+
+6. **Explore useScore:**
    Open your browser and navigate to [http://localhost:5137](http://localhost:5137) to explore and enjoy the app.
 
 ## Acknowledgments
