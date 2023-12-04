@@ -28,28 +28,43 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
         sx={{ width: 40, height: 40, marginLeft: "10px" }}
         src={match.team_away_badge}
       />
-      <ListItemText
-        id={labelId}
-        sx={{
-          display: { xs: "flex", sm: "flex" },
-          color: "white",
-          marginLeft: "20px",
-        }}
-        primary={
-          (match.match_status == "Finished" && language
-            ? "Finished"
-            : "Koniec") ||
-          (match.match_status == "After ET" && language
-            ? "Finished"
-            : "Koniec") ||
-          (match.match_status == "Half Time" && language
-            ? "Half-Time"
-            : "Przerwa") ||
-          (match.match_status.length && `🔴 ${match.match_status}'`) ||
-          (!match.match_status.length &&
-            `${match.match_time} | ${match.match_date}`)
-        }
-      />
+      {language ? (
+        <ListItemText
+          id={labelId}
+          sx={{
+            display: { xs: "flex", sm: "flex" },
+            color: "white",
+            marginLeft: "20px",
+          }}
+          primary={
+            (!match.match_status.length &&
+              `${match.match_time} | ${match.match_date}`) ||
+            (match.match_status == "Finished" && "Finished") ||
+            (match.match_status == "After ET" && "Finished") ||
+            (match.match_status == "Aban." && "Postponed") ||
+            (match.match_status == "Half Time" && "Half Time") ||
+            (match.match_status.length && `🔴 ${match.match_status}'`)
+          }
+        />
+      ) : (
+        <ListItemText
+          id={labelId}
+          sx={{
+            display: { xs: "flex", sm: "flex" },
+            color: "white",
+            marginLeft: "20px",
+          }}
+          primary={
+            (!match.match_status.length &&
+              `${match.match_time} | ${match.match_date}`) ||
+            (match.match_status == "Finished" && "Koniec") ||
+            (match.match_status == "Aban." && "Przełozony") ||
+            (match.match_status == "After ET" && "Koniec") ||
+            (match.match_status == "Half Time" && "Przerwa") ||
+            (match.match_status.length && `🔴 ${match.match_status}'`)
+          }
+        />
+      )}
     </ListItemButton>
   );
 }
