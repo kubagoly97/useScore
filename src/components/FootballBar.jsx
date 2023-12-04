@@ -18,10 +18,6 @@ import LanguageSwitch from "./LanguageSwitch";
 
 export default function FootballBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const { logout } = useLogout();
-
-  const { user } = useAuthContext();
-  const { matchesData, playerData, language } = useProps();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -100,25 +96,6 @@ export default function FootballBar() {
               justify: "space-beetwen",
             }}
           >
-            {/* {!matchesData.length && !playerData.length && (
-              <>
-                {user ? (
-                  <Button
-                    variant="text"
-                    onClick={() => {
-                      logout();
-                      window.location.reload();
-                    }}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {language ? " Log out " : "Wyloguj "}
-                    || {user && user.email}
-                  </Button>
-                ) : (
-                  <></>
-                )}
-              </>
-            )} */}
             <LanguageSwitch />
           </Box>
         </Toolbar>

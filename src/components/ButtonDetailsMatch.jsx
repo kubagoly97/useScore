@@ -4,8 +4,11 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { Box } from "@mui/system";
+import useProps from "../hooks/useProps";
 
 export function ButtonDetailsMatch({ match, labelId, func }) {
+  const { language } = useProps();
+
   return (
     <ListItemButton onClick={func}>
       <ListItemAvatar>
@@ -29,16 +32,19 @@ export function ButtonDetailsMatch({ match, labelId, func }) {
         id={labelId}
         sx={{
           display: { xs: "flex", sm: "flex" },
-          color:
-            (match.match_status == "Finished" && "white") ||
-            (match.match_status == "After ET" && "white") ||
-            (match.match_status.length && "#16DB65"),
+          color: "white",
           marginLeft: "20px",
         }}
         primary={
-          (match.match_status == "Finished" && "Finished") ||
-          (match.match_status == "After ET" && "Finished") ||
-          (match.match_status == "Half Time" && "⚽️ LIVE! - Half Time") ||
+          (match.match_status == "Finished" && language
+            ? "Finished"
+            : "Koniec") ||
+          (match.match_status == "After ET" && language
+            ? "Finished"
+            : "Koniec") ||
+          (match.match_status == "Half Time" && language
+            ? "Half-Time"
+            : "Przerwa") ||
           (match.match_status.length && `🔴 ${match.match_status}'`) ||
           (!match.match_status.length &&
             `${match.match_time} | ${match.match_date}`)

@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import useProps from "../hooks/useProps";
+import { SwitchLanguageOnLeagueList } from "./SwitchLanguageOnLeagueList";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();
@@ -193,6 +194,7 @@ export default function LeaguesList() {
             primary="Primeira Liga"
             onClick={fetchPortugalData}
           />
+          <SwitchLanguageOnLeagueList />
           {user && (
             <ListSubheader
               sx={{

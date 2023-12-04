@@ -12,6 +12,7 @@ import Paper from "@mui/material/Paper";
 import { LineUpsMatchDetails } from "./LineUpsMatchDetails";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useProps from "../hooks/useProps";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -28,6 +29,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MatchDetailsOnHomePage({ match, labelId }) {
   const [open, setOpen] = React.useState(false);
   const [matchInfo, setMatchInfo] = useState({});
+  const { language } = useProps();
 
   useEffect(() => {
     const fetchMatchInfo = async () => {
@@ -130,7 +132,8 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
                     alt={matchInfo[0].league_name}
                     style={{ width: "25px", borderRadius: "3px" }}
                   />{" "}
-                  {matchInfo[0].league_name}, {matchInfo[0].match_round}. round
+                  {matchInfo[0].league_name}, {matchInfo[0].match_round}.{" "}
+                  {language ? "round" : "kolejka"}
                 </p>
                 <p
                   style={{
@@ -153,7 +156,7 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
                     : matchInfo[0].country_name}
                 </p>
                 {matchInfo[0].match_status === "Postponed" && (
-                  <h2>Postponed</h2>
+                  <h2>{language ? "Postponed" : "Przełozony"}</h2>
                 )}
                 {matchInfo[0].match_status.length ? (
                   <LineUpsMatchDetails match={matchInfo[0]} />
@@ -164,7 +167,7 @@ export default function MatchDetailsOnHomePage({ match, labelId }) {
             </DialogContent>
             <DialogActions sx={{ backgroundColor: "black", color: "white" }}>
               <Button onClick={handleClose} sx={{ color: "#058C42" }}>
-                Close
+                {language ? "Close" : "Zamknij"}
               </Button>
             </DialogActions>
           </Dialog>
