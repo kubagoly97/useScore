@@ -10,10 +10,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
 import LeftDrawer from "./LeftDrawer";
-import useProps from "../hooks/useProps";
 import LanguageSwitch from "./LanguageSwitch";
 
 export default function FootballBar() {

@@ -30,7 +30,7 @@ export default function LanguageSwitch() {
     <div>
       <span>
         <img
-          src="Anglia.png"
+          src="UK.png"
           alt=""
           style={{ width: "18px", borderRadius: "2px" }}
         />
