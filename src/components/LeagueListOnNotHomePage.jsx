@@ -8,7 +8,7 @@ import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import { SwitchLanguageOnLeagueList } from "./SwitchLanguageOnLeagueList";
 
-export default function LeaguesListOnNotHomePage({}) {
+export default function LeaguesListOnNotHomePage() {
   const { user } = useAuthContext();
   return (
     <List

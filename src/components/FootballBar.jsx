@@ -67,7 +67,6 @@ export default function FootballBar() {
           >
             <LeftDrawer />
           </Box>
-
           <Typography
             variant="h4"
             noWrap
@@ -79,28 +78,24 @@ export default function FootballBar() {
               flexGrow: 1,
               textAlign: "left",
               fontFamily: "roboto",
-              fontWeight: 700,
+              fontWeight: { xs: 600, sm: 700, md: 700 },
               letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
+              fontSize: { xs: "22px", sm: "34px", md: "34px" },
             }}
           >
-            {" "}
             <SportsSoccerIcon
-              fontSize="large"
-              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+              fontSize="medium"
+              sx={{
+                display: { xs: "flex", md: "flex" },
+                mr: 1,
+                fontSize: { xs: "22px", sm: "34px", md: "34px" },
+              }}
             />
             useScore
           </Typography>
-          {/* <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", sm: "flex", md: "flex" },
-                justify: "space-beetwen",
-              }}
-            > */}
           <LanguageSwitch />
-          {/* </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
