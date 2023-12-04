@@ -8,7 +8,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
 import { useState, useEffect, useContext } from "react";
 import updateLocale from "dayjs/plugin/updateLocale";
-import { Context } from "../context/Context";
+import useProps from "../hooks/useProps";
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale("en", {
@@ -104,7 +104,7 @@ export default function DateCalendarServerRequest({ setShowTable }) {
   const [isLoading, setIsLoading] = useState(false);
   const [highlightedDays, setHighlightedDays] = useState([]);
 
-  const { setValue, matchesData } = useContext(Context);
+  const { setValue, matchesData, language } = useProps();
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -125,7 +125,6 @@ export default function DateCalendarServerRequest({ setShowTable }) {
 
   const handleMonthChange = (date) => {
     if (requestAbortController.current) {
-      console.log(`${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`);
       requestAbortController.current.abort();
     }
     setIsLoading(true);
@@ -141,7 +140,9 @@ export default function DateCalendarServerRequest({ setShowTable }) {
   return (
     <>
       <h4 style={{ color: "#16DB65" }}>
-        Pick a matchday with ball icon from callendar below ↓
+        {language
+          ? " Pick a matchday with ball icon ↓"
+          : "Wybierz dzień meczowy z piłką ↓"}
       </h4>
       <LocalizationProvider
         dateAdapter={AdapterDayjs}

@@ -18,7 +18,6 @@ export function Scorers({ match }) {
               boxShadow: "none",
             }}
           >
-            {console.log(match)}
             {match.goalscorer.map((scorer, i) => (
               <Link
                 key={i}

@@ -21,6 +21,11 @@ export const ContextProvider = ({ children }) => {
   // ---------------------------
   const [homePageFootballBar, setHomePageFootballBar] = useState(true);
   // ---------------------------
+  const [language, setLanguage] = useState(function () {
+    const storedValue = localStorage.getItem("language");
+    return storedValue ? JSON.parse(storedValue) : true;
+  });
+  // ---------------------------
   const date = new Date();
   const [value, setValue] = useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
@@ -305,6 +310,8 @@ export const ContextProvider = ({ children }) => {
         setPlayerData,
         setHomePageFootballBar,
         homePageFootballBar,
+        language,
+        setLanguage,
         fetchEnglishData,
         fetchSpainData,
         fetchSpain2Data,

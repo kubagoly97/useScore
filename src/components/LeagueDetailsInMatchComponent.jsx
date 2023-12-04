@@ -1,6 +1,8 @@
 import * as React from "react";
+import useProps from "../hooks/useProps";
 
 export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
+  const { language } = useProps();
   return (
     <section
       style={{
@@ -26,7 +28,8 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
       />
       <div style={{ paddingLeft: "10px" }}>
         <p style={{ fontWeight: "bold", color: "#16DB65" }}>
-          {match.league_name} - {match.match_round}. round - {match.league_year}{" "}
+          {match.league_name} - {match.match_round}.{" "}
+          {language ? "round" : "kolejka"} - {match.league_year}{" "}
           {match.match_time}
         </p>
       </div>

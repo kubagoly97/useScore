@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
+import useProps from "../hooks/useProps";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,6 +44,7 @@ function a11yProps(index) {
 export default function SwitchSquadBG2({ club }) {
   const [value, setValue] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const { language } = useProps();
 
   const handleChange = (event, newValue) => {
     setIsLoading(true);
@@ -55,6 +57,13 @@ export default function SwitchSquadBG2({ club }) {
     { playersType: "Defenders" },
     { playersType: "Midfielders" },
     { playersType: "Forwards" },
+  ];
+
+  const tabsContentPL = [
+    { playersType: "Bramkarze" },
+    { playersType: "Obrońcy" },
+    { playersType: "Pomocnicy" },
+    { playersType: "Napastnicy" },
   ];
 
   return (
@@ -83,14 +92,31 @@ export default function SwitchSquadBG2({ club }) {
               },
             }}
           >
-            {tabsContent.map((tab, i) => (
+            {language
+              ? tabsContent.map((tab, i) => (
+                  <Tab
+                    key={i}
+                    label={tab.playersType}
+                    {...a11yProps(1)}
+                    sx={{ color: "white" }}
+                  />
+                ))
+              : tabsContentPL.map((tab, i) => (
+                  <Tab
+                    key={i}
+                    label={tab.playersType}
+                    {...a11yProps(1)}
+                    sx={{ color: "white" }}
+                  />
+                ))}
+            {/* {tabsContent.map((tab, i) => (
               <Tab
                 key={i}
                 label={tab.playersType}
                 {...a11yProps(1)}
                 sx={{ color: "white" }}
               />
-            ))}
+            ))} */}
           </Tabs>
         </Box>
         {tabsContent.map((tab, i) => (

@@ -3,8 +3,11 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import { Item } from "./MatchDetailsOnHomePage";
+import useProps from "../hooks/useProps";
 
 export function LineUpsMatchDetails({ match }) {
+  const { language } = useProps();
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -45,7 +48,7 @@ export function LineUpsMatchDetails({ match }) {
                 ))}
               </ul>
               <span>
-                Manager:{" "}
+                {language ? "Manager: " : "Trener: "}
                 {match.lineup.home.coach.length
                   ? match.lineup.home.coach[0].lineup_player
                   : ""}
@@ -88,7 +91,7 @@ export function LineUpsMatchDetails({ match }) {
                 ))}
               </ul>
               <span>
-                Manager:{" "}
+                {language ? "Manager: " : "Trener: "}
                 {match.lineup.away.coach.length
                   ? match.lineup.away.coach[0].lineup_player
                   : ""}
@@ -104,14 +107,18 @@ export function LineUpsMatchDetails({ match }) {
           paddingBottom: "3px",
         }}
       >
-        Details
+        {language ? "Details: " : "Szczegóły: "}
       </div>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={6}>
             <Item sx={{ backgroundColor: "black", color: "white" }}>
               <div style={{ borderRight: "0.5px solid #04471C" }}>
-                {match.goalscorer.length ? <span>Goal scorers:</span> : ""}
+                {match.goalscorer.length ? (
+                  <span>{language ? "Goal scorers: " : "Bramki: "}</span>
+                ) : (
+                  ""
+                )}
                 <ul style={{ listStyleType: "none", textAlign: "left" }}>
                   {match.goalscorer.map((scorer, i) => (
                     <li
@@ -142,8 +149,14 @@ export function LineUpsMatchDetails({ match }) {
           <Grid xs={6}>
             <Item sx={{ backgroundColor: "black", color: "white" }}>
               <div>
-                <span>Referee: {match.match_referee}</span>
-                <p>Stadium: {match.match_stadium}</p>
+                <span>
+                  {language ? "Referee: " : "Sędzia: "}
+                  {match.match_referee}
+                </span>
+                <p>
+                  {language ? "Stadium: " : "Stadion: "}
+                  {match.match_stadium}
+                </p>
               </div>
             </Item>
           </Grid>

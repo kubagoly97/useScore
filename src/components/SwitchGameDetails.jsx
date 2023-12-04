@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import { Item } from "./MatchDetailsOnHomePage";
 import { StartingAwaySquad } from "./StartingAwaySquad";
 import { StartingHomeSquad } from "./StartingHomeSquad";
+import useProps from "../hooks/useProps";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,22 +49,26 @@ function a11yProps(index) {
 export default function SwitchGameDetails({ club, match }) {
   const [value, setValue] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { language } = useProps();
   const handleChange = (event, newValue) => {
     setIsLoading(true);
     setValue(newValue);
     setIsLoading(false);
   };
 
-  const tabsContent = [
+  const tabsEngContent = [
     { playersType: "Details" },
     { playersType: "Squads" },
     { playersType: "Stats" },
   ];
+  const tabsPLContent = [
+    { playersType: "Szczegóły" },
+    { playersType: "Skład" },
+    { playersType: "Statystyki" },
+  ];
 
   return (
     <>
-      {console.log(match)}
       <Box
         sx={{
           width: 1,
@@ -88,14 +93,23 @@ export default function SwitchGameDetails({ club, match }) {
               },
             }}
           >
-            {tabsContent.map((tab, i) => (
-              <Tab
-                key={i}
-                label={tab.playersType}
-                {...a11yProps(1)}
-                sx={{ color: "white" }}
-              />
-            ))}
+            {language
+              ? tabsEngContent.map((tab, i) => (
+                  <Tab
+                    key={i}
+                    label={tab.playersType}
+                    {...a11yProps(1)}
+                    sx={{ color: "white" }}
+                  />
+                ))
+              : tabsPLContent.map((tab, i) => (
+                  <Tab
+                    key={i}
+                    label={tab.playersType}
+                    {...a11yProps(1)}
+                    sx={{ color: "white" }}
+                  />
+                ))}
           </Tabs>
         </Box>
         <CustomTabPanel component={"div"} value={value} index={2}>
@@ -129,7 +143,9 @@ export default function SwitchGameDetails({ club, match }) {
           {match.match_referee && (
             <>
               <Scorers match={match} />
-              <h4>Referee: {match.match_referee} </h4>
+              <h4>
+                {language ? "Referee:" : "Sędzia:"} {match.match_referee}{" "}
+              </h4>
               <h5>{match.match_stadium}</h5>
               <h6>{match.match_status}</h6>
             </>

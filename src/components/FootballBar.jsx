@@ -14,13 +14,14 @@ import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LeftDrawer from "./LeftDrawer";
 import useProps from "../hooks/useProps";
+import LanguageSwitch from "./LanguageSwitch";
 
 export default function FootballBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { logout } = useLogout();
 
   const { user } = useAuthContext();
-  const { matchesData, playerData } = useProps();
+  const { matchesData, playerData, language } = useProps();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -99,7 +100,7 @@ export default function FootballBar() {
               justify: "space-beetwen",
             }}
           >
-            {!matchesData.length && !playerData.length && (
+            {/* {!matchesData.length && !playerData.length && (
               <>
                 {user ? (
                   <Button
@@ -110,13 +111,15 @@ export default function FootballBar() {
                     }}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
-                    Log out || {user && user.email}
+                    {language ? " Log out " : "Wyloguj "}
+                    || {user && user.email}
                   </Button>
                 ) : (
                   <></>
                 )}
               </>
-            )}
+            )} */}
+            <LanguageSwitch />
           </Box>
         </Toolbar>
       </Container>

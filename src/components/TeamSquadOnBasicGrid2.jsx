@@ -7,16 +7,26 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Blank from "/Blank.jpeg";
+import useProps from "../hooks/useProps";
 
 export default function TeamSquadOnBasicGrid2({ club, playersType }) {
   const replaceImage = (e) => {
     e.target.src = Blank;
   };
+  const { language } = useProps();
 
   const tableHeadCell = [
     { cellText: "Matches" },
     { cellText: "Goals" },
     { cellText: "Rating" },
+    { cellText: "🟨" },
+    { cellText: "🟥" },
+  ];
+
+  const tableHeadCellPL = [
+    { cellText: "Mecze" },
+    { cellText: "Bramki" },
+    { cellText: "Oceny" },
     { cellText: "🟨" },
     { cellText: "🟥" },
   ];
@@ -37,11 +47,17 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
                 />{" "}
                 {playersType}
               </TableCell>
-              {tableHeadCell.map((tab, i) => (
-                <TableCell style={{ color: "white" }} align="right">
-                  {tab.cellText}
-                </TableCell>
-              ))}
+              {language
+                ? tableHeadCell.map((tab, i) => (
+                    <TableCell style={{ color: "white" }} align="right">
+                      {tab.cellText}
+                    </TableCell>
+                  ))
+                : tableHeadCellPL.map((tab, i) => (
+                    <TableCell style={{ color: "white" }} align="right">
+                      {tab.cellText}
+                    </TableCell>
+                  ))}
             </TableRow>
           </TableHead>
           <TableBody>

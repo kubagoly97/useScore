@@ -47,7 +47,7 @@ export default function SwitchPanels() {
   const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { yourClubsList, yourFollowingMatches } = useProps();
+  const { yourClubsList, yourFollowingMatches, language } = useProps();
 
   const handleChange = (event, newValue) => {
     setIsLoading(true);
@@ -75,13 +75,17 @@ export default function SwitchPanels() {
           }}
         >
           <Tab
-            label="Teams"
+            label={language ? "Teams" : "Kluby"}
             {...a11yProps(0)}
             sx={{
               color: "white",
             }}
           />
-          <Tab label="Matches" {...a11yProps(1)} sx={{ color: "white" }} />
+          <Tab
+            label={language ? "Matches" : "Mecze"}
+            {...a11yProps(1)}
+            sx={{ color: "white" }}
+          />
         </Tabs>
       </Box>
       <CustomTabPanel component={"div"} value={value} index={0}>
@@ -92,7 +96,9 @@ export default function SwitchPanels() {
           </>
         ) : (
           <span style={{ color: "#16DB65" }}>
-            You don't have any teams on your list
+            {language
+              ? `You don't have any teams on your list`
+              : "Nie masz jeszcze zespołu na liście"}
           </span>
         )}
       </CustomTabPanel>
@@ -104,7 +110,9 @@ export default function SwitchPanels() {
           </>
         ) : (
           <span style={{ color: "#16DB65" }}>
-            You don't have any matches on your list
+            {language
+              ? `You don't have any matches on your list`
+              : "Nie masz jeszcze meczu na liście"}
           </span>
         )}
       </CustomTabPanel>

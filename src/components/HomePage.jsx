@@ -22,6 +22,7 @@ export default function HomePage() {
     setHomePageFootballBar,
     isLoading,
     showClubList,
+    language,
   } = useProps();
 
   useEffect(function () {
@@ -60,13 +61,22 @@ export default function HomePage() {
               <Container className="ImageOnHomePage" maxWidth="xl">
                 <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
                   {user
-                    ? `Welcome back, ${user.email
-                        .slice(0, user.email.indexOf("@"))
-                        .charAt(0)
-                        .toUpperCase()}${user.email
-                        .slice(0, user.email.indexOf("@"))
-                        .slice(1)} 👑`
-                    : `Welcome on useScore, choose the league!`}
+                    ? language
+                      ? `Welcome back, ${user.email
+                          .slice(0, user.email.indexOf("@"))
+                          .charAt(0)
+                          .toUpperCase()}${user.email
+                          .slice(0, user.email.indexOf("@"))
+                          .slice(1)} 👑`
+                      : `Witaj ponownie, ${user.email
+                          .slice(0, user.email.indexOf("@"))
+                          .charAt(0)
+                          .toUpperCase()}${user.email
+                          .slice(0, user.email.indexOf("@"))
+                          .slice(1)} 👑`
+                    : language
+                    ? `Welcome on useScore, choose the league!`
+                    : `Witaj ponownie na useScore, wybierz ligę!`}
                 </h1>
                 {!user && <LogoutButtonStackOnHomePage />}
                 {user ? <SwitchPanels /> : <></>}

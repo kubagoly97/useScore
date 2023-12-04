@@ -17,7 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const { signup, error, isLoading } = useSignup();
   const { user } = useAuthContext();
-  const { setHomePageFootballBar } = useProps();
+  const { setHomePageFootballBar, language } = useProps();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -100,7 +100,7 @@ export default function Register() {
                     fontSize: "14px",
                   }}
                 >
-                  PASSWORD{" "}
+                  {language ? "PASSWORD " : "HASŁO "}
                   <input
                     autoComplete="on"
                     name="password"
@@ -138,12 +138,15 @@ export default function Register() {
                   padding: "8px",
                 }}
               >
-                REGISTER
+                {language ? "REGISTER" : "ZAREJESTRUJ SIĘ"}
               </button>
             </CardActions>
           </form>
         </Card>
-        <RedirectButtonOnRegisterAndLoginPages text="or login" to="/login" />
+        <RedirectButtonOnRegisterAndLoginPages
+          text={language ? "OR LOGIN" : "ZALOGUJ SIĘ"}
+          to="/login"
+        />
       </Box>
     </>
   );

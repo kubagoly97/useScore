@@ -18,7 +18,6 @@ import { FootballFooter } from "./FootballFooter";
 
 export default function App() {
   const { user } = useAuthContext();
-
   return (
     <ContextProvider>
       <Router>

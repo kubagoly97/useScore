@@ -36,6 +36,7 @@ export default function LeaguesList() {
     fetchEredivisieData,
     fetchPortugalData,
     fetchLeagueOneData,
+    language,
   } = useProps();
   const { logout } = useLogout();
   return (
@@ -83,7 +84,10 @@ export default function LeaguesList() {
               <Subheader text="Register" to="/register" />
             </>
           )}
-          <CoutryOnHomePageList src="Anglia.png" text="England" />
+          <CoutryOnHomePageList
+            src="Anglia.png"
+            text={language ? "England" : "Anglia"}
+          />
           <LeagueOnHomePageList
             primary="Premier League"
             onClick={fetchEnglishData}
@@ -96,13 +100,19 @@ export default function LeaguesList() {
             primary="League One"
             onClick={fetchLeagueOneData}
           />
-          <CoutryOnHomePageList src="Spain.png" text="Spain" />
+          <CoutryOnHomePageList
+            src="Spain.png"
+            text={language ? "Spain" : "Hiszpania"}
+          />
           <LeagueOnHomePageList primary="La Liga" onClick={fetchSpainData} />
           <LeagueOnHomePageList
             primary="Segunda Division"
             onClick={fetchSpain2Data}
           />
-          <CoutryOnHomePageList src="Germany.png" text="Germany" />
+          <CoutryOnHomePageList
+            src="Germany.png"
+            text={language ? "Germany" : "Niemcy"}
+          />
           <LeagueOnHomePageList
             primary="Bundesliga"
             onClick={fetchGermanyData}
@@ -115,43 +125,70 @@ export default function LeaguesList() {
             primary="3. Liga"
             onClick={fetch3BundesligaData}
           />
-          <CoutryOnHomePageList src="Poland.png" text="Poland" />
+          <CoutryOnHomePageList
+            src="Poland.png"
+            text={language ? "Poland" : "Polska"}
+          />
           <LeagueOnHomePageList
             primary="PKO Ekstraklasa"
             onClick={fetchEkstraklasaData}
           />
           <LeagueOnHomePageList primary="1. liga" onClick={fetch1LigaData} />
           <LeagueOnHomePageList primary="2. liga" onClick={fetch2LigaData} />
-          <CoutryOnHomePageList src="Italy.png" text="Italy" />
+          <CoutryOnHomePageList
+            src="Italy.png"
+            text={language ? "Italy" : "Włochy"}
+          />
           <LeagueOnHomePageList primary="Serie A" onClick={fetchSerieAData} />
           <LeagueOnHomePageList primary="Serie B" onClick={fetchSerieBData} />
-          <CoutryOnHomePageList src="France.png" text="France" />
+          <CoutryOnHomePageList
+            src="France.png"
+            text={language ? "France" : "Francja"}
+          />
           <LeagueOnHomePageList primary="Ligue 1" onClick={fetchLigueOneData} />
-          <CoutryOnHomePageList src="Switzerland.png" text="Switzerland" />
+          <CoutryOnHomePageList
+            src="Switzerland.png"
+            text={language ? "Switzerland" : "Szwajcaria"}
+          />
           <LeagueOnHomePageList
             primary="Super League"
             onClick={fetchSwitzerlandData}
           />
-          <CoutryOnHomePageList src="Croatia.png" text="Croatia" />
+          <CoutryOnHomePageList
+            src="Croatia.png"
+            text={language ? "Croatia" : "Chorwacja"}
+          />
           <LeagueOnHomePageList primary="1. HNL" onClick={fetchCroatiaData} />
-          <CoutryOnHomePageList src="SaudiArabia.png" text="Saudi Arabia" />
+          <CoutryOnHomePageList
+            src="SaudiArabia.png"
+            text={language ? "Saudi Arabia" : "Arabia Saudyjska"}
+          />
           <LeagueOnHomePageList
             primary="Saudi League"
             onClick={fetchSaudiData}
           />
           <CoutryOnHomePageList src="USA.png" text="USA" />
           <LeagueOnHomePageList primary="MLS" onClick={fetchMLSData} />
-          <CoutryOnHomePageList src="Czech.webp" text="Czechia" />
+          <CoutryOnHomePageList
+            src="Czech.webp"
+            text={language ? "Czechia" : "Czechy"}
+          />
           <LeagueOnHomePageList
             primary="Czech League"
             onClick={fetchCzechData}
           />
-          <CoutryOnHomePageList src="Netherlands.png" text="Netherlands" />
+          <CoutryOnHomePageList
+            src="Netherlands.png"
+            text={language ? "Netherlands" : "Holandia"}
+          />
           <LeagueOnHomePageList
             primary="Eredivisie"
             onClick={fetchEredivisieData}
           />
-          <CoutryOnHomePageList src="Portugal.png" text="Portugal" />
+          <CoutryOnHomePageList
+            src="Portugal.png"
+            text={language ? "Portugal" : "Portugalia"}
+          />
           <LeagueOnHomePageList
             primary="Primeira Liga"
             onClick={fetchPortugalData}
@@ -176,7 +213,7 @@ export default function LeaguesList() {
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <Box style={{ display: "inline-block", paddingTop: "5px" }}>
-                  Logout
+                  {language ? "Logout" : "Wyloguj"}
                 </Box>
               </Link>
             </ListSubheader>

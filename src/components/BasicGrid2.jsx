@@ -11,9 +11,9 @@ import TeamInfoCard from "./TeamInfoCard";
 import { useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { GameDetails } from "./GameDetails";
-import TeamSquadOnBasicGrid2 from "./TeamSquadOnBasicGrid2";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
 import useProps from "../hooks/useProps";
+
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -30,6 +30,7 @@ export default function BasicGrid2() {
     setYourFollowingMatches,
     yourFollowingMatches,
     setHomePageFootballBar,
+    language,
   } = useProps();
 
   const [showTable, setShowTable] = useState(false);
@@ -151,7 +152,8 @@ export default function BasicGrid2() {
                 >
                   {clubInfo.length && (
                     <h3 style={{ color: "white" }}>
-                      Manager: {clubInfo[0].coaches[0].coach_name}
+                      {language ? "Manager: " : "Trener: "}{" "}
+                      {clubInfo[0].coaches[0].coach_name}
                     </h3>
                   )}
                   {clubInfo.length && <SwitchSquadBG2 club={clubInfo[0]} />}

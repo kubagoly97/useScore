@@ -18,7 +18,7 @@ export default function LoginCard() {
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
   const { user } = useAuthContext();
-  const { setHomePageFootballBar } = useProps();
+  const { setHomePageFootballBar, language } = useProps();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -95,7 +95,7 @@ export default function LoginCard() {
                   fontSize: "14px",
                 }}
               >
-                PASSWORD{" "}
+                {language ? "PASSWORD " : "HASŁO "}
                 <input
                   autoComplete="on"
                   name="password"
@@ -132,13 +132,13 @@ export default function LoginCard() {
                 padding: "8px",
               }}
             >
-              LOGIN
+              {language ? "LOGIN" : "ZALOGUJ SIĘ"}
             </button>
           </CardActions>
         </form>
       </Card>
       <RedirectButtonOnRegisterAndLoginPages
-        text="or register"
+        text={language ? "OR REGISTER" : "ZAREJESTRUJ SIĘ"}
         to="/register"
       />
     </Box>
