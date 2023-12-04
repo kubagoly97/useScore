@@ -19,13 +19,17 @@ Welcome to **useScore**, your go-to application for tracking real-time football 
   - Node.js
 
 - **Key React Features:**
+
   - React Router
   - useContext
   - useReducer
+
 - **Additional Technologies:**
-  - mongoose
+
+  - Material UI
+  - Mongoose
   - JWT token
-  - vite
+  - Vite
 
 ## Getting Started
 
