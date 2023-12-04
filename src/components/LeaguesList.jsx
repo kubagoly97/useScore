@@ -81,8 +81,14 @@ export default function LeaguesList() {
             </>
           ) : (
             <>
-              <Subheader text="Login" to="/login" />
-              <Subheader text="Register" to="/register" />
+              <Subheader
+                text={language ? "Login" : "Zaloguj się"}
+                to="/login"
+              />
+              <Subheader
+                text={language ? "Register" : "Zarejestruj się"}
+                to="/register"
+              />
             </>
           )}
           <CoutryOnHomePageList

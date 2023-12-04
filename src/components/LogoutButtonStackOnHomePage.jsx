@@ -2,8 +2,11 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import useProps from "../hooks/useProps";
 
 export function LogoutButtonStackOnHomePage() {
+  const { language } = useProps();
+
   return (
     <Stack spacing={2} sx={{ margin: "40px", textAlign: "center" }}>
       <Link to="/login">
@@ -17,7 +20,7 @@ export function LogoutButtonStackOnHomePage() {
             color: "white",
           }}
         >
-          Login
+          {language ? "Login" : "Zaloguj się"}
         </Button>
       </Link>
       <Link to="/register">
@@ -31,7 +34,7 @@ export function LogoutButtonStackOnHomePage() {
             color: "white",
           }}
         >
-          Register
+          {language ? "Register" : "Zarejestruj się"}
         </Button>
       </Link>
     </Stack>
