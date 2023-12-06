@@ -47,7 +47,12 @@ function a11yProps(index) {
   };
 }
 
-export default function SwitchGameDetails({ match, headToHead, isHLoading }) {
+export default function SwitchGameDetails({
+  club,
+  match,
+  headToHead,
+  isHLoading,
+}) {
   const [value, setValue] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -166,7 +171,7 @@ export default function SwitchGameDetails({ match, headToHead, isHLoading }) {
           </Grid>
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={3}>
-          <HeadToHead headToHead={headToHead} />
+          <HeadToHead headToHead={headToHead} club={club} />
         </CustomTabPanel>
       </Box>
     </>

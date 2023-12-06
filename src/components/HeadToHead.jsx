@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import useProps from "../hooks/useProps";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#0D2818",
@@ -13,16 +13,158 @@ const Item = styled(Paper)(({ theme }) => ({
   color: "white",
 }));
 
-export function HeadToHead({ headToHead }) {
+export function HeadToHead({ club, headToHead }) {
+  const { language } = useProps();
   return (
     <>
-      {console.log(headToHead)}
       <Box sx={{ width: "100%" }}>
         <Stack spacing={0}>
           {headToHead.firstTeam_VS_secondTeam.length ? (
             headToHead.firstTeam_VS_secondTeam.map((match, i) => (
               <Item key={i}>
-                <CalendarMonthIcon sx={{ width: "15px" }} />{" "}
+                {language ? (
+                  <>
+                    <span
+                      style={{
+                        marginRight: "7px",
+                        boxShadow: "1px black",
+                        fontWeight: "900",
+                        border:
+                          match.match_hometeam_id === club.team_key
+                            ? Number(match.match_hometeam_score) >
+                              Number(match.match_awayteam_score)
+                              ? "1px solid green"
+                              : Number(match.match_hometeam_score) ==
+                                Number(match.match_awayteam_score)
+                              ? "1px solid grey"
+                              : Number(match.match_hometeam_score) <
+                                  Number(match.match_awayteam_score) &&
+                                "1px solid red"
+                            : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score)
+                            ? "1px solid green"
+                            : Number(match.match_hometeam_score) ==
+                              Number(match.match_awayteam_score)
+                            ? "1px solid grey"
+                            : Number(match.match_hometeam_score) >
+                                Number(match.match_awayteam_score) &&
+                              "1px solid red",
+                        padding: "2px 7px 2px 7px",
+                        backgroundColor:
+                          match.match_hometeam_id === club.team_key
+                            ? Number(match.match_hometeam_score) >
+                              Number(match.match_awayteam_score)
+                              ? "rgba(4, 181, 27, 0.4)"
+                              : Number(match.match_hometeam_score) ==
+                                Number(match.match_awayteam_score)
+                              ? "rgba(99, 99, 99, 0.4)"
+                              : Number(match.match_hometeam_score) <
+                                  Number(match.match_awayteam_score) &&
+                                "rgba(240, 5, 5, 0.4)"
+                            : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score)
+                            ? "rgba(4, 181, 27, 0.4)"
+                            : Number(match.match_hometeam_score) ==
+                              Number(match.match_awayteam_score)
+                            ? "rgba(99, 99, 99, 0.4)"
+                            : Number(match.match_hometeam_score) >
+                                Number(match.match_awayteam_score) &&
+                              "rgba(240, 5, 5, 0.4)",
+                        borderRadius: "3px",
+                        color: "white",
+                      }}
+                    >
+                      {match.match_hometeam_id === club.team_key
+                        ? Number(match.match_hometeam_score) >
+                          Number(match.match_awayteam_score)
+                          ? "W"
+                          : Number(match.match_hometeam_score) ==
+                            Number(match.match_awayteam_score)
+                          ? "D"
+                          : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score) && "L"
+                        : Number(match.match_hometeam_score) <
+                          Number(match.match_awayteam_score)
+                        ? "W"
+                        : Number(match.match_hometeam_score) ==
+                          Number(match.match_awayteam_score)
+                        ? "D"
+                        : Number(match.match_hometeam_score) >
+                            Number(match.match_awayteam_score) && "L"}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span
+                      style={{
+                        marginRight: "7px",
+                        boxShadow: "1px black",
+                        fontWeight: "900",
+                        border:
+                          match.match_hometeam_id === club.team_key
+                            ? Number(match.match_hometeam_score) >
+                              Number(match.match_awayteam_score)
+                              ? "1px solid green"
+                              : Number(match.match_hometeam_score) ==
+                                Number(match.match_awayteam_score)
+                              ? "1px solid grey"
+                              : Number(match.match_hometeam_score) <
+                                  Number(match.match_awayteam_score) &&
+                                "1px solid red"
+                            : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score)
+                            ? "1px solid green"
+                            : Number(match.match_hometeam_score) ==
+                              Number(match.match_awayteam_score)
+                            ? "1px solid grey"
+                            : Number(match.match_hometeam_score) >
+                                Number(match.match_awayteam_score) &&
+                              "1px solid red",
+                        padding: "2px 7px 2px 7px",
+                        backgroundColor:
+                          match.match_hometeam_id === club.team_key
+                            ? Number(match.match_hometeam_score) >
+                              Number(match.match_awayteam_score)
+                              ? "rgba(4, 181, 27, 0.4)"
+                              : Number(match.match_hometeam_score) ==
+                                Number(match.match_awayteam_score)
+                              ? "rgba(99, 99, 99, 0.4)"
+                              : Number(match.match_hometeam_score) <
+                                  Number(match.match_awayteam_score) &&
+                                "rgba(240, 5, 5, 0.4)"
+                            : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score)
+                            ? "rgba(4, 181, 27, 0.4)"
+                            : Number(match.match_hometeam_score) ==
+                              Number(match.match_awayteam_score)
+                            ? "rgba(99, 99, 99, 0.4)"
+                            : Number(match.match_hometeam_score) >
+                                Number(match.match_awayteam_score) &&
+                              "rgba(240, 5, 5, 0.4)",
+                        borderRadius: "3px",
+                        color: "white",
+                      }}
+                    >
+                      {match.match_hometeam_id === club.team_key
+                        ? Number(match.match_hometeam_score) >
+                          Number(match.match_awayteam_score)
+                          ? "Z"
+                          : Number(match.match_hometeam_score) ==
+                            Number(match.match_awayteam_score)
+                          ? "R"
+                          : Number(match.match_hometeam_score) <
+                              Number(match.match_awayteam_score) && "P"
+                        : Number(match.match_hometeam_score) <
+                          Number(match.match_awayteam_score)
+                        ? "Z"
+                        : Number(match.match_hometeam_score) ==
+                          Number(match.match_awayteam_score)
+                        ? "R"
+                        : Number(match.match_hometeam_score) >
+                            Number(match.match_awayteam_score) && "P"}
+                    </span>
+                  </>
+                )}{" "}
                 <span
                   style={{
                     fontWeight: "800",
@@ -79,7 +221,7 @@ export function HeadToHead({ headToHead }) {
               </Item>
             ))
           ) : (
-            <></>
+            <span>{language ? "No data to display" : "Brak danych"}</span>
           )}
         </Stack>
       </Box>

@@ -276,6 +276,7 @@ export function GameDetails({
           match={match}
           headToHead={headToHead}
           isHLoading={isLoading}
+          club={club}
         />
       </div>
     </div>
