@@ -70,3 +70,10 @@ Thank you for choosing **useScore**. Feel free to contribute and make this proje
 
 **Happy Tracking!**
 
+<<<<<<< HEAD
+=======
+<img width="949" alt="Zrzut ekranu 2023-12-4 o 14 06 36" src="https://github.com/kubagoly97/useScore/assets/142389870/0877e532-3294-48a8-905f-acb4705d10fa">
+<img width="949" alt="Zrzut ekranu 2023-12-4 o 14 06 47" src="https://github.com/kubagoly97/useScore/assets/142389870/74904c1c-7cc6-4935-9f54-42d89b19c20a">
+<img width="949" alt="Zrzut ekranu 2023-12-4 o 14 06 22" src="https://github.com/kubagoly97/useScore/assets/142389870/4296dc8f-abb9-4cda-a445-2a8cd3a6e307">
+
+>>>>>>> refs/remotes/origin/main
