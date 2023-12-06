@@ -6,9 +6,10 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useProps from "../hooks/useProps";
 import SwitchGameDetails from "./SwitchGameDetails";
+import { SpaRounded } from "@mui/icons-material";
 
 export function GameDetails({
   match,
@@ -20,7 +21,10 @@ export function GameDetails({
   showTable,
 }) {
   const { user } = useAuthContext();
-  const { setYourFollowingMatches, yourFollowingMatches } = useProps();
+  const { setYourFollowingMatches, yourFollowingMatches, value } = useProps();
+  const [headToHead, setHeadToHead] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleAddMatchOnYourFavouriteList = async () => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -129,6 +133,23 @@ export function GameDetails({
     };
     fetchTab();
   }, [showTable]);
+
+  useEffect(() => {
+    async function fetchH2H() {
+      setIsLoading(true);
+      const url = `https://apiv3.apifootball.com/?action=get_H2H&firstTeamId=${
+        match.match_hometeam_id
+      }&secondTeamId=${match.match_awayteam_id}&APIkey=${
+        import.meta.env.VITE_API_KEY
+      }
+      `;
+      const res = await fetch(url);
+      const resJSON = await res.json();
+      setHeadToHead(resJSON);
+      setIsLoading(false);
+    }
+    fetchH2H();
+  }, [value]);
 
   return (
     <div className="GameDetails">
@@ -251,7 +272,11 @@ export function GameDetails({
               : " - "
           })`}
         </h3>
-        <SwitchGameDetails match={match} />
+        <SwitchGameDetails
+          match={match}
+          headToHead={headToHead}
+          isHLoading={isLoading}
+        />
       </div>
     </div>
   );

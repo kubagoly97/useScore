@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Scorers } from "./Scorers";
 import { Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -12,6 +12,7 @@ import { Item } from "./MatchDetailsOnHomePage";
 import { StartingAwaySquad } from "./StartingAwaySquad";
 import { StartingHomeSquad } from "./StartingHomeSquad";
 import useProps from "../hooks/useProps";
+import { HeadToHead } from "./HeadToHead";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,9 +47,10 @@ function a11yProps(index) {
   };
 }
 
-export default function SwitchGameDetails({ club, match }) {
+export default function SwitchGameDetails({ match, headToHead, isHLoading }) {
   const [value, setValue] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
   const { language } = useProps();
   const handleChange = (event, newValue) => {
     setIsLoading(true);
@@ -110,6 +112,12 @@ export default function SwitchGameDetails({ club, match }) {
                     sx={{ color: "white" }}
                   />
                 ))}
+            <Tab
+              label="H2H"
+              {...a11yProps(1)}
+              sx={{ color: "white" }}
+              disabled={isHLoading}
+            />
           </Tabs>
         </Box>
         <CustomTabPanel component={"div"} value={value} index={2}>
@@ -156,6 +164,9 @@ export default function SwitchGameDetails({ club, match }) {
             <StartingHomeSquad match={match} />
             <StartingAwaySquad match={match} />
           </Grid>
+        </CustomTabPanel>
+        <CustomTabPanel component={"div"} value={value} index={3}>
+          <HeadToHead headToHead={headToHead} />
         </CustomTabPanel>
       </Box>
     </>
