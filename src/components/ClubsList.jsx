@@ -35,7 +35,7 @@ export default function ClubsList() {
   return (
     <>
       <List
-        component={"ul"}
+        component="div"
         dense
         sx={{
           paddingLeft: "0px",
@@ -53,7 +53,6 @@ export default function ClubsList() {
             const labelId = `checkbox-list-secondary-label-${club}`;
             return (
               <ListItem
-                component="span"
                 key={i}
                 disablePadding
                 secondaryAction={
@@ -72,7 +71,7 @@ export default function ClubsList() {
                   </button>
                 }
               >
-                <ListItemButton href={`/${club.team_key}`}>
+                <ListItemButton component="a" href={`/${club.team_key}`}>
                   <ListItemAvatar>
                     <Avatar
                       component="span"

@@ -30,6 +30,7 @@ export default function FavouriteMatchesList() {
   return (
     <>
       <List
+        component="div"
         dense
         sx={{
           flexGrow: 1,
