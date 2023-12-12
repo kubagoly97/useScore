@@ -37,6 +37,10 @@ export default function LeaguesList() {
     fetchEredivisieData,
     fetchPortugalData,
     fetchLeagueOneData,
+    fetchNorwegianData,
+    fetchTurkishData,
+    fetchABundesligaData,
+    fetchLeagueTwoData,
     language,
   } = useProps();
   const { logout } = useLogout();
@@ -106,6 +110,10 @@ export default function LeaguesList() {
           <LeagueOnHomePageList
             primary="League One"
             onClick={fetchLeagueOneData}
+          />
+          <LeagueOnHomePageList
+            primary="League Two"
+            onClick={fetchLeagueTwoData}
           />
           <CoutryOnHomePageList
             src="Spain.png"
@@ -199,6 +207,27 @@ export default function LeaguesList() {
           <LeagueOnHomePageList
             primary="Primeira Liga"
             onClick={fetchPortugalData}
+          />
+          <CoutryOnHomePageList
+            src="Norway.png"
+            text={language ? "Norway" : "Norwegia"}
+          />
+          <LeagueOnHomePageList
+            primary="Eliterserien"
+            onClick={fetchNorwegianData}
+          />
+          <CoutryOnHomePageList src="Austria.png" text="Austria" />
+          <LeagueOnHomePageList
+            primary="AF Bundesliga"
+            onClick={fetchABundesligaData}
+          />
+          <CoutryOnHomePageList
+            src="Turkey.avif"
+            text={language ? "Turkey" : "Turcja"}
+          />
+          <LeagueOnHomePageList
+            primary="Süper Lig"
+            onClick={fetchTurkishData}
           />
           {user && (
             <ListSubheader

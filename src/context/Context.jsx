@@ -174,6 +174,17 @@ export const ContextProvider = ({ children }) => {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetchLeagueTwoData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=145&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
   const fetch2LigaData = async () => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=261&APIkey=${
@@ -262,6 +273,39 @@ export const ContextProvider = ({ children }) => {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetchNorwegianData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=253&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchTurkishData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=322&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
+  const fetchABundesligaData = async () => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=56&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setClubList(resJson);
+    setShowClubList(true);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -333,6 +377,10 @@ export const ContextProvider = ({ children }) => {
         fetchPortugalData,
         fetchLeagueOneData,
         fetch3BundesligaData,
+        fetchNorwegianData,
+        fetchTurkishData,
+        fetchABundesligaData,
+        fetchLeagueTwoData,
       }}
     >
       {children}
