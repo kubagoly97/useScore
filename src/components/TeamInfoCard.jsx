@@ -7,8 +7,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
-import StarIcon from "@mui/icons-material/Star";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import useProps from "../hooks/useProps";
 
 export default function TeamInfoCard({ club }) {
@@ -30,6 +28,7 @@ export default function TeamInfoCard({ club }) {
     });
     const json = await res.json();
   };
+
   return (
     <Card sx={{ maxWidth: "100%", backgroundColor: "#058C42" }}>
       <CardMedia
@@ -54,7 +53,7 @@ export default function TeamInfoCard({ club }) {
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ color: "white" }}
+          sx={{ color: "white", fontWeight: "100" }}
         >
           {language
             ? `Founded in ${club.team_founded} team is located in
@@ -74,32 +73,35 @@ export default function TeamInfoCard({ club }) {
             <form action="">
               {" "}
               <Button
-                sx={{ color: "white" }}
+                sx={{ color: "white", fontWeight: "100" }}
                 size="small"
                 onClick={() => handleAddClubOnYourFavouriteList()}
               >
                 {language
                   ? `Add ${club.team_name} on your list`
                   : `Dodaj ${club.team_name} na swoją listę`}
-                <StarOutlineIcon />
               </Button>
             </form>
           ) : (
-            <Button disabled sx={{ color: "white" }} size="small">
+            <Button
+              disabled
+              sx={{ color: "white", fontWeight: "100" }}
+              size="small"
+            >
               {language
                 ? `${club.team_name} is already on your list`
                 : `${club.team_name} jest na twojej liście`}
-              <StarIcon />
             </Button>
           )
         ) : (
           <Link to="/login">
-            <Button sx={{ color: "white", marginTop: "30px" }}>
+            <Button
+              sx={{ color: "white", marginTop: "30px", fontWeight: "100" }}
+            >
               {language ? "You must be logged in" : "Musisz byc zalogowany"}
             </Button>
           </Link>
         )}
-        {}
       </CardActions>
     </Card>
   );

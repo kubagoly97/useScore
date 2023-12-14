@@ -36,10 +36,17 @@ export function StartingAwaySquad({ match }) {
               >
                 <Item
                   sx={{
+                    fontWeight: "100",
                     backgroundColor: "#0D2818",
                     color: "white",
                     paddingTop: "0px",
                     textAlign: "left",
+                    ":hover": {
+                      cursor: "pointer",
+                      bgcolor: "rgba(255,255,255,0.1)",
+                      fontWeight: "400",
+                      color: "white",
+                    },
                   }}
                 >
                   <span

@@ -75,15 +75,15 @@ export function PlayerPage() {
                   }}
                 />
                 <div style={{ paddingLeft: "10px" }}>
-                  <h1 style={{ color: "white" }}>
+                  <h1 style={{ color: "white", fontWeight: "500" }}>
                     {playerData[index].player_name}{" "}
                   </h1>
-                  <h3>
+                  <h3 style={{ fontWeight: "400" }}>
                     {" "}
                     {playerData[index].team_name},{" "}
                     {playerData[index].player_type}
                   </h3>
-                  <h4>
+                  <h4 style={{ fontWeight: "100" }}>
                     Age: {playerData[index].player_age},{" "}
                     {playerData[index].player_birthdate}
                   </h4>

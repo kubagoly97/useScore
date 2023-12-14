@@ -1,7 +1,7 @@
 import * as React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 export function LeagueOnHomePageList({ primary, onClick }) {
   const linkStyle = {
@@ -16,13 +16,14 @@ export function LeagueOnHomePageList({ primary, onClick }) {
     paddingLeft: "7px",
     color: "white",
     ":hover": {
-      bgcolor: "rgba(255,255,255,0.2)",
+      cursor: "pointer",
+      bgcolor: "rgba(255,255,255,0.1)",
       color: "white",
     },
   };
   return (
     <ListItem sx={leaguesStyle}>
-      <Link onClick={onClick} style={linkStyle}>
+      <Link onClick={onClick} sx={linkStyle}>
         <ListItemText primary={primary} />
       </Link>
     </ListItem>

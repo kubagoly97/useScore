@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import BasicGrid from "./BasicGrid";
 import Loading from "./Loading";
-import { useEffect, useState, useContext } from "react";
+import { useEffect } from "react";
 import { Container } from "@mui/system";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +59,10 @@ export default function HomePage() {
               </Box>
             ) : (
               <Container className="ImageOnHomePage" maxWidth="xl">
-                <h1 className="h1OnPage" style={{ marginTop: "30px" }}>
+                <h1
+                  className="h1OnPage"
+                  style={{ marginTop: "30px", fontWeight: "100" }}
+                >
                   {user
                     ? language
                       ? `Welcome back, ${user.email

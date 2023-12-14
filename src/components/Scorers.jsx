@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 export function Scorers({ match }) {
   const linkStyle = { color: "white", textDecoration: "none" };
 
+  const scorersStyle = {
+    fontSize: "11px",
+    fontWeight: "100",
+  };
+
   return (
     <Box>
       <Grid container spacing={1}>
@@ -24,7 +29,7 @@ export function Scorers({ match }) {
                 style={linkStyle}
                 to={`/player?play=${scorer.home_scorer_id}`}
               >
-                <p style={{ fontSize: "9px" }}>
+                <p style={scorersStyle}>
                   {scorer.home_scorer && scorer.time && `⚽️ ${scorer.time}' `}
                   {scorer.home_scorer && scorer.home_scorer}{" "}
                   {scorer.home_assist && `(a. ${scorer.home_assist})`}
@@ -47,7 +52,7 @@ export function Scorers({ match }) {
                 to={`/player?play=${scorer.away_scorer_id}`}
                 style={linkStyle}
               >
-                <p style={{ fontSize: "9px" }}>
+                <p style={scorersStyle}>
                   {scorer.away_scorer && scorer.time && `⚽️ ${scorer.time}' `}
                   {scorer.away_scorer && scorer.away_scorer}{" "}
                   {scorer.away_assist && `(a. ${scorer.away_assist})`}

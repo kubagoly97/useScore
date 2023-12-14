@@ -98,7 +98,7 @@ export default function SwitchSquadBG2({ club }) {
                     key={i}
                     label={tab.playersType}
                     {...a11yProps(1)}
-                    sx={{ color: "white" }}
+                    sx={{ color: "white", fontWeight: "800" }}
                   />
                 ))
               : tabsContentPL.map((tab, i) => (
@@ -106,17 +106,9 @@ export default function SwitchSquadBG2({ club }) {
                     key={i}
                     label={tab.playersType}
                     {...a11yProps(1)}
-                    sx={{ color: "white" }}
+                    sx={{ color: "white", fontWeight: "800" }}
                   />
                 ))}
-            {/* {tabsContent.map((tab, i) => (
-              <Tab
-                key={i}
-                label={tab.playersType}
-                {...a11yProps(1)}
-                sx={{ color: "white" }}
-              />
-            ))} */}
           </Tabs>
         </Box>
         {tabsContent.map((tab, i) => (

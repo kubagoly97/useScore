@@ -27,9 +27,9 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
         alt={match.league_logo}
       />
       <div style={{ paddingLeft: "10px" }}>
-        <p style={{ fontWeight: "bold", color: "#16DB65" }}>
-          {match.league_name} - {match.match_round}.{" "}
-          {language ? "round" : "kolejka"} - {match.league_year}{" "}
+        <p style={{ fontWeight: "300", color: "#16DB65" }}>
+          {match.league_name} | {match.match_round}.{" "}
+          {language ? "round" : "kolejka"} | {match.league_year} |{" "}
           {match.match_time}
         </p>
       </div>

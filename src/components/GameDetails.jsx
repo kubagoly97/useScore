@@ -9,7 +9,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useState, useEffect } from "react";
 import useProps from "../hooks/useProps";
 import SwitchGameDetails from "./SwitchGameDetails";
-import { SpaRounded } from "@mui/icons-material";
 
 export function GameDetails({
   match,
@@ -261,7 +260,7 @@ export function GameDetails({
           {match.match_hometeam_score ? match.match_hometeam_score : " - "}:
           {match.match_awayteam_score ? match.match_awayteam_score : " - "}
         </h1>
-        <h3>
+        <h2 style={{ fontWeight: "100" }}>
           {`(${
             match.match_hometeam_halftime_score
               ? match.match_hometeam_halftime_score
@@ -271,7 +270,7 @@ export function GameDetails({
               ? match.match_awayteam_halftime_score
               : " - "
           })`}
-        </h3>
+        </h2>
         <SwitchGameDetails
           match={match}
           headToHead={headToHead}

@@ -31,7 +31,11 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
     { cellText: "🟥" },
   ];
 
-  console.log(club);
+  const tableCellStyle = {
+    color: "white",
+    fontWeight: "100",
+  };
+
   return (
     <>
       <TableContainer component={Paper} style={{ backgroundColor: "#0D2818" }}>
@@ -45,7 +49,12 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
                   className="BadgeInTable"
                   style={{ width: "20px" }}
                 />{" "}
-                {playersType}
+                {language
+                  ? playersType
+                  : (playersType === "Goalkeepers" && "Bramkarze") ||
+                    (playersType === "Defenders" && "Obrońcy") ||
+                    (playersType === "Midfielders" && "Pomocnicy") ||
+                    (playersType === "Forwards" && "Napastnicy")}
               </TableCell>
               {language
                 ? tableHeadCell.map((tab, i) => (
@@ -93,19 +102,19 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
                       {player.player_name}
                     </a>
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell style={tableCellStyle} align="right">
                     {player.player_match_played}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell style={tableCellStyle} align="right">
                     {player.player_goals}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell style={tableCellStyle} align="right">
                     {player.player_rating ? player.player_rating : "⏤"}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell style={tableCellStyle} align="right">
                     {player.player_yellow_cards}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell style={tableCellStyle} align="right">
                     {player.player_red_cards}
                   </TableCell>
                 </TableRow>

@@ -151,7 +151,7 @@ export default function BasicGrid2() {
                   }}
                 >
                   {clubInfo.length && (
-                    <h3 style={{ color: "white" }}>
+                    <h3 style={{ color: "white", fontWeight: "200" }}>
                       {language ? "Manager: " : "Trener: "}{" "}
                       {clubInfo[0].coaches[0].coach_name}
                     </h3>

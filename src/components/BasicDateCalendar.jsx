@@ -139,7 +139,7 @@ export default function DateCalendarServerRequest({ setShowTable }) {
 
   return (
     <>
-      <h4 style={{ color: "#16DB65" }}>
+      <h4 style={{ color: "#16DB65", fontWeight: "400" }}>
         {language
           ? " Pick a matchday with ball icon ↓"
           : "Wybierz dzień meczowy z piłką ↓"}
