@@ -1,6 +1,12 @@
 import useProps from "../hooks/useProps";
+import { useEffect } from "react";
+
 function NotFound() {
-  const { language } = useProps();
+  const { language, setHomePageFootballBar } = useProps();
+
+  useEffect(() => {
+    setHomePageFootballBar(false);
+  }, []);
 
   return (
     <div>

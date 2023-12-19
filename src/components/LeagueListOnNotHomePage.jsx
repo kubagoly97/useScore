@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
-import { SwitchLanguageOnLeagueList } from "./SwitchLanguageOnLeagueList";
+import { YouTubeLink } from "./YouTubeLink";
 
 export default function LeaguesListOnNotHomePage() {
   const { user } = useAuthContext();
@@ -51,6 +51,7 @@ export default function LeaguesListOnNotHomePage() {
           ) : (
             <Subheader text={`${user.email}`} withLink={false} />
           )}
+          <YouTubeLink />
         </ul>
       </li>
     </List>

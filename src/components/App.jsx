@@ -15,6 +15,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import LoginCard from "./LoginCard";
 import { ContextProvider } from "../context/Context";
 import { FootballFooter } from "./FootballFooter";
+import Presentation from "./Presentation";
 
 export default function App() {
   const { user } = useAuthContext();
@@ -24,6 +25,7 @@ export default function App() {
         <FootballBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/presentation" element={<Presentation />} />
           <Route path="/:id" element={<BasicGrid2 />} />
           <Route path="player" element={<PlayerPage />} />
           <Route

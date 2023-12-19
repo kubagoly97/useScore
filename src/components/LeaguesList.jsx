@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import useProps from "../hooks/useProps";
-import { SwitchLanguageOnLeagueList } from "./SwitchLanguageOnLeagueList";
+import { YouTubeLink } from "./YouTubeLink";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();
@@ -229,6 +229,7 @@ export default function LeaguesList() {
             primary="Süper Lig"
             onClick={fetchTurkishData}
           />
+          <YouTubeLink />
           {user && (
             <ListSubheader
               sx={{
