@@ -40,8 +40,8 @@ export default function BasicGrid2() {
   let { id } = useParams();
 
   const boxStyle = {
-    backgroundColor: " #04471C",
-    border: "2px dashed #0D2818",
+    backgroundColor: " #0D2818",
+    border: "2px dashed #16DB65",
   };
 
   const handleFetch = async (matchId) => {
@@ -114,10 +114,9 @@ export default function BasicGrid2() {
               <Stack>
                 <Item
                   sx={{
-                    borderRadius: "5px 5px 0px 0px",
-                    backgroundColor: " #04471C",
-                    border: "2px dashed #0D2818",
-                    borderBottom: "0px",
+                    borderRadius: "5px",
+                    backgroundColor: " #0D2818",
+                    border: "2px dashed #16DB65",
                   }}
                 >
                   {matchesData.length ? (
@@ -144,9 +143,9 @@ export default function BasicGrid2() {
                 <Item
                   component="div"
                   sx={{
-                    borderRadius: "0px",
-                    backgroundColor: " #04471C",
-                    border: "2px dashed #0D2818",
+                    borderRadius: "3px",
+                    backgroundColor: " #0D2818",
+                    border: "2px dashed #16DB65",
                     marginTop: "15px",
                   }}
                 >

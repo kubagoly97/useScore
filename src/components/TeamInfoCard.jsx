@@ -30,7 +30,7 @@ export default function TeamInfoCard({ club }) {
   };
 
   return (
-    <Card sx={{ maxWidth: "100%", backgroundColor: "#058C42" }}>
+    <Card sx={{ maxWidth: "100%", backgroundColor: "#0d2818" }}>
       <CardMedia
         sx={{
           width: "100px",

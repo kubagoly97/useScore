@@ -150,6 +150,12 @@ export function GameDetails({
     fetchH2H();
   }, [value]);
 
+  const teamNameStyle = {
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "400",
+  };
+
   return (
     <div className="GameDetails">
       <div className="ClubVsClub">
@@ -159,24 +165,12 @@ export function GameDetails({
           setShowTable={setShowTable}
         />
         <h1>
-          <a
-            style={{
-              color: "white",
-              textDecoration: "none",
-            }}
-            href={`/${match.match_hometeam_id}`}
-          >
+          <a style={teamNameStyle} href={`/${match.match_hometeam_id}`}>
             {" "}
             {match.match_hometeam_name}
           </a>{" "}
           -{" "}
-          <a
-            href={`/${match.match_awayteam_id}`}
-            style={{
-              color: "white",
-              textDecoration: "none",
-            }}
-          >
+          <a href={`/${match.match_awayteam_id}`} style={teamNameStyle}>
             {match.match_awayteam_name}
           </a>
           {user ? (

@@ -14,7 +14,8 @@ export function PlayerPage() {
   const playerId = searchParams.get("play");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { playerData, setPlayerData, setHomePageFootballBar } = useProps();
+  const { playerData, setPlayerData, setHomePageFootballBar, language } =
+    useProps();
 
   useEffect(() => {
     const fetchPlayerData = async () => {
@@ -50,8 +51,8 @@ export function PlayerPage() {
           <div style={{ marginTop: "40px" }}>
             <Item
               sx={{
-                backgroundColor: " #04471C",
-                border: "2px dashed #0D2818",
+                backgroundColor: " #0D2818",
+                border: "2px dashed #16DB65",
                 textAlign: "left",
               }}
             >
@@ -61,7 +62,7 @@ export function PlayerPage() {
                   flexDirection: "row",
                   fontFamily: "sans-serif",
                   borderRadius: "3px",
-                  backgroundColor: "#058C42",
+                  backgroundColor: "#0D2818",
                 }}
               >
                 <img
@@ -78,13 +79,23 @@ export function PlayerPage() {
                   <h1 style={{ color: "white", fontWeight: "500" }}>
                     {playerData[index].player_name}{" "}
                   </h1>
-                  <h3 style={{ fontWeight: "400" }}>
+                  <h3 style={{ fontWeight: "400", color: "white" }}>
                     {" "}
                     {playerData[index].team_name},{" "}
-                    {playerData[index].player_type}
+                    {language
+                      ? `${playerData[index].player_type}`
+                      : (playerData[index].player_type === "Goalkeepers" &&
+                          "Bramkarz") ||
+                        (playerData[index].player_type === "Midfielders" &&
+                          "Pomocnik") ||
+                        (playerData[index].player_type === "Forwards" &&
+                          "Napastnik") ||
+                        (playerData[index].player_type === "Defenders" &&
+                          "Obrońca")}
                   </h3>
-                  <h4 style={{ fontWeight: "100" }}>
-                    Age: {playerData[index].player_age},{" "}
+                  <h4 style={{ fontWeight: "100", color: "white" }}>
+                    {language ? "Age: " : "Wiek: "}
+                    {playerData[index].player_age},{" "}
                     {playerData[index].player_birthdate}
                   </h4>
                 </div>
@@ -94,12 +105,12 @@ export function PlayerPage() {
           <Stack>
             <Link to="/">
               <Button sx={{ color: "#16DB65", marginTop: "30px" }}>
-                ← Home Page
+                {language ? "← Home Page" : "← Strona Główna"}
               </Button>
             </Link>
             <Link to={`/${playerData[index].team_key}`}>
               <Button sx={{ color: "#16DB65", marginTop: "5px" }}>
-                {`← ${playerData[index].team_name} page`}
+                {`← ${playerData[index].team_name}`}
               </Button>
             </Link>
           </Stack>
