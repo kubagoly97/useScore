@@ -1,7 +1,8 @@
+import GitHubIcon from "@mui/icons-material/GitHub";
 export function FootballFooter() {
   return (
     <footer>
-      <p>
+      <p style={{ fontWeight: "100" }}>
         &copy; useScore, 2023,{" "}
         <a
           style={{
@@ -10,7 +11,7 @@ export function FootballFooter() {
           }}
           href="https://github.com/kubagoly97"
         >
-          kubagoly97
+          <GitHubIcon />
         </a>
       </p>
     </footer>
