@@ -126,34 +126,38 @@ export default function SwitchGameDetails({
           </Tabs>
         </Box>
         <CustomTabPanel component={"div"} value={value} index={2}>
-          <Box sx={{ width: "100%" }}>
-            <Stack spacing={0}>
-              {match.statistics.map((stat, i) => (
-                <Item
-                  sx={{
-                    bgcolor: "#0D2818",
-                    color: "white",
-                    borderRadius: "0px",
-                  }}
-                >
-                  <Grid container>
-                    <Grid xs={1} sx={{ borderRight: "1px solid white" }}>
-                      {stat.home}
+          {match.statistics.length ? (
+            <Box sx={{ width: "100%" }}>
+              <Stack spacing={0}>
+                {match.statistics.map((stat, i) => (
+                  <Item
+                    sx={{
+                      bgcolor: "#0D2818",
+                      color: "white",
+                      borderRadius: "0px",
+                    }}
+                  >
+                    <Grid container>
+                      <Grid xs={1} sx={{ borderRight: "1px solid white" }}>
+                        {stat.home}
+                      </Grid>
+                      <Grid xs={10} sx={{ fontWeight: "800" }}>
+                        {stat.type}
+                      </Grid>
+                      <Grid xs={1} sx={{ borderLeft: "1px solid white" }}>
+                        {stat.away}
+                      </Grid>
                     </Grid>
-                    <Grid xs={10} sx={{ fontWeight: "800" }}>
-                      {stat.type}
-                    </Grid>
-                    <Grid xs={1} sx={{ borderLeft: "1px solid white" }}>
-                      {stat.away}
-                    </Grid>
-                  </Grid>
-                </Item>
-              ))}
-            </Stack>
-          </Box>
+                  </Item>
+                ))}
+              </Stack>
+            </Box>
+          ) : (
+            <MoreInfoBeforeGameComponent />
+          )}
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={0}>
-          {match.match_referee && (
+          {match.match_referee ? (
             <>
               <Scorers match={match} />
               <h4>
@@ -162,18 +166,36 @@ export default function SwitchGameDetails({
               <h5>{match.match_stadium}</h5>
               <h6>{match.match_status}</h6>
             </>
+          ) : (
+            <MoreInfoBeforeGameComponent />
           )}
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={1}>
-          <Grid container spacing={0.1}>
-            <StartingHomeSquad match={match} />
-            <StartingAwaySquad match={match} />
-          </Grid>
+          {match.lineup.home.starting_lineups.length ? (
+            <Grid container spacing={0.1}>
+              <StartingHomeSquad match={match} />
+              <StartingAwaySquad match={match} />
+            </Grid>
+          ) : (
+            <MoreInfoBeforeGameComponent />
+          )}
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={3}>
           <HeadToHead headToHead={headToHead} club={club} />
         </CustomTabPanel>
       </Box>
     </>
+  );
+}
+
+function MoreInfoBeforeGameComponent() {
+  const { language } = useProps();
+  const paragraphStyle = { margin: "0px", fontWeight: "100" };
+  return (
+    <p style={paragraphStyle}>
+      {language
+        ? "More info before the game"
+        : "Więcej szczegółów bezpośrednio przed meczem"}
+    </p>
   );
 }
