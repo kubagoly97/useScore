@@ -95,3 +95,11 @@ html {
 .MuiBox-root css-19kzrtu {
   padding: "20px";
 }
+.btnLoginAndRegister {
+  color: #16db65;
+  border: none;
+}
+.btnLoginAndRegister:hover {
+  cursor: pointer;
+  color: #72de9d;
+}

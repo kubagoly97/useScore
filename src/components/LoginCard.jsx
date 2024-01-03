@@ -27,9 +27,11 @@ export default function LoginCard() {
       window.location.replace("/");
     }
   };
+
   useEffect(() => {
     setHomePageFootballBar(false);
   }, []);
+
   return (
     <Box style={{ textAlign: "center", width: "100%" }}>
       {error && (
@@ -117,6 +119,7 @@ export default function LoginCard() {
           </CardContent>
           <CardActions>
             <button
+              class="btnLoginAndRegister"
               disabled={isLoading}
               onClick={(e) => {
                 console.log(error && error);
@@ -126,9 +129,7 @@ export default function LoginCard() {
                 fontWeight: "450",
                 fontSize: "14px",
                 fontFamily: "roboto",
-                color: "#16DB65",
                 backgroundColor: "rgba(255, 255, 255, 0)",
-                border: "none",
                 padding: "8px",
               }}
             >

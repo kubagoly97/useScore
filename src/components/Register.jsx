@@ -122,6 +122,7 @@ export default function Register() {
             </CardContent>
             <CardActions>
               <button
+                class="btnLoginAndRegister"
                 disabled={isLoading}
                 onClick={(e) => {
                   console.log("Clicked");
@@ -132,7 +133,6 @@ export default function Register() {
                   fontWeight: "450",
                   fontSize: "14px",
                   fontFamily: "roboto",
-                  color: "#16DB65",
                   backgroundColor: "rgba(255, 255, 255, 0)",
                   border: "none",
                   padding: "8px",
