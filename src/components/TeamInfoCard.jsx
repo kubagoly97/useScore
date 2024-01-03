@@ -29,8 +29,12 @@ export default function TeamInfoCard({ club }) {
     const json = await res.json();
   };
 
+  const typographyStyle = { color: "white", fontWeight: "100" };
+
   return (
-    <Card sx={{ maxWidth: "100%", backgroundColor: "#0d2818" }}>
+    <Card
+      sx={{ maxWidth: "100%", backgroundColor: "#0d2818", boxShadow: "none" }}
+    >
       <CardMedia
         sx={{
           width: "100px",
@@ -50,11 +54,7 @@ export default function TeamInfoCard({ club }) {
         >
           {club.team_name}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ color: "white", fontWeight: "100" }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={typographyStyle}>
           {language
             ? `Founded in ${club.team_founded} team is located in
         ${club.venue.venue_city}, ${club.team_country} on
@@ -73,7 +73,7 @@ export default function TeamInfoCard({ club }) {
             <form action="">
               {" "}
               <Button
-                sx={{ color: "white", fontWeight: "100" }}
+                sx={typographyStyle}
                 size="small"
                 onClick={() => handleAddClubOnYourFavouriteList()}
               >
@@ -83,11 +83,7 @@ export default function TeamInfoCard({ club }) {
               </Button>
             </form>
           ) : (
-            <Button
-              disabled
-              sx={{ color: "white", fontWeight: "100" }}
-              size="small"
-            >
+            <Button disabled sx={typographyStyle} size="small">
               {language
                 ? `${club.team_name} is already on your list`
                 : `${club.team_name} jest na twojej liście`}
@@ -95,9 +91,7 @@ export default function TeamInfoCard({ club }) {
           )
         ) : (
           <Link to="/login">
-            <Button
-              sx={{ color: "white", marginTop: "30px", fontWeight: "100" }}
-            >
+            <Button sx={typographyStyle}>
               {language ? "You must be logged in" : "Musisz byc zalogowany"}
             </Button>
           </Link>
