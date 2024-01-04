@@ -13,6 +13,7 @@ import { StartingAwaySquad } from "./StartingAwaySquad";
 import { StartingHomeSquad } from "./StartingHomeSquad";
 import useProps from "../hooks/useProps";
 import { HeadToHead } from "./HeadToHead";
+import { MoreInfoBeforeGameComponent } from "./MoreInfoBeforeGameComponent";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -135,6 +136,7 @@ export default function SwitchGameDetails({
                       bgcolor: "#0D2818",
                       color: "white",
                       borderRadius: "0px",
+                      boxShadow: "none",
                     }}
                   >
                     <Grid container>
@@ -185,17 +187,5 @@ export default function SwitchGameDetails({
         </CustomTabPanel>
       </Box>
     </>
-  );
-}
-
-function MoreInfoBeforeGameComponent() {
-  const { language } = useProps();
-  const paragraphStyle = { margin: "0px", fontWeight: "100" };
-  return (
-    <p style={paragraphStyle}>
-      {language
-        ? "More info before the game"
-        : "Więcej szczegółów bezpośrednio przed meczem"}
-    </p>
   );
 }

@@ -41,6 +41,7 @@ export function StartingAwaySquad({ match }) {
                     color: "white",
                     paddingTop: "0px",
                     textAlign: "left",
+                    boxShadow: "none",
                     ":hover": {
                       cursor: "pointer",
                       bgcolor: "rgba(255,255,255,0.1)",

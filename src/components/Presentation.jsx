@@ -25,7 +25,6 @@ export default function Presentation() {
       <Box
         sx={{
           textAlign: "center",
-          //overflow: "hidden",
           paddingBottom: "56.25%",
           position: "relative",
           height: "0",
