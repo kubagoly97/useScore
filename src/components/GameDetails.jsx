@@ -18,6 +18,7 @@ export function GameDetails({
   club,
   setShowTable,
   showTable,
+  setTopScorers,
 }) {
   const { user } = useAuthContext();
   const { setYourFollowingMatches, yourFollowingMatches, value } = useProps();
@@ -149,6 +150,19 @@ export function GameDetails({
     }
     fetchH2H();
   }, [value]);
+
+  useEffect(() => {
+    const fetchTopScorers = async () => {
+      const res = await fetch(
+        `https://apiv3.apifootball.com/?action=get_topscorers&league_id=${
+          match.league_id
+        }&APIkey=${import.meta.env.VITE_API_KEY}`
+      );
+      const resJSON = await res.json();
+      setTopScorers(resJSON);
+    };
+    fetchTopScorers();
+  });
 
   const teamNameStyle = {
     color: "white",

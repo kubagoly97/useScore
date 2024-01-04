@@ -13,6 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { GameDetails } from "./GameDetails";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
 import useProps from "../hooks/useProps";
+import SwitchTableAndTopScorers from "./SwitchTableAndTopScorers";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,12 +37,21 @@ export default function BasicGrid2() {
   const [showTable, setShowTable] = useState(false);
   const [table, setTable] = useState([]);
   const [clubInfo, setClubInfo] = useState([]);
+  const [topScorers, setTopScorers] = useState([]);
 
   let { id } = useParams();
 
   const boxStyle = {
     backgroundColor: " #0D2818",
-    border: "2px dashed #16DB65",
+    border: "1px dashed #16DB65",
+    borderRadius: "5px",
+  };
+
+  const squadBoxStyle = {
+    borderRadius: "5px",
+    backgroundColor: " #0D2818",
+    border: "1px dashed #16DB65",
+    marginTop: "15px",
   };
 
   const handleFetch = async (matchId) => {
@@ -112,18 +122,13 @@ export default function BasicGrid2() {
           {!showTable ? (
             <Grid item xs={12} sm={7}>
               <Stack>
-                <Item
-                  sx={{
-                    borderRadius: "5px",
-                    backgroundColor: " #0D2818",
-                    border: "2px dashed #16DB65",
-                  }}
-                >
+                <Item sx={boxStyle}>
                   {matchesData.length ? (
                     matchesData.map(
                       (match, i) =>
                         value == match.match_date && (
                           <GameDetails
+                            setTopScorers={setTopScorers}
                             setTable={setTable}
                             match={match}
                             handleFetch={handleFetch}
@@ -140,15 +145,7 @@ export default function BasicGrid2() {
                     </>
                   )}
                 </Item>
-                <Item
-                  component="div"
-                  sx={{
-                    borderRadius: "3px",
-                    backgroundColor: " #0D2818",
-                    border: "2px dashed #16DB65",
-                    marginTop: "15px",
-                  }}
-                >
+                <Item component="div" sx={squadBoxStyle}>
                   {clubInfo.length && (
                     <h3 style={{ color: "white", fontWeight: "200" }}>
                       {language ? "Manager: " : "Trener: "}{" "}
@@ -162,9 +159,14 @@ export default function BasicGrid2() {
           ) : (
             <Grid item xs={12} sm={7}>
               <Item sx={boxStyle}>
-                {clubInfo.length && (
+                <SwitchTableAndTopScorers
+                  table={table}
+                  club={clubInfo[0]}
+                  topScorers={topScorers}
+                />
+                {/* {clubInfo.length && (
                   <LeagueTable table={table} club={clubInfo[0]} />
-                )}
+                )} */}
               </Item>
             </Grid>
           )}

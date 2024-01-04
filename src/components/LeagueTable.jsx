@@ -17,7 +17,10 @@ export default function LeagueTable({ table, club }) {
       ) : (
         <></>
       )}
-      <TableContainer component={Paper} style={{ backgroundColor: "#0D2818" }}>
+      <TableContainer
+        component={Paper}
+        style={{ backgroundColor: "#0D2818", boxShadow: "none" }}
+      >
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow style={{ backgroundColor: "black" }}>
