@@ -6,8 +6,24 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import useProps from "../hooks/useProps";
 
 export default function LeagueTable({ table, club }) {
+  const { language } = useProps();
+
+  const teamStyle = {
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "bold",
+    cursor: "pointer",
+    fontWeight: "100",
+  };
+
+  const statsStyle = {
+    color: "white",
+    fontWeight: "100",
+  };
+
   return (
     <>
       {table[0].country_name === "eurocups" ? (
@@ -25,7 +41,7 @@ export default function LeagueTable({ table, club }) {
           <TableHead>
             <TableRow style={{ backgroundColor: "black" }}>
               <TableCell style={{ color: "white" }} align="left">
-                # Team name
+                {language ? "# Team name" : "# Klub"}
               </TableCell>
               <TableCell style={{ color: "white" }} align="right">
                 M
@@ -99,26 +115,21 @@ export default function LeagueTable({ table, club }) {
                       alt={team.team_name}
                       className="BadgeInTable"
                     />{" "}
-                    <a
-                      href={`/${team.team_id}`}
-                      style={{
-                        color: "white",
-                        textDecoration: "none",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                      }}
-                    >
+                    <a href={`/${team.team_id}`} style={teamStyle}>
                       {" "}
                       {team.team_name}
                     </a>
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell sx={statsStyle} align="right">
                     {team.overall_league_payed}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell sx={statsStyle} align="right">
                     {team.overall_league_GF}:{team.overall_league_GA}
                   </TableCell>
-                  <TableCell style={{ color: "white" }} align="right">
+                  <TableCell
+                    style={{ color: "white", fontWeight: "900" }}
+                    align="right"
+                  >
                     {team.overall_league_PTS}
                   </TableCell>
                 </TableRow>

@@ -27,18 +27,17 @@ export default function TopScorersTable({ topScorers }) {
           <TableHead>
             <TableRow style={{ backgroundColor: "black" }}>
               <TableCell style={{ color: "white" }} align="left">
-                Player's Name
+                {language ? `Player's Name` : "Zawodnik"}
               </TableCell>
               <TableCell style={{ color: "white" }} align="right">
-                Team
+                {language ? `Team` : "Zespół"}
               </TableCell>
               <TableCell style={{ color: "white" }} align="right">
-                Goals
+                {language ? `Goals` : "Bramki"}
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {console.log(topScorers)}
             {topScorers.map((scorer, i) => (
               <TableRow
                 style={{

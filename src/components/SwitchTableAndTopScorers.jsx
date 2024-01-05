@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import LeagueTable from "./LeagueTable";
 import TopScorersTable from "./TopScorersTable";
+import useProps from "../hooks/useProps";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,6 +43,10 @@ function a11yProps(index) {
 
 export default function SwitchTableAndTopScorers({ table, club, topScorers }) {
   const [value, setValue] = React.useState(0);
+  const { language } = useProps();
+
+  const tabs = [{ tabName: "TABLE" }, { tabName: "TOP SCORERS" }];
+  const tabsPl = [{ tabName: "TABELA" }, { tabName: "STRZELCY" }];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -56,6 +61,7 @@ export default function SwitchTableAndTopScorers({ table, club, topScorers }) {
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
+          textColor="inherit"
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
@@ -65,8 +71,23 @@ export default function SwitchTableAndTopScorers({ table, club, topScorers }) {
             },
           }}
         >
-          <Tab sx={{ color: "white" }} label="Table" {...a11yProps(0)} />
-          <Tab sx={{ color: "white" }} label="Top Scorers" {...a11yProps(1)} />
+          {language
+            ? tabs.map((tab, i) => (
+                <Tab
+                  key={i}
+                  sx={{ color: "white" }}
+                  label={tab.tabName}
+                  {...a11yProps(0)}
+                />
+              ))
+            : tabsPl.map((tab, i) => (
+                <Tab
+                  key={i}
+                  sx={{ color: "white" }}
+                  label={tab.tabName}
+                  {...a11yProps(0)}
+                />
+              ))}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

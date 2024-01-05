@@ -178,6 +178,18 @@ export function GameDetails({
           match={match}
           setShowTable={setShowTable}
         />
+        <button
+          onClick={() => {
+            console.log(match);
+            console.log(
+              match.league_name.includes("Cup") ||
+                match.league_name.includes("Pokal") ||
+                match.league_name.includes("Coupe")
+            );
+          }}
+        >
+          check
+        </button>
         <h1>
           <a style={teamNameStyle} href={`/${match.match_hometeam_id}`}>
             {" "}
