@@ -5,7 +5,6 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import BasicDateCalendar from "./BasicDateCalendar";
 import { useEffect, useState } from "react";
-import LeagueTable from "./LeagueTable";
 import Stack from "@mui/material/Stack";
 import TeamInfoCard from "./TeamInfoCard";
 import { useParams } from "react-router-dom";
@@ -167,13 +166,15 @@ export default function BasicGrid2() {
             </Grid>
           ) : (
             <Grid item xs={12} sm={7}>
-              <Item sx={boxStyle}>
-                <SwitchTableAndTopScorers
-                  table={table}
-                  club={clubInfo[0]}
-                  topScorers={topScorers}
-                />
-              </Item>
+              <Fade in={showTable}>
+                <Item sx={boxStyle}>
+                  <SwitchTableAndTopScorers
+                    table={table}
+                    club={clubInfo[0]}
+                    topScorers={topScorers}
+                  />
+                </Item>
+              </Fade>
             </Grid>
           )}
         </Grid>

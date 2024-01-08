@@ -17,6 +17,11 @@ export default function TopScorersTable({ topScorers }) {
     fontWeight: "100",
   };
 
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none",
+  };
+
   return (
     <>
       <TableContainer
@@ -53,18 +58,14 @@ export default function TopScorersTable({ topScorers }) {
                   <Link
                     key={i}
                     to={`/player?play=${scorer.player_key}`}
-                    style={{ color: "white", textDecoration: "none" }}
+                    style={linkStyle}
                   >
                     {" "}
                     {scorer.player_name}
                   </Link>
                 </TableCell>
                 <TableCell style={tableCellStyle} align="right">
-                  <a
-                    key={i}
-                    href={`/${scorer.team_key}`}
-                    style={{ color: "white", textDecoration: "none" }}
-                  >
+                  <a key={i} href={`/${scorer.team_key}`} style={linkStyle}>
                     {scorer.team_name}
                   </a>
                 </TableCell>
