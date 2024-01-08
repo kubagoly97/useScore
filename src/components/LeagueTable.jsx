@@ -14,7 +14,6 @@ export default function LeagueTable({ table, club }) {
   const teamStyle = {
     color: "white",
     textDecoration: "none",
-    fontWeight: "bold",
     cursor: "pointer",
     fontWeight: "100",
   };

@@ -11,17 +11,23 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
     backgroundColor: "rgba(0,0,0,0.6)",
   };
 
-  const imageInSectionStyle = {
+  const leagueImageInSectionStyle = {
     maxWidth: "25%",
     maxHeight: "50px",
     borderRadius: "3px",
     cursor: "pointer",
+  };
+  const imageInSectionStyle = {
+    maxWidth: "25%",
+    maxHeight: "50px",
+    borderRadius: "3px",
   };
 
   return (
     <section style={sectionStyle}>
       {match.league_name.includes("Cup") ||
       match.league_name.includes("Pokal") ||
+      match.league_name.includes("Copa") ||
       match.league_name.includes("Trophée") ||
       match.league_name.includes("Beker") ||
       match.league_name.includes("Trophy") ||
@@ -37,7 +43,7 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
           onClick={() => {
             setShowTable(true);
           }}
-          style={imageInSectionStyle}
+          style={leagueImageInSectionStyle}
           src={match.league_logo}
           alt={match.league_logo}
         />

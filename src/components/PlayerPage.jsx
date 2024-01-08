@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import Blank from "/Blank.jpeg";
 import Stack from "@mui/material/Stack";
 import useProps from "../hooks/useProps";
+import Fade from "@mui/material/Fade";
 
 export function PlayerPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,58 +50,60 @@ export function PlayerPage() {
       {playerData.length && (
         <>
           <div style={{ marginTop: "40px" }}>
-            <Item
-              sx={{
-                backgroundColor: " #0D2818",
-                border: "2px dashed #16DB65",
-                textAlign: "left",
-              }}
-            >
-              <section
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  fontFamily: "sans-serif",
-                  borderRadius: "3px",
-                  backgroundColor: "#0D2818",
+            <Fade in={playerId}>
+              <Item
+                sx={{
+                  backgroundColor: " #0D2818",
+                  border: "2px dashed #16DB65",
+                  textAlign: "left",
                 }}
               >
-                <img
-                  src={playerData[index].player_image}
-                  onError={replaceImage}
-                  alt={playerData[index].player_name}
+                <section
                   style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    fontFamily: "sans-serif",
                     borderRadius: "3px",
-                    width: "170px",
-                    height: "auto",
+                    backgroundColor: "#0D2818",
                   }}
-                />
-                <div style={{ paddingLeft: "10px" }}>
-                  <h1 style={{ color: "white", fontWeight: "500" }}>
-                    {playerData[index].player_name}{" "}
-                  </h1>
-                  <h3 style={{ fontWeight: "400", color: "white" }}>
-                    {" "}
-                    {playerData[index].team_name},{" "}
-                    {language
-                      ? `${playerData[index].player_type}`
-                      : (playerData[index].player_type === "Goalkeepers" &&
-                          "Bramkarz") ||
-                        (playerData[index].player_type === "Midfielders" &&
-                          "Pomocnik") ||
-                        (playerData[index].player_type === "Forwards" &&
-                          "Napastnik") ||
-                        (playerData[index].player_type === "Defenders" &&
-                          "Obrońca")}
-                  </h3>
-                  <h4 style={{ fontWeight: "100", color: "white" }}>
-                    {language ? "Age: " : "Wiek: "}
-                    {playerData[index].player_age},{" "}
-                    {playerData[index].player_birthdate}
-                  </h4>
-                </div>
-              </section>
-            </Item>
+                >
+                  <img
+                    src={playerData[index].player_image}
+                    onError={replaceImage}
+                    alt={playerData[index].player_name}
+                    style={{
+                      borderRadius: "3px",
+                      width: "170px",
+                      height: "auto",
+                    }}
+                  />
+                  <div style={{ paddingLeft: "10px" }}>
+                    <h1 style={{ color: "white", fontWeight: "500" }}>
+                      {playerData[index].player_name}{" "}
+                    </h1>
+                    <h3 style={{ fontWeight: "400", color: "white" }}>
+                      {" "}
+                      {playerData[index].team_name},{" "}
+                      {language
+                        ? `${playerData[index].player_type}`
+                        : (playerData[index].player_type === "Goalkeepers" &&
+                            "Bramkarz") ||
+                          (playerData[index].player_type === "Midfielders" &&
+                            "Pomocnik") ||
+                          (playerData[index].player_type === "Forwards" &&
+                            "Napastnik") ||
+                          (playerData[index].player_type === "Defenders" &&
+                            "Obrońca")}
+                    </h3>
+                    <h4 style={{ fontWeight: "100", color: "white" }}>
+                      {language ? "Age: " : "Wiek: "}
+                      {playerData[index].player_age},{" "}
+                      {playerData[index].player_birthdate}
+                    </h4>
+                  </div>
+                </section>
+              </Item>
+            </Fade>
           </div>{" "}
           <Stack>
             <Link to="/">

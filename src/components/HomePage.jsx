@@ -12,6 +12,7 @@ import LeaguesList from "./LeaguesList";
 import SwitchPanels from "./SwitchPanels";
 import { LogoutButtonStackOnHomePage } from "./LogoutButtonStackOnHomePage";
 import useProps from "../hooks/useProps";
+import Fade from "@mui/material/Fade";
 
 export default function HomePage() {
   const { user } = useAuthContext();
@@ -54,36 +55,45 @@ export default function HomePage() {
           </Grid>
           <Grid xs={11.5} sm={8} md={9}>
             {showClubList ? (
-              <Box sx={{ flexGrow: 1, marginTop: "30px" }}>
-                <BasicGrid />
-              </Box>
-            ) : (
-              <Container className="ImageOnHomePage" maxWidth="xl">
-                <h1
-                  className="h1OnPage"
-                  style={{ marginTop: "30px", fontWeight: "100" }}
+              <Fade in={showClubList}>
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    marginTop: "30px",
+                  }}
                 >
-                  {user
-                    ? language
-                      ? `Welcome back, ${user.email
-                          .slice(0, user.email.indexOf("@"))
-                          .charAt(0)
-                          .toUpperCase()}${user.email
-                          .slice(0, user.email.indexOf("@"))
-                          .slice(1)} 👑`
-                      : `Witaj ponownie, ${user.email
-                          .slice(0, user.email.indexOf("@"))
-                          .charAt(0)
-                          .toUpperCase()}${user.email
-                          .slice(0, user.email.indexOf("@"))
-                          .slice(1)} 👑`
-                    : language
-                    ? `Welcome on useScore, choose the league!`
-                    : `Witaj ponownie na useScore, wybierz ligę!`}
-                </h1>
-                {!user && <LogoutButtonStackOnHomePage />}
-                {user ? <SwitchPanels /> : <></>}
-              </Container>
+                  <BasicGrid />
+                </Box>
+              </Fade>
+            ) : (
+              <Fade in={!showClubList}>
+                <Container className="ImageOnHomePage" maxWidth="xl">
+                  <h1
+                    className="h1OnPage"
+                    style={{ marginTop: "30px", fontWeight: "100" }}
+                  >
+                    {user
+                      ? language
+                        ? `Welcome back, ${user.email
+                            .slice(0, user.email.indexOf("@"))
+                            .charAt(0)
+                            .toUpperCase()}${user.email
+                            .slice(0, user.email.indexOf("@"))
+                            .slice(1)} 👑`
+                        : `Witaj ponownie, ${user.email
+                            .slice(0, user.email.indexOf("@"))
+                            .charAt(0)
+                            .toUpperCase()}${user.email
+                            .slice(0, user.email.indexOf("@"))
+                            .slice(1)} 👑`
+                      : language
+                      ? `Welcome on useScore, choose the league!`
+                      : `Witaj ponownie na useScore, wybierz ligę!`}
+                  </h1>
+                  {!user && <LogoutButtonStackOnHomePage />}
+                  {user ? <SwitchPanels /> : <></>}
+                </Container>
+              </Fade>
             )}
           </Grid>
         </Grid>

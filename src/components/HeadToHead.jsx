@@ -21,7 +21,14 @@ export function HeadToHead({ club, headToHead }) {
         <Stack spacing={0}>
           {headToHead.firstTeam_VS_secondTeam.length ? (
             headToHead.firstTeam_VS_secondTeam.map((match, i) => (
-              <Item key={i}>
+              <Item
+                key={i}
+                sx={{
+                  boxShadow: "none",
+                  borderBottom: "0.5px solid white",
+                  borderRadius: "0px",
+                }}
+              >
                 {language ? (
                   <>
                     <span

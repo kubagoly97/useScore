@@ -14,6 +14,7 @@ import { GameDetails } from "./GameDetails";
 import SwitchSquadBG2 from "./SwitchSquadBG2";
 import useProps from "../hooks/useProps";
 import SwitchTableAndTopScorers from "./SwitchTableAndTopScorers";
+import Fade from "@mui/material/Fade";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -101,59 +102,67 @@ export default function BasicGrid2() {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={5}>
             <Stack spacing={2}>
-              <Item sx={boxStyle}>
-                {clubInfo.length ? (
-                  <TeamInfoCard club={clubInfo[0]} />
-                ) : (
-                  <>
-                    <CircularProgress color="success" />
-                  </>
-                )}
-              </Item>
-              <Item sx={boxStyle}>
-                {matchesData.length ? (
-                  <BasicDateCalendar setShowTable={setShowTable} />
-                ) : (
-                  <CircularProgress color="success" />
-                )}
-              </Item>
-            </Stack>
-          </Grid>
-          {!showTable ? (
-            <Grid item xs={12} sm={7}>
-              <Stack>
+              <Fade in={clubInfo.length}>
                 <Item sx={boxStyle}>
-                  {matchesData.length ? (
-                    matchesData.map(
-                      (match, i) =>
-                        value == match.match_date && (
-                          <GameDetails
-                            setTopScorers={setTopScorers}
-                            setTable={setTable}
-                            match={match}
-                            handleFetch={handleFetch}
-                            key={i}
-                            club={clubInfo[0]}
-                            setShowTable={setShowTable}
-                            showTable={showTable}
-                          />
-                        )
-                    )
+                  {clubInfo.length ? (
+                    <TeamInfoCard club={clubInfo[0]} />
                   ) : (
                     <>
                       <CircularProgress color="success" />
                     </>
                   )}
                 </Item>
-                <Item component="div" sx={squadBoxStyle}>
-                  {clubInfo.length && (
-                    <h3 style={{ color: "white", fontWeight: "200" }}>
-                      {language ? "Manager: " : "Trener: "}{" "}
-                      {clubInfo[0].coaches[0].coach_name}
-                    </h3>
+              </Fade>
+              <Fade in={matchesData}>
+                <Item sx={boxStyle}>
+                  {matchesData.length ? (
+                    <BasicDateCalendar setShowTable={setShowTable} />
+                  ) : (
+                    <CircularProgress color="success" />
                   )}
-                  {clubInfo.length && <SwitchSquadBG2 club={clubInfo[0]} />}
                 </Item>
+              </Fade>
+            </Stack>
+          </Grid>
+          {!showTable ? (
+            <Grid item xs={12} sm={7}>
+              <Stack>
+                <Fade in={matchesData.length}>
+                  <Item sx={boxStyle}>
+                    {matchesData.length ? (
+                      matchesData.map(
+                        (match, i) =>
+                          value == match.match_date && (
+                            <GameDetails
+                              setTopScorers={setTopScorers}
+                              setTable={setTable}
+                              match={match}
+                              handleFetch={handleFetch}
+                              key={i}
+                              club={clubInfo[0]}
+                              setShowTable={setShowTable}
+                              showTable={showTable}
+                            />
+                          )
+                      )
+                    ) : (
+                      <>
+                        <CircularProgress color="success" />
+                      </>
+                    )}
+                  </Item>
+                </Fade>
+                <Fade in={clubInfo.length}>
+                  <Item component="div" sx={squadBoxStyle}>
+                    {clubInfo.length && (
+                      <h3 style={{ color: "white", fontWeight: "200" }}>
+                        {language ? "Manager: " : "Trener: "}{" "}
+                        {clubInfo[0].coaches[0].coach_name}
+                      </h3>
+                    )}
+                    {clubInfo.length && <SwitchSquadBG2 club={clubInfo[0]} />}
+                  </Item>
+                </Fade>
               </Stack>
             </Grid>
           ) : (
@@ -164,9 +173,6 @@ export default function BasicGrid2() {
                   club={clubInfo[0]}
                   topScorers={topScorers}
                 />
-                {/* {clubInfo.length && (
-                  <LeagueTable table={table} club={clubInfo[0]} />
-                )} */}
               </Item>
             </Grid>
           )}
