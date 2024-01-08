@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import LeagueTable from "./LeagueTable";
 import TopScorersTable from "./TopScorersTable";
 import useProps from "../hooks/useProps";
+import Fade from "@mui/material/Fade";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

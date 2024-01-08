@@ -24,7 +24,6 @@ export default function ClubsList() {
       }
     );
     const resJSON = await res.json();
-    console.log(resJSON);
     if (res.ok) {
       setYourClubsList(yourClubsList.filter((c) => c._id !== id));
     } else {

@@ -12,13 +12,14 @@ import Alert from "@mui/material/Alert";
 import { RedirectButtonOnRegisterAndLoginPages } from "./RedirectButtonOnRegisterAndLoginPages";
 import CircularProgress from "@mui/material/CircularProgress";
 import useProps from "../hooks/useProps";
+import Fade from "@mui/material/Fade";
 
 export default function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
   const { user } = useAuthContext();
-  const { setHomePageFootballBar, language } = useProps();
+  const { setHomePageFootballBar, homePageFootballBar, language } = useProps();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -42,102 +43,104 @@ export default function LoginCard() {
       <Box sx={{ marginTop: "15px" }}>
         {isLoading && <CircularProgress color="success" />}
       </Box>
-      <Card
-        sx={{
-          display: "inline-block",
-          maxWidth: 345,
-          minWidth: 300,
-          backgroundColor: "#0D2818",
-          border: "1px dashed #16DB65",
-          marginTop: "40px",
-        }}
-      >
-        <CardMedia
+      <Fade in={!homePageFootballBar}>
+        <Card
           sx={{
-            height: 230,
-            width: 400,
-            borderBottom: "1px dashed #16DB65",
+            display: "inline-block",
+            maxWidth: 345,
+            minWidth: 300,
+            backgroundColor: "#0D2818",
+            border: "1px dashed #16DB65",
+            marginTop: "40px",
           }}
-          image="LoginIMG.png"
-          title="Login Cover"
-        />
-        <form onSubmit={handleLogin}>
-          <CardContent>
-            <Stack spacing={3}>
-              <label
-                htmlFor="email"
+        >
+          <CardMedia
+            sx={{
+              height: 230,
+              width: 400,
+              borderBottom: "1px dashed #16DB65",
+            }}
+            image="LoginIMG.png"
+            title="Login Cover"
+          />
+          <form onSubmit={handleLogin}>
+            <CardContent>
+              <Stack spacing={3}>
+                <label
+                  htmlFor="email"
+                  style={{
+                    fontFamily: "roboto",
+                    color: "white",
+                    fontSize: "14px",
+                  }}
+                >
+                  EMAIL{" "}
+                  <input
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    style={{
+                      all: "unset",
+                      height: "25px",
+                      backgroundColor: "white",
+                      borderBottom: "1px solid #16DB65",
+                      marginTop: "15px",
+                      borderRadius: "3px",
+                      color: "black",
+                    }}
+                  />
+                </label>
+                <label
+                  htmlFor="password"
+                  style={{
+                    fontFamily: "roboto",
+                    color: "white",
+                    fontSize: "14px",
+                  }}
+                >
+                  {language ? "PASSWORD " : "HASŁO "}
+                  <input
+                    autoComplete="on"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    style={{
+                      all: "unset",
+                      height: "25px",
+                      borderBottom: "1px solid #16DB65",
+                      color: "black",
+                      backgroundColor: "white",
+                      marginTop: "10px",
+                      borderRadius: "3px",
+                    }}
+                  />
+                </label>
+              </Stack>
+            </CardContent>
+            <CardActions>
+              <button
+                class="btnLoginAndRegister"
+                disabled={isLoading}
+                onClick={(e) => {
+                  console.log(error && error);
+                }}
+                size="small"
                 style={{
-                  fontFamily: "roboto",
-                  color: "white",
+                  fontWeight: "450",
                   fontSize: "14px",
+                  fontFamily: "roboto",
+                  backgroundColor: "rgba(255, 255, 255, 0)",
+                  padding: "8px",
                 }}
               >
-                EMAIL{" "}
-                <input
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  style={{
-                    all: "unset",
-                    height: "25px",
-                    backgroundColor: "white",
-                    borderBottom: "1px solid #16DB65",
-                    marginTop: "15px",
-                    borderRadius: "3px",
-                    color: "black",
-                  }}
-                />
-              </label>
-              <label
-                htmlFor="password"
-                style={{
-                  fontFamily: "roboto",
-                  color: "white",
-                  fontSize: "14px",
-                }}
-              >
-                {language ? "PASSWORD " : "HASŁO "}
-                <input
-                  autoComplete="on"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  style={{
-                    all: "unset",
-                    height: "25px",
-                    borderBottom: "1px solid #16DB65",
-                    color: "black",
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    borderRadius: "3px",
-                  }}
-                />
-              </label>
-            </Stack>
-          </CardContent>
-          <CardActions>
-            <button
-              class="btnLoginAndRegister"
-              disabled={isLoading}
-              onClick={(e) => {
-                console.log(error && error);
-              }}
-              size="small"
-              style={{
-                fontWeight: "450",
-                fontSize: "14px",
-                fontFamily: "roboto",
-                backgroundColor: "rgba(255, 255, 255, 0)",
-                padding: "8px",
-              }}
-            >
-              {language ? "LOGIN" : "ZALOGUJ SIĘ"}
-            </button>
-          </CardActions>
-        </form>
-      </Card>
+                {language ? "LOGIN" : "ZALOGUJ SIĘ"}
+              </button>
+            </CardActions>
+          </form>
+        </Card>
+      </Fade>
       <RedirectButtonOnRegisterAndLoginPages
         text={language ? "OR REGISTER" : "ZAREJESTRUJ SIĘ"}
         to="/register"

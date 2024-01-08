@@ -8,8 +8,23 @@ import useProps from "../hooks/useProps";
 export function LineUpsMatchDetails({ match }) {
   const { language } = useProps();
 
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none",
+  };
+
   return (
     <>
+      <button
+        onClick={() =>
+          console.log(
+            match.lineup.home.starting_lineups[10].lineup_player.split(" ")
+              .length
+          )
+        }
+      >
+        check
+      </button>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={6}>
@@ -29,20 +44,23 @@ export function LineUpsMatchDetails({ match }) {
               </div>
               <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {match.lineup.home.starting_lineups.map((player, i) => (
-                  <li key={i} style={{ fontSize: "10px" }}>
+                  <li key={i} style={{ fontSize: "13px" }}>
                     {Number(player.lineup_number) !== 0 && player.lineup_number}{" "}
                     <span style={{ color: "green" }}>|</span>
                     <Link
                       to={`player?play=${player.player_key}`}
                       style={{ color: "white", textDecoration: "none" }}
                     >
-                      {player.lineup_player
-                        .split(" ")
-                        .splice(0, 1)
-                        .toString()
-                        .slice(0, 1)}
-                      .{" "}
-                      {player.lineup_player.split(" ").splice(1, 2).toString()}{" "}
+                      {player.lineup_player.split(" ").length === 1
+                        ? ` ${player.lineup_player.split(" ")}`
+                        : ` ${player.lineup_player
+                            .split(" ")
+                            .splice(0, 1)
+                            .toString()
+                            .slice(0, 1)}. ${player.lineup_player
+                            .split(" ")
+                            .splice(1, 2)
+                            .toString()}`}
                     </Link>
                   </li>
                 ))}
@@ -72,20 +90,23 @@ export function LineUpsMatchDetails({ match }) {
               </div>
               <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {match.lineup.away.starting_lineups.map((player, i) => (
-                  <li key={i} style={{ fontSize: "10px" }}>
+                  <li key={i} style={{ fontSize: "13px" }}>
                     {Number(player.lineup_number) !== 0 && player.lineup_number}{" "}
                     <span style={{ color: "green" }}>|</span>{" "}
                     <Link
                       to={`player?play=${player.player_key}`}
                       style={{ color: "white", textDecoration: "none" }}
                     >
-                      {player.lineup_player
-                        .split(" ")
-                        .splice(0, 1)
-                        .toString()
-                        .slice(0, 1)}
-                      .{" "}
-                      {player.lineup_player.split(" ").splice(1, 2).toString()}
+                      {player.lineup_player.split(" ").length === 1
+                        ? ` ${player.lineup_player.split(" ")}`
+                        : ` ${player.lineup_player
+                            .split(" ")
+                            .splice(0, 1)
+                            .toString()
+                            .slice(0, 1)}. ${player.lineup_player
+                            .split(" ")
+                            .splice(1, 2)
+                            .toString()}`}
                     </Link>
                   </li>
                 ))}

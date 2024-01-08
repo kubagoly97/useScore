@@ -113,7 +113,7 @@ export default function SwitchSquadBG2({ club }) {
         </Box>
         {tabsContent.map((tab, i) => (
           <CustomTabPanel component={"div"} value={value} index={i} key={i}>
-            <TeamSquadOnBasicGrid2 club={club} playersType={tab.playersType} />
+            <TeamSquadOnBasicGrid2 club={club} playersType={tab.playersType} />{" "}
           </CustomTabPanel>
         ))}
       </Box>
