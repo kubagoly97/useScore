@@ -41,6 +41,12 @@ export default function BasicGrid2() {
 
   let { id } = useParams();
 
+  const gameDeatilsAndTableStyle = {
+    backgroundColor: " #0D2818",
+    border: "1px dashed #16DB65",
+    borderRadius: "5px",
+    padding: "0px 0px 3px 0px",
+  };
   const boxStyle = {
     backgroundColor: " #0D2818",
     border: "1px dashed #16DB65",
@@ -127,7 +133,7 @@ export default function BasicGrid2() {
             <Grid item xs={12} sm={7}>
               <Stack>
                 <Fade in={matchesData.length}>
-                  <Item sx={boxStyle}>
+                  <Item sx={gameDeatilsAndTableStyle}>
                     {matchesData.length ? (
                       matchesData.map(
                         (match, i) =>
@@ -167,7 +173,7 @@ export default function BasicGrid2() {
           ) : (
             <Grid item xs={12} sm={7}>
               <Fade in={showTable}>
-                <Item sx={boxStyle}>
+                <Item sx={gameDeatilsAndTableStyle}>
                   <SwitchTableAndTopScorers
                     table={table}
                     club={clubInfo[0]}
