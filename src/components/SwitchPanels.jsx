@@ -9,6 +9,7 @@ import FavouriteMatchesList from "./FavouriteMatchesList";
 import { useState } from "react";
 import Loading from "./Loading";
 import useProps from "../hooks/useProps";
+import Fade from "@mui/material/Fade";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -102,6 +103,7 @@ export default function SwitchPanels() {
           </span>
         )}
       </CustomTabPanel>
+
       <CustomTabPanel component="div" value={value} index={1}>
         {yourFollowingMatches.length ? (
           <>
@@ -117,67 +119,5 @@ export default function SwitchPanels() {
         )}
       </CustomTabPanel>
     </Box>
-
-    // <Box
-    //   sx={{
-    //     width: 1,
-    //     "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
-    //   }}
-    // >
-    //   <Box sx={{ borderBottom: 0.5, borderColor: "divider" }}>
-    //     <Tabs
-    //       textColor="inherit"
-    //       value={value}
-    //       onChange={handleChange}
-    //       aria-label="basic tabs example"
-    //       TabIndicatorProps={{
-    //         style: {
-    //           backgroundColor: "#16DB65",
-    //         },
-    //       }}
-    //     >
-    //       <Tab
-    //         label={language ? "Teams" : "Kluby"}
-    //         {...a11yProps(0)}
-    //         sx={{
-    //           color: "white",
-    //         }}
-    //       />
-    //       <Tab
-    //         label={language ? "Matches" : "Mecze"}
-    //         {...a11yProps(1)}
-    //         sx={{ color: "white" }}
-    //       />
-    //     </Tabs>
-    //   </Box>
-    //   <CustomTabPanel component="div" value={value} index={0}>
-    //     {yourClubsList.length ? (
-    //       <>
-    //         {isLoading && <Loading />}
-    //         <ClubsList />
-    //       </>
-    //     ) : (
-    //       <span style={{ color: "#16DB65" }}>
-    //         {language
-    //           ? `You don't have any teams on your list`
-    //           : "Nie masz jeszcze zespołu na liście"}
-    //       </span>
-    //     )}
-    //   </CustomTabPanel>
-    //   <CustomTabPanel component="div" value={value} index={1}>
-    //     {yourFollowingMatches.length ? (
-    //       <>
-    //         {isLoading && <Loading />}
-    //         <FavouriteMatchesList />
-    //       </>
-    //     ) : (
-    //       <span style={{ color: "#16DB65" }}>
-    //         {language
-    //           ? `You don't have any matches on your list`
-    //           : "Nie masz jeszcze meczu na liście"}
-    //       </span>
-    //     )}
-    //   </CustomTabPanel>
-    // </Box>
   );
 }
