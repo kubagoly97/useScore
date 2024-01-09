@@ -27,6 +27,8 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
     <section style={sectionStyle}>
       {match.league_name.includes("Cup") ||
       match.league_name.includes("Pokal") ||
+      match.league_name.includes("Liga Profesional Argentina") ||
+      match.league_name.includes("Taça") ||
       match.league_name.includes("Copa") ||
       match.league_name.includes("Trophée") ||
       match.league_name.includes("Beker") ||

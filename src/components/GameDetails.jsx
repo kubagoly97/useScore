@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Scorers } from "./Scorers";
 import { LeagueDetailsInMatchComponent } from "./LeagueDetailsInMatchComponent";
 import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -93,40 +92,6 @@ export function GameDetails({
       const resJSON = await res.json();
       if (resJSON.find(isThisTeam).country_name === "eurocups") {
         let findTeam = resJSON.find(isThisTeam).overall_league_position;
-        console.log(
-          "euro table: ",
-          Number(findTeam) === 1
-            ? setTable(
-                resJSON.slice(
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key),
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 4
-                )
-              )
-            : Number(findTeam) === 2
-            ? setTable(
-                resJSON.slice(
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
-                    1,
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 3
-                )
-              )
-            : Number(findTeam) === 3
-            ? setTable(
-                resJSON.slice(
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
-                    2,
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 2
-                )
-              )
-            : Number(findTeam) === 4 &&
-              setTable(
-                resJSON.slice(
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) -
-                    3,
-                  resJSON.map((team) => team.team_id).indexOf(club.team_key) + 1
-                )
-              )
-        );
       } else {
         setTable(resJSON);
       }
@@ -178,6 +143,7 @@ export function GameDetails({
           match={match}
           setShowTable={setShowTable}
         />
+        {/* <button onClick={() => console.log(match)}>check</button> */}
         <h1>
           <a style={teamNameStyle} href={`/${match.match_hometeam_id}`}>
             {" "}

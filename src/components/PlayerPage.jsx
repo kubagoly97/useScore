@@ -50,7 +50,7 @@ export function PlayerPage() {
       {playerData.length && (
         <>
           <div style={{ marginTop: "40px" }}>
-            <Fade in={playerId}>
+            <Fade in={playerId} timeout={1000}>
               <Item
                 sx={{
                   backgroundColor: " #0D2818",

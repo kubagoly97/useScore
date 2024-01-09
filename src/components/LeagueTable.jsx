@@ -70,7 +70,6 @@ export default function LeagueTable({ table, club }) {
                     component="th"
                     scope="row"
                   >
-                    {console.log(table)}
                     <span
                       style={{
                         padding: "3px",
