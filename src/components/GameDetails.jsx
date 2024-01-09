@@ -143,7 +143,6 @@ export function GameDetails({
           match={match}
           setShowTable={setShowTable}
         />
-        {/* <button onClick={() => console.log(match)}>check</button> */}
         <h1>
           <a style={teamNameStyle} href={`/${match.match_hometeam_id}`}>
             {" "}

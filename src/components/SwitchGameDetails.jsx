@@ -5,7 +5,6 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
-import { Scorers } from "./Scorers";
 import { Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { Item } from "./MatchDetailsOnHomePage";
@@ -14,6 +13,7 @@ import { StartingHomeSquad } from "./StartingHomeSquad";
 import useProps from "../hooks/useProps";
 import { HeadToHead } from "./HeadToHead";
 import { MoreInfoBeforeGameComponent } from "./MoreInfoBeforeGameComponent";
+import { DetailsTab } from "./DetailsTab";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -126,6 +126,23 @@ export default function SwitchGameDetails({
             />
           </Tabs>
         </Box>
+        <CustomTabPanel component={"div"} value={value} index={0}>
+          {match.match_referee ? (
+            <DetailsTab match={match} />
+          ) : (
+            <MoreInfoBeforeGameComponent />
+          )}
+        </CustomTabPanel>
+        <CustomTabPanel component={"div"} value={value} index={1}>
+          {match.lineup.home.starting_lineups.length ? (
+            <Grid container spacing={0.1}>
+              <StartingHomeSquad match={match} />
+              <StartingAwaySquad match={match} />
+            </Grid>
+          ) : (
+            <MoreInfoBeforeGameComponent />
+          )}
+        </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={2}>
           {match.statistics.length ? (
             <Box sx={{ width: "100%" }}>
@@ -154,30 +171,6 @@ export default function SwitchGameDetails({
                 ))}
               </Stack>
             </Box>
-          ) : (
-            <MoreInfoBeforeGameComponent />
-          )}
-        </CustomTabPanel>
-        <CustomTabPanel component={"div"} value={value} index={0}>
-          {match.match_referee ? (
-            <>
-              <Scorers match={match} />
-              <h4>
-                {language ? "Referee:" : "Sędzia:"} {match.match_referee}{" "}
-              </h4>
-              <h5>{match.match_stadium}</h5>
-              <h6>{match.match_status}</h6>
-            </>
-          ) : (
-            <MoreInfoBeforeGameComponent />
-          )}
-        </CustomTabPanel>
-        <CustomTabPanel component={"div"} value={value} index={1}>
-          {match.lineup.home.starting_lineups.length ? (
-            <Grid container spacing={0.1}>
-              <StartingHomeSquad match={match} />
-              <StartingAwaySquad match={match} />
-            </Grid>
           ) : (
             <MoreInfoBeforeGameComponent />
           )}
