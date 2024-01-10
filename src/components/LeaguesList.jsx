@@ -15,10 +15,8 @@ import { CountrySectionOnLeagueList } from "./CountrySectionOnLeagueList";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();
-  const { setShowClubList, fetchTurkishData, language, fetchData } = useProps();
-
+  const { setShowClubList, language } = useProps();
   const { logout } = useLogout();
-
   const everyLeagues = [
     {
       leagues: [
@@ -64,6 +62,7 @@ export default function LeaguesList() {
       leagues: [
         { leagueName: "Serie A", leagueId: 207 },
         { leagueName: "Serie B", leagueId: 206 },
+        { leagueName: "Serie C", leagueId: 359 },
       ],
       countryBadge: "Italy.png",
       englishCountryName: "Italy",
@@ -165,7 +164,35 @@ export default function LeaguesList() {
       englishCountryName: "Turkey",
       polishCountryName: "Turcja",
     },
+    {
+      leagues: [
+        { leagueName: "Premier League", leagueId: 325 },
+        { leagueName: "Persha League", leagueId: 324 },
+      ],
+      countryBadge: "Ukraine.png",
+      englishCountryName: "Ukraine",
+      polishCountryName: "Ukraina",
+    },
+    {
+      leagues: [
+        { leagueName: "Premiership", leagueId: 279 },
+        { leagueName: "Championship", leagueId: 282 },
+      ],
+      countryBadge: "Scotland.png",
+      englishCountryName: "Scotland",
+      polishCountryName: "Szkocja",
+    },
   ];
+  const linkStyle = { color: "white", textDecoration: "none" };
+  const subheaderStyle = {
+    bgcolor: "black",
+    textAlign: "center",
+    color: "white",
+    height: "30px",
+    paddingBottom: "40px",
+    borderBottom: "0.5px solid grey",
+    fontWeight: "500",
+  };
 
   return (
     <List
@@ -184,22 +211,8 @@ export default function LeaguesList() {
         <ul>
           {user ? (
             <>
-              <ListSubheader
-                sx={{
-                  fontSize: "10px",
-                  bgcolor: "black",
-                  color: "white",
-                  fontWeight: "900",
-                  height: "30px",
-                  paddingBottom: "40px",
-                  borderBottom: "0.5px solid grey",
-                  textAlign: "center",
-                }}
-              >
-                <Link
-                  onClick={() => setShowClubList(false)}
-                  style={{ color: "white", textDecoration: "none" }}
-                >
+              <ListSubheader sx={subheaderStyle}>
+                <Link onClick={() => setShowClubList(false)} style={linkStyle}>
                   <Box style={{ display: "inline-block", paddingTop: "5px" }}>
                     <HomeIcon />
                   </Box>
@@ -228,23 +241,13 @@ export default function LeaguesList() {
           ))}
           <YouTubeLink />
           {user && (
-            <ListSubheader
-              sx={{
-                bgcolor: "black",
-                textAlign: "center",
-                color: "white",
-                fontWeight: "900",
-                height: "30px",
-                paddingBottom: "45px",
-                borderBottom: "0.5px solid grey",
-              }}
-            >
+            <ListSubheader sx={subheaderStyle}>
               <Link
                 onClick={() => {
                   logout();
                   window.location.reload();
                 }}
-                style={{ color: "white", textDecoration: "none" }}
+                style={linkStyle}
               >
                 <Box style={{ display: "inline-block", paddingTop: "5px" }}>
                   {language ? "Logout" : "Wyloguj"}
