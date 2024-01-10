@@ -11,39 +11,162 @@ import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import useProps from "../hooks/useProps";
 import { YouTubeLink } from "./YouTubeLink";
+import { CountrySectionOnLeagueList } from "./CountrySectionOnLeagueList";
 
 export default function LeaguesList() {
   const { user } = useAuthContext();
-  const {
-    setShowClubList,
-    fetchEnglishData,
-    fetchSpainData,
-    fetchSpain2Data,
-    fetchGermanyData,
-    fetchEkstraklasaData,
-    fetch2BundesligaData,
-    fetch3BundesligaData,
-    fetch1LigaData,
-    fetchSerieAData,
-    fetchChampionshipData,
-    fetchLigueOneData,
-    fetch2LigaData,
-    fetchSwitzerlandData,
-    fetchSerieBData,
-    fetchCroatiaData,
-    fetchSaudiData,
-    fetchMLSData,
-    fetchCzechData,
-    fetchEredivisieData,
-    fetchPortugalData,
-    fetchLeagueOneData,
-    fetchNorwegianData,
-    fetchTurkishData,
-    fetchABundesligaData,
-    fetchLeagueTwoData,
-    language,
-  } = useProps();
+  const { setShowClubList, fetchTurkishData, language, fetchData } = useProps();
+
   const { logout } = useLogout();
+
+  const everyLeagues = [
+    {
+      leagues: [
+        { leagueName: "Premier League", leagueId: 152 },
+        { leagueName: "Championship", leagueId: 153 },
+        { leagueName: "League One", leagueId: 154 },
+        { leagueName: "League Two", leagueId: 145 },
+      ],
+      countryBadge: "Anglia.png",
+      englishCountryName: "England",
+      polishCountryName: "Anglia",
+    },
+    {
+      leagues: [
+        { leagueName: "La Liga", leagueId: 302 },
+        { leagueName: "Segunda Division", leagueId: 301 },
+      ],
+      countryBadge: "Spain.png",
+      englishCountryName: "Spain",
+      polishCountryName: "Hiszpania",
+    },
+    {
+      leagues: [
+        { leagueName: "Bundesliga", leagueId: 175 },
+        { leagueName: "2. Bundesliga", leagueId: 171 },
+        { leagueName: "3. Liga", leagueId: 176 },
+      ],
+      countryBadge: "Germany.png",
+      englishCountryName: "Germany",
+      polishCountryName: "Niemcy",
+    },
+    {
+      leagues: [
+        { leagueName: "PKO Ekstraklasa", leagueId: 259 },
+        { leagueName: "Fortuna 1. liga", leagueId: 263 },
+        { leagueName: "2. liga", leagueId: 261 },
+      ],
+      countryBadge: "Poland.png",
+      englishCountryName: "Poland",
+      polishCountryName: "Polska",
+    },
+    {
+      leagues: [
+        { leagueName: "Serie A", leagueId: 207 },
+        { leagueName: "Serie B", leagueId: 206 },
+      ],
+      countryBadge: "Italy.png",
+      englishCountryName: "Italy",
+      polishCountryName: "Włochy",
+    },
+    {
+      leagues: [
+        { leagueName: "Ligue 1", leagueId: 168 },
+        { leagueName: "Ligue 2", leagueId: 164 },
+      ],
+      countryBadge: "France.png",
+      englishCountryName: "France",
+      polishCountryName: "Francja",
+    },
+    {
+      leagues: [
+        { leagueName: "Super League", leagueId: 308 },
+        { leagueName: "Challenge League", leagueId: 312 },
+      ],
+      countryBadge: "Switzerland.png",
+      englishCountryName: "Switzerland",
+      polishCountryName: "Szwajcaria",
+    },
+    {
+      leagues: [
+        { leagueName: "HNL", leagueId: 124 },
+        { leagueName: "Prva NL", leagueId: 127 },
+      ],
+      countryBadge: "Croatia.png",
+      englishCountryName: "Croatia",
+      polishCountryName: "Chorwacja",
+    },
+    {
+      leagues: [
+        { leagueName: "Saudi League", leagueId: 278 },
+        { leagueName: "Division 1", leagueId: 277 },
+      ],
+      countryBadge: "SaudiArabia.png",
+      englishCountryName: "Saudi Arabia",
+      polishCountryName: "Arabia Saudyjska",
+    },
+    {
+      leagues: [{ leagueName: "MLS", leagueId: 332 }],
+      countryBadge: "USA.png",
+      englishCountryName: "USA",
+      polishCountryName: "USA",
+    },
+    {
+      leagues: [
+        { leagueName: "FORTUNA:LIGA", leagueId: 143 },
+        { leagueName: "FNL", leagueId: 133 },
+      ],
+      countryBadge: "Czech.webp",
+      englishCountryName: "Czechia",
+      polishCountryName: "Czechy",
+    },
+    {
+      leagues: [
+        { leagueName: "Eredivisie", leagueId: 244 },
+        { leagueName: "Eerste Divisie", leagueId: 245 },
+      ],
+      countryBadge: "Netherlands.png",
+      englishCountryName: "Netherlands",
+      polishCountryName: "Holandia",
+    },
+    {
+      leagues: [
+        { leagueName: "Liga Portugal", leagueId: 266 },
+        { leagueName: "Liga Portugal 2", leagueId: 267 },
+      ],
+      countryBadge: "Portugal.png",
+      englishCountryName: "Portugal",
+      polishCountryName: "Portugalia",
+    },
+    {
+      leagues: [
+        { leagueName: "Eliteserien", leagueId: 253 },
+        { leagueName: "OBOS-ligaen", leagueId: 362 },
+      ],
+      countryBadge: "Norway.png",
+      englishCountryName: "Norway",
+      polishCountryName: "Norwegia",
+    },
+    {
+      leagues: [
+        { leagueName: "Admiral Bundesliga", leagueId: 56 },
+        { leagueName: "Admiral 2. Liga", leagueId: 53 },
+      ],
+      countryBadge: "Austria.png",
+      englishCountryName: "Austria",
+      polishCountryName: "Austria",
+    },
+    {
+      leagues: [
+        { leagueName: "Süper Lig", leagueId: 322 },
+        { leagueName: "1. Lig", leagueId: 319 },
+      ],
+      countryBadge: "Turkey.avif",
+      englishCountryName: "Turkey",
+      polishCountryName: "Turcja",
+    },
+  ];
+
   return (
     <List
       sx={{
@@ -95,140 +218,14 @@ export default function LeaguesList() {
               />
             </>
           )}
-          <CoutryOnHomePageList
-            src="Anglia.png"
-            text={language ? "England" : "Anglia"}
-          />
-          <LeagueOnHomePageList
-            primary="Premier League"
-            onClick={fetchEnglishData}
-          />
-          <LeagueOnHomePageList
-            primary="Championship"
-            onClick={fetchChampionshipData}
-          />
-          <LeagueOnHomePageList
-            primary="League One"
-            onClick={fetchLeagueOneData}
-          />
-          <LeagueOnHomePageList
-            primary="League Two"
-            onClick={fetchLeagueTwoData}
-          />
-          <CoutryOnHomePageList
-            src="Spain.png"
-            text={language ? "Spain" : "Hiszpania"}
-          />
-          <LeagueOnHomePageList primary="La Liga" onClick={fetchSpainData} />
-          <LeagueOnHomePageList
-            primary="Segunda Division"
-            onClick={fetchSpain2Data}
-          />
-          <CoutryOnHomePageList
-            src="Germany.png"
-            text={language ? "Germany" : "Niemcy"}
-          />
-          <LeagueOnHomePageList
-            primary="Bundesliga"
-            onClick={fetchGermanyData}
-          />
-          <LeagueOnHomePageList
-            primary="2. Bundesliga"
-            onClick={fetch2BundesligaData}
-          />
-          <LeagueOnHomePageList
-            primary="3. Liga"
-            onClick={fetch3BundesligaData}
-          />
-          <CoutryOnHomePageList
-            src="Poland.png"
-            text={language ? "Poland" : "Polska"}
-          />
-          <LeagueOnHomePageList
-            primary="PKO Ekstraklasa"
-            onClick={fetchEkstraklasaData}
-          />
-          <LeagueOnHomePageList primary="1. liga" onClick={fetch1LigaData} />
-          <LeagueOnHomePageList primary="2. liga" onClick={fetch2LigaData} />
-          <CoutryOnHomePageList
-            src="Italy.png"
-            text={language ? "Italy" : "Włochy"}
-          />
-          <LeagueOnHomePageList primary="Serie A" onClick={fetchSerieAData} />
-          <LeagueOnHomePageList primary="Serie B" onClick={fetchSerieBData} />
-          <CoutryOnHomePageList
-            src="France.png"
-            text={language ? "France" : "Francja"}
-          />
-          <LeagueOnHomePageList primary="Ligue 1" onClick={fetchLigueOneData} />
-          <CoutryOnHomePageList
-            src="Switzerland.png"
-            text={language ? "Switzerland" : "Szwajcaria"}
-          />
-          <LeagueOnHomePageList
-            primary="Super League"
-            onClick={fetchSwitzerlandData}
-          />
-          <CoutryOnHomePageList
-            src="Croatia.png"
-            text={language ? "Croatia" : "Chorwacja"}
-          />
-          <LeagueOnHomePageList primary="1. HNL" onClick={fetchCroatiaData} />
-          <CoutryOnHomePageList
-            src="SaudiArabia.png"
-            text={language ? "Saudi Arabia" : "Arabia Saudyjska"}
-          />
-          <LeagueOnHomePageList
-            primary="Saudi League"
-            onClick={fetchSaudiData}
-          />
-          <CoutryOnHomePageList src="USA.png" text="USA" />
-          <LeagueOnHomePageList primary="MLS" onClick={fetchMLSData} />
-          <CoutryOnHomePageList
-            src="Czech.webp"
-            text={language ? "Czechia" : "Czechy"}
-          />
-          <LeagueOnHomePageList
-            primary="Czech League"
-            onClick={fetchCzechData}
-          />
-          <CoutryOnHomePageList
-            src="Netherlands.png"
-            text={language ? "Netherlands" : "Holandia"}
-          />
-          <LeagueOnHomePageList
-            primary="Eredivisie"
-            onClick={fetchEredivisieData}
-          />
-          <CoutryOnHomePageList
-            src="Portugal.png"
-            text={language ? "Portugal" : "Portugalia"}
-          />
-          <LeagueOnHomePageList
-            primary="Primeira Liga"
-            onClick={fetchPortugalData}
-          />
-          <CoutryOnHomePageList
-            src="Norway.png"
-            text={language ? "Norway" : "Norwegia"}
-          />
-          <LeagueOnHomePageList
-            primary="Eliterserien"
-            onClick={fetchNorwegianData}
-          />
-          <CoutryOnHomePageList src="Austria.png" text="Austria" />
-          <LeagueOnHomePageList
-            primary="AF Bundesliga"
-            onClick={fetchABundesligaData}
-          />
-          <CoutryOnHomePageList
-            src="Turkey.avif"
-            text={language ? "Turkey" : "Turcja"}
-          />
-          <LeagueOnHomePageList
-            primary="Süper Lig"
-            onClick={fetchTurkishData}
-          />
+          {everyLeagues.map((league, i) => (
+            <CountrySectionOnLeagueList
+              countryBadge={league.countryBadge}
+              englishCountryName={league.englishCountryName}
+              polishCountryName={league.polishCountryName}
+              leagues={league.leagues}
+            />
+          ))}
           <YouTubeLink />
           {user && (
             <ListSubheader
