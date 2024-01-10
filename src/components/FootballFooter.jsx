@@ -9,10 +9,11 @@ export function FootballFooter() {
   return (
     <footer>
       <p style={{ fontWeight: "100" }}>
-        &copy; useScore, 2024{" "}
+        &copy; useScore | 2024 |{" "}
         <a style={iconStyle} href="https://github.com/kubagoly97">
           <GitHubIcon />
         </a>{" "}
+        |{" "}
         <a
           href="https://www.youtube.com/channel/UCTcwSR9OGMyPqFusiPxeRVQ"
           style={iconStyle}

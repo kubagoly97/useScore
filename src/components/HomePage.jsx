@@ -49,7 +49,7 @@ export default function HomePage() {
   return (
     <>
       {isLoading && <Loading />}
-      <Fade in={homePageFootballBar}>
+      <Fade in={homePageFootballBar} timeout={750}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={0.9}>
             <Grid xs={0} sm={4} md={3} sx={{ marginTop: "2em" }}>
