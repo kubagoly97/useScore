@@ -59,7 +59,6 @@ export default function SwitchTableAndTopScorers({ table, club, topScorers }) {
         "& .MuiBox-root.css-19kzrtu": { padding: "0px" },
       }}
     >
-      {/* <button onClick={() => console.log(topScorers.length)}>check</button> */}
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           textColor="inherit"
@@ -79,7 +78,6 @@ export default function SwitchTableAndTopScorers({ table, club, topScorers }) {
                   sx={{ color: "white" }}
                   label={tab.tabName}
                   {...a11yProps(0)}
-                  disabled={!topScorers}
                 />
               ))
             : tabsPl.map((tab, i) => (

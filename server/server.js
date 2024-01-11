@@ -104,7 +104,6 @@ app.post("/matchesList", async (req, res) => {
 
 app.delete("/matchesList/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   await Match.findByIdAndDelete(id)
     .then((club) => res.json(club))
     .catch((err) => res.json(err));

@@ -21,7 +21,6 @@ export default function FavouriteMatchesList() {
     );
     const resJSON = await res.json();
     if (res.ok) {
-      console.log(resJSON);
       setYourFollowingMatches(yourFollowingMatches.filter((m) => m._id !== id));
     } else {
       console.log("ERROR");

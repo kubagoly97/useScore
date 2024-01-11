@@ -78,6 +78,7 @@ export default function SwitchGameDetails({
   return (
     <>
       <Box
+        component={"div"}
         sx={{
           width: 1,
           "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },

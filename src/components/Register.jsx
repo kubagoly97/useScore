@@ -120,7 +120,6 @@ export default function Register() {
                   class="btnLoginAndRegister"
                   disabled={isLoading}
                   onClick={(e) => {
-                    console.log("Clicked");
                     e.target.style.color = "white";
                   }}
                   size="small"
