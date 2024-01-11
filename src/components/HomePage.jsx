@@ -57,7 +57,7 @@ export default function HomePage() {
             </Grid>
             <Grid xs={11.5} sm={8} md={9}>
               {showClubList ? (
-                <Fade in={showClubList}>
+                <Fade in={!isLoading} timeout={500}>
                   <Box
                     sx={{
                       flexGrow: 1,
@@ -90,7 +90,7 @@ export default function HomePage() {
                               .slice(1)} 👑`
                         : language
                         ? `Welcome on useScore, choose the league!`
-                        : `Witaj ponownie na useScore, wybierz ligę!`}
+                        : `Witaj na useScore, wybierz ligę!`}
                     </h1>
                     {!user && <LogoutButtonStackOnHomePage />}
                     {user ? <SwitchPanels /> : <></>}

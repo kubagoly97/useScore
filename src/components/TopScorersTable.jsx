@@ -10,16 +10,11 @@ import useProps from "../hooks/useProps";
 import { Link } from "react-router-dom";
 
 export default function TopScorersTable({ topScorers }) {
-  const { language } = useProps();
+  const { language, linkStyle } = useProps();
 
   const tableCellStyle = {
     color: "white",
     fontWeight: "100",
-  };
-
-  const linkStyle = {
-    color: "white",
-    textDecoration: "none",
   };
 
   return (

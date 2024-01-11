@@ -6,29 +6,14 @@ import { Item } from "./MatchDetailsOnHomePage";
 import useProps from "../hooks/useProps";
 
 export function LineUpsMatchDetails({ match }) {
-  const { language } = useProps();
-
-  const linkStyle = {
-    color: "white",
-    textDecoration: "none",
-  };
-
+  const { language, linkStyle } = useProps();
+  const headerStyle = { backgroundColor: "black", color: "white" };
   return (
     <>
-      <button
-        onClick={() =>
-          console.log(
-            match.lineup.home.starting_lineups[10].lineup_player.split(" ")
-              .length
-          )
-        }
-      >
-        check
-      </button>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={6}>
-            <Item sx={{ backgroundColor: "black", color: "white" }}>
+            <Item sx={headerStyle}>
               <div
                 style={{
                   borderBottom: "0.5px solid #04471C",
@@ -49,7 +34,7 @@ export function LineUpsMatchDetails({ match }) {
                     <span style={{ color: "green" }}>|</span>
                     <Link
                       to={`player?play=${player.player_key}`}
-                      style={{ color: "white", textDecoration: "none" }}
+                      style={linkStyle}
                     >
                       {player.lineup_player.split(" ").length === 1
                         ? ` ${player.lineup_player.split(" ")}`
@@ -74,7 +59,7 @@ export function LineUpsMatchDetails({ match }) {
             </Item>
           </Grid>
           <Grid xs={6}>
-            <Item sx={{ backgroundColor: "black", color: "white" }}>
+            <Item sx={headerStyle}>
               <div
                 style={{
                   borderBottom: "0.5px solid #04471C",
@@ -95,7 +80,7 @@ export function LineUpsMatchDetails({ match }) {
                     <span style={{ color: "green" }}>|</span>{" "}
                     <Link
                       to={`player?play=${player.player_key}`}
-                      style={{ color: "white", textDecoration: "none" }}
+                      style={linkStyle}
                     >
                       {player.lineup_player.split(" ").length === 1
                         ? ` ${player.lineup_player.split(" ")}`
@@ -133,7 +118,7 @@ export function LineUpsMatchDetails({ match }) {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={6}>
-            <Item sx={{ backgroundColor: "black", color: "white" }}>
+            <Item sx={headerStyle}>
               <div style={{ borderRight: "0.5px solid #04471C" }}>
                 {match.goalscorer.length ? (
                   <span>{language ? "Goal scorers: " : "Bramki: "}</span>
@@ -168,7 +153,7 @@ export function LineUpsMatchDetails({ match }) {
             </Item>
           </Grid>
           <Grid xs={6}>
-            <Item sx={{ backgroundColor: "black", color: "white" }}>
+            <Item sx={headerStyle}>
               <div>
                 <span>
                   {language ? "Referee: " : "Sędzia: "}

@@ -2,12 +2,10 @@ import * as React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Link from "@mui/material/Link";
+import useProps from "../hooks/useProps";
 
 export function LeagueOnHomePageList({ primary, onClick }) {
-  const linkStyle = {
-    textDecoration: "none",
-    color: "white",
-  };
+  const { linkStyle } = useProps();
 
   const leaguesStyle = {
     bgcolor: "black",
