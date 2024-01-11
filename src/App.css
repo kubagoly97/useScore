@@ -54,24 +54,20 @@ html {
 }
 .BadgeInTable {
   max-width: 8%;
-  /* background-color: rgba(0, 0, 255, 0.575); */
 }
 .BadgeInSquad {
   max-width: 13%;
   border-radius: 5px;
-  /* background-color: rgba(0, 0, 255, 0.575); */
 }
 .ClubImageOnList {
   max-width: 100%;
   height: auto;
-  /* background: rgba(0, 0, 0, 0.274); */
 }
 .ImageOnHomePage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(2, 40, 7, 0.9)),
     url("/Stadion.png");
   border: 2px solid #000000;
   min-width: 100%;
-  width: 100%;
   height: auto;
   background-size: cover;
   color: white;

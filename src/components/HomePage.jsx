@@ -69,7 +69,13 @@ export default function HomePage() {
                 </Fade>
               ) : (
                 <Fade in={!showClubList}>
-                  <Container className="ImageOnHomePage" maxWidth="xl">
+                  <Container
+                    className="ImageOnHomePage"
+                    maxWidth="xl"
+                    sx={{
+                      "& .css-19r6kue-MuiContainer-root": { padding: "0px" },
+                    }}
+                  >
                     <h1
                       className="h1OnPage"
                       style={{ marginTop: "30px", fontWeight: "100" }}

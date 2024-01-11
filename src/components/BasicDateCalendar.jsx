@@ -155,7 +155,9 @@ export default function DateCalendarServerRequest({ setShowTable }) {
             "& .Mui-selected": { bgcolor: "#16DB65" },
             "& .MuiPickersDay-root.Mui-selected": { bgcolor: "#16DB65" },
             "& .Mui-selected:hover": { bgcolor: "#16DB65" },
-            maxWidth: "100%",
+            "& .css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover":
+              { bgcolor: "#16DB65" },
+            maxWidth: 1,
           }}
           defaultValue={initialValue}
           onChange={(newValue) => {
