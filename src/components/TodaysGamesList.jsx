@@ -51,13 +51,13 @@ export default function TodaysGamesList() {
         sx={{
           width: "100%",
           height: 100,
-          maxWidth: 360,
+          // maxWidth: 360,
           bgcolor: "none",
         }}
       >
         <FixedSizeList
           height={100}
-          width={390}
+          // width={390}
           itemSize={40}
           itemCount={todaysGames.length}
           overscanCount={5}
