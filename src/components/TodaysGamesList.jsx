@@ -50,7 +50,7 @@ export default function TodaysGamesList() {
       <Box
         sx={{
           width: "100%",
-          height: 100,
+          height: 49 * todaysGames.length,
           // maxWidth: 360,
           bgcolor: "none",
         }}
