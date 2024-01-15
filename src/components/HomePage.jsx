@@ -13,6 +13,7 @@ import SwitchPanels from "./SwitchPanels";
 import { LogoutButtonStackOnHomePage } from "./LogoutButtonStackOnHomePage";
 import useProps from "../hooks/useProps";
 import Fade from "@mui/material/Fade";
+import TodaysGamesList from "./TodaysGamesList";
 
 export default function HomePage() {
   const { user } = useAuthContext();
@@ -25,6 +26,7 @@ export default function HomePage() {
     showClubList,
     language,
     homePageFootballBar,
+    todaysGames,
   } = useProps();
 
   useEffect(function () {
@@ -64,6 +66,7 @@ export default function HomePage() {
                       marginTop: "30px",
                     }}
                   >
+                    {todaysGames.length > 0 ? <TodaysGamesList /> : <></>}
                     <BasicGrid />
                   </Box>
                 </Fade>
@@ -108,5 +111,23 @@ export default function HomePage() {
         </Box>
       </Fade>
     </>
+  );
+}
+
+function TodaysGames() {
+  const { language, todaysGames } = useProps();
+  return (
+    <div>
+      Today are playing:
+      <ul>
+        {todaysGames.length > 0 && (
+          <li>
+            {/* <img src={todaysGames[0].team_home_badge} alt="" /> */}
+            {todaysGames[0].match_hometeam_name} -{" "}
+            {todaysGames[0].match_awayteam_name} | {todaysGames[0].match_time}
+          </li>
+        )}
+      </ul>
+    </div>
   );
 }

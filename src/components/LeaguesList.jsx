@@ -65,6 +65,7 @@ export default function LeaguesList() {
           )}
           {everyLeagues.map((league, i) => (
             <CountrySectionOnLeagueList
+              key={i}
               countryBadge={league.countryBadge}
               englishCountryName={league.englishCountryName}
               polishCountryName={league.polishCountryName}

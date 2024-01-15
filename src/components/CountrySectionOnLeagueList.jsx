@@ -9,7 +9,7 @@ export function CountrySectionOnLeagueList({
   polishCountryName = "Kraj",
   leagues,
 }) {
-  const { language, fetchData } = useProps();
+  const { language, fetchData, fetchTodaysGames } = useProps();
 
   return (
     <>
@@ -21,7 +21,10 @@ export function CountrySectionOnLeagueList({
         <LeagueOnHomePageList
           key={i}
           primary={league.leagueName}
-          onClick={() => fetchData(league.leagueId)}
+          onClick={() => {
+            fetchData(league.leagueId);
+            fetchTodaysGames(league.leagueId);
+          }}
         />
       ))}
     </>

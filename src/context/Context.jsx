@@ -21,6 +21,8 @@ export const ContextProvider = ({ children }) => {
   // ---------------------------
   const [homePageFootballBar, setHomePageFootballBar] = useState(true);
   // ---------------------------
+  const [todaysGames, setTotodaysGames] = useState([]);
+  // ---------------------------
   const [language, setLanguage] = useState(function () {
     const storedValue = localStorage.getItem("language");
     return storedValue ? JSON.parse(storedValue) : true;
@@ -28,6 +30,9 @@ export const ContextProvider = ({ children }) => {
   // ---------------------------
   const date = new Date();
   const [value, setValue] = useState(
+    dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
+  );
+  const [todaysDate, setTodaysDate] = useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
   );
   const everyLeagues = [
@@ -125,7 +130,7 @@ export const ContextProvider = ({ children }) => {
     },
     {
       leagues: [
-        { leagueName: "FORTUNA:LIGA", leagueId: 143 },
+        { leagueName: "FORTUNA:LIGA", leagueId: 134 },
         { leagueName: "FNL", leagueId: 133 },
       ],
       countryBadge: "Czech.webp",
@@ -195,8 +200,36 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Scotland",
       polishCountryName: "Szkocja",
     },
+    {
+      leagues: [
+        { leagueName: "Jupiler League", leagueId: 63 },
+        { leagueName: "Challenger Pro League", leagueId: 65 },
+      ],
+      countryBadge: "Belgium.png",
+      englishCountryName: "Belgium",
+      polishCountryName: "Belgia",
+    },
+    {
+      leagues: [
+        { leagueName: "Super League", leagueId: 178 },
+        { leagueName: "Super League 2", leagueId: 439 },
+      ],
+      countryBadge: "Greece.png",
+      englishCountryName: "Greece",
+      polishCountryName: "Grecja",
+    },
+    {
+      leagues: [
+        { leagueName: "Super Liga", leagueId: 293 },
+        { leagueName: "2. Liga", leagueId: 420 },
+      ],
+      countryBadge: "Slovakia.png",
+      englishCountryName: "Slovakia",
+      polishCountryName: "Słowacja",
+    },
   ];
   const linkStyle = { color: "white", textDecoration: "none" };
+
   const fetchData = async (id) => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=${id}&APIkey=${
@@ -208,6 +241,22 @@ export const ContextProvider = ({ children }) => {
     setShowClubList(true);
     setIsLoading(false);
   };
+  const fetchTodaysGames = async (id) => {
+    setIsLoading(true);
+    const url = `https://apiv3.apifootball.com/?action=get_events&from=${
+      todaysDate.$y
+    }-${todaysDate.$M < 10 ? 0 : ""}${todaysDate.$M + 1}-${todaysDate.$D}&to=${
+      todaysDate.$y
+    }-${todaysDate.$M < 10 ? 0 : ""}${todaysDate.$M + 1}-${
+      todaysDate.$D
+    }&league_id=${id}&APIkey=${import.meta.env.VITE_API_KEY}`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setTotodaysGames(resJson);
+    console.log(resJson.length > 0);
+    console.log(resJson);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}clubList`, {
@@ -258,8 +307,12 @@ export const ContextProvider = ({ children }) => {
         language,
         setLanguage,
         fetchData,
+        fetchTodaysGames,
+        todaysGames,
+        setTotodaysGames,
         everyLeagues,
         linkStyle,
+        todaysDate,
       }}
     >
       {children}
