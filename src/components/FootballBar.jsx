@@ -14,23 +14,12 @@ import LeftDrawer from "./LeftDrawer";
 import LanguageSwitch from "./LanguageSwitch";
 
 export default function FootballBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
     <AppBar
       position="sticky"
       sx={{
-        borderRadius: "6px",
-        background: "linear-gradient(2deg,#0D2818, #058C42 )",
-        border: "2px dashed #0D2818",
+        borderRadius: "2px",
+        background: "linear-gradient(2deg ,#0D2818, #058C42 )",
       }}
     >
       <Container maxWidth="xl">
