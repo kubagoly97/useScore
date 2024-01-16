@@ -53,6 +53,7 @@ export default function TodaysGamesList() {
           height: 49 * todaysGames.length,
           // maxWidth: 360,
           bgcolor: "none",
+          marginTop: "10px",
         }}
       >
         <FixedSizeList

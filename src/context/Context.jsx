@@ -227,9 +227,40 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Slovakia",
       polishCountryName: "Słowacja",
     },
+    {
+      leagues: [{ leagueName: "Liga Profesional", leagueId: 44 }],
+      countryBadge: "Argentina.png",
+      englishCountryName: "Argentina",
+      polishCountryName: "Argentyna",
+    },
+    {
+      leagues: [
+        { leagueName: "Superliga", leagueId: 135 },
+        { leagueName: "1. Division", leagueId: 138 },
+      ],
+      countryBadge: "Denmark.png",
+      englishCountryName: "Denmark",
+      polishCountryName: "Dania",
+    },
   ];
   const linkStyle = { color: "white", textDecoration: "none" };
+  const dayOfTheWeek =
+    (todaysDate.$W === 1 && "Monday") ||
+    (todaysDate.$W === 2 && "Tuesday") ||
+    (todaysDate.$W === 3 && "Wednesday") ||
+    (todaysDate.$W === 4 && "Thursday") ||
+    (todaysDate.$W === 5 && "Friday") ||
+    (todaysDate.$W === 6 && "Saturday") ||
+    (todaysDate.$W === 7 && "Sunday");
 
+  const polishDayOfTheWeek =
+    (todaysDate.$W === 1 && "Poniedziałek") ||
+    (todaysDate.$W === 2 && "Wtorek") ||
+    (todaysDate.$W === 3 && "Środa") ||
+    (todaysDate.$W === 4 && "Czwartek") ||
+    (todaysDate.$W === 5 && "Piątek") ||
+    (todaysDate.$W === 6 && "Sobota") ||
+    (todaysDate.$W === 7 && "Niedziela");
   const fetchData = async (id) => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=${id}&APIkey=${
@@ -253,8 +284,6 @@ export const ContextProvider = ({ children }) => {
     const res = await fetch(url);
     const resJson = await res.json();
     setTotodaysGames(resJson);
-    console.log(resJson.length > 0);
-    console.log(resJson);
   };
 
   useEffect(() => {
@@ -313,6 +342,8 @@ export const ContextProvider = ({ children }) => {
         everyLeagues,
         linkStyle,
         todaysDate,
+        dayOfTheWeek,
+        polishDayOfTheWeek,
       }}
     >
       {children}

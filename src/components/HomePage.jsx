@@ -18,6 +18,8 @@ import TodaysGamesList from "./TodaysGamesList";
 export default function HomePage() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
+  const dateStyle = { fontSize: "13px", color: "white", fontWeight: "100" };
+
   const {
     setPlayerData,
     setMatchesData,
@@ -27,6 +29,9 @@ export default function HomePage() {
     language,
     homePageFootballBar,
     todaysGames,
+    todaysDate,
+    dayOfTheWeek,
+    polishDayOfTheWeek,
   } = useProps();
 
   useEffect(function () {
@@ -66,7 +71,18 @@ export default function HomePage() {
                       marginTop: "30px",
                     }}
                   >
-                    {todaysGames.length > 0 ? <TodaysGamesList /> : <></>}
+                    {todaysGames.length > 0 ? (
+                      <>
+                        <span style={dateStyle}>
+                          {todaysDate.$D}.{todaysDate.$M < 9 ? 0 : ""}
+                          {todaysDate.$M + 1}.{todaysDate.$y} |{" "}
+                          {language ? dayOfTheWeek : polishDayOfTheWeek}
+                        </span>
+                        <TodaysGamesList />
+                      </>
+                    ) : (
+                      <></>
+                    )}
                     <BasicGrid />
                   </Box>
                 </Fade>
@@ -122,7 +138,6 @@ function TodaysGames() {
       <ul>
         {todaysGames.length > 0 && (
           <li>
-            {/* <img src={todaysGames[0].team_home_badge} alt="" /> */}
             {todaysGames[0].match_hometeam_name} -{" "}
             {todaysGames[0].match_awayteam_name} | {todaysGames[0].match_time}
           </li>
