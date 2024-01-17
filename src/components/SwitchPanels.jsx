@@ -9,7 +9,6 @@ import FavouriteMatchesList from "./FavouriteMatchesList";
 import { useState } from "react";
 import Loading from "./Loading";
 import useProps from "../hooks/useProps";
-import Fade from "@mui/material/Fade";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
