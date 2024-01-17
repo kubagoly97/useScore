@@ -65,7 +65,7 @@ export default function ClubsList() {
                   >
                     <StarIcon
                       fontSize="large"
-                      sx={{ color: "rgba(255, 223, 0,1)" }}
+                      sx={{ color: "rgba(255, 223, 0,0.8)" }}
                     />
                   </button>
                 }

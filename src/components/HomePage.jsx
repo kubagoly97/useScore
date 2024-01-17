@@ -92,7 +92,9 @@ export default function HomePage() {
                     className="ImageOnHomePage"
                     maxWidth="xl"
                     sx={{
-                      "& .css-19r6kue-MuiContainer-root": { padding: "0px" },
+                      "& .css-r9z1sk-MuiContainer-root": {
+                        paddingRight: "0px",
+                      },
                     }}
                   >
                     <h1
@@ -106,13 +108,13 @@ export default function HomePage() {
                               .charAt(0)
                               .toUpperCase()}${user.email
                               .slice(0, user.email.indexOf("@"))
-                              .slice(1)} 👑`
+                              .slice(1)}`
                           : `Witaj ponownie, ${user.email
                               .slice(0, user.email.indexOf("@"))
                               .charAt(0)
                               .toUpperCase()}${user.email
                               .slice(0, user.email.indexOf("@"))
-                              .slice(1)} 👑`
+                              .slice(1)}`
                         : language
                         ? `Welcome on useScore, choose the league!`
                         : `Witaj na useScore, wybierz ligę!`}
