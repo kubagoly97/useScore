@@ -18,7 +18,11 @@ import TodaysGamesList from "./TodaysGamesList";
 export default function HomePage() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const dateStyle = { fontSize: "13px", color: "white", fontWeight: "100" };
+  const dateStyle = {
+    fontSize: "13px",
+    color: "rgb(171, 171, 171)",
+    fontWeight: "100",
+  };
 
   const {
     setPlayerData,

@@ -66,7 +66,7 @@ export default function TodaysGamesList() {
         }}
       >
         <FixedSizeList
-          height={100}
+          height={50 * todaysGames.length}
           // width={390}
           itemSize={40}
           itemCount={todaysGames.length}

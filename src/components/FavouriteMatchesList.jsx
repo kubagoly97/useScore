@@ -33,9 +33,6 @@ export default function FavouriteMatchesList() {
         dense
         sx={{
           flexGrow: 1,
-          // backgroundColor: "rgba(0,0,0,0.2)",
-          // borderTop: "2px dashed #0D2818",
-          // borderBottom: "2px dashed #0D2818",
         }}
       >
         {yourFollowingMatches.length &&
@@ -45,7 +42,7 @@ export default function FavouriteMatchesList() {
               <ListItem
                 sx={{
                   borderBottom: "0.5px solid #0D2818",
-                  padding: "3px 0px 3px 0px",
+                  padding: "2.5px 0px 2.5px 0px",
                 }}
                 key={i}
                 disablePadding
@@ -62,7 +59,7 @@ export default function FavouriteMatchesList() {
                   >
                     <FavoriteIcon
                       fontSize="large"
-                      sx={{ color: "rgba(201, 26, 26,0.9)" }}
+                      sx={{ color: "rgba(201, 26, 26, 0.6)" }}
                     />
                   </button>
                 }

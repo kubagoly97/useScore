@@ -38,8 +38,6 @@ export default function ClubsList() {
         dense
         sx={{
           flexGrow: 1,
-          backgroundColor: "rgba(0,0,0,0.3)",
-          borderRadius: "3px",
         }}
       >
         {yourClubsList.length &&
