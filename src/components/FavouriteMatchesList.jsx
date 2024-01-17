@@ -44,7 +44,7 @@ export default function FavouriteMatchesList() {
             return (
               <ListItem
                 sx={{
-                  borderBottom: "0.5px solid grey",
+                  borderBottom: "0.5px solid #0D2818",
                   padding: "3px 0px 3px 0px",
                 }}
                 key={i}
