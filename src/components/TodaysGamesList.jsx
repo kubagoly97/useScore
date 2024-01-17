@@ -9,13 +9,17 @@ import Grid from "@mui/material/Grid";
 function renderRow(props) {
   const { index, style, data } = props;
   const matchStyle = { textAlign: "center", color: "white", fontWeight: "100" };
+  const { linkStyle } = useProps();
+
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
       <ListItemButton>
         {console.log("itemData: ", data)}
         <Grid container spacing={2}>
           <Grid item xs={2} sx={matchStyle}>
-            {data[index].match_time}
+            {!data[index].match_status.length
+              ? data[index].match_time
+              : `${data[index].match_status}'`}
           </Grid>
           <Grid item xs={1}>
             <img
@@ -25,9 +29,14 @@ function renderRow(props) {
             />
           </Grid>
           <Grid item xs={8} sx={matchStyle}>
-            {data[index].match_hometeam_name} {data[index].match_hometeam_score}
-            -{data[index].match_awayteam_score}{" "}
-            {data[index].match_awayteam_name}
+            <a href={`/${data[index].match_hometeam_id}`} style={linkStyle}>
+              {data[index].match_hometeam_name}
+            </a>{" "}
+            {data[index].match_hometeam_score}-
+            {data[index].match_awayteam_score}{" "}
+            <a href={`/${data[index].match_awayteam_id}`} style={linkStyle}>
+              {data[index].match_awayteam_name}
+            </a>
           </Grid>
           <Grid item xs={1}>
             <img
@@ -43,7 +52,7 @@ function renderRow(props) {
 }
 
 export default function TodaysGamesList() {
-  const { language, todaysGames } = useProps();
+  const { todaysGames } = useProps();
 
   return (
     <>

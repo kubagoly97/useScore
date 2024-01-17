@@ -64,14 +64,14 @@ html {
   height: auto;
 }
 .ImageOnHomePage {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(2, 40, 7, 0.9)),
-    url("/Stadion.png");
-  border: 2px solid #000000;
-  min-width: 100%;
-  height: auto;
-  background-size: cover;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(2, 40, 7, 0.9)),
+    url("/Stadion.png"); */
+  /* border: 2px solid #000000; */
+  /* min-width: 100%; */
+  /* height: auto; */
+  /* background-size: cover; */
+  /* padding: 0px; */
   color: white;
-  padding: 0px;
   margin-top: 2em;
 }
 .LeaguesListOnHomePage {

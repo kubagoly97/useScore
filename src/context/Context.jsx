@@ -42,6 +42,7 @@ export const ContextProvider = ({ children }) => {
         { leagueName: "Championship", leagueId: 153 },
         { leagueName: "League One", leagueId: 154 },
         { leagueName: "League Two", leagueId: 145 },
+        { leagueName: "FA Cup", leagueId: 146 },
       ],
       countryBadge: "Anglia.png",
       englishCountryName: "England",
@@ -228,6 +229,15 @@ export const ContextProvider = ({ children }) => {
       polishCountryName: "Słowacja",
     },
     {
+      leagues: [
+        { leagueName: "1. SNL", leagueId: 296 },
+        { leagueName: "2. SNL", leagueId: 294 },
+      ],
+      countryBadge: "Slovenia.png",
+      englishCountryName: "Slovenia",
+      polishCountryName: "Słowenia",
+    },
+    {
       leagues: [{ leagueName: "Liga Profesional", leagueId: 44 }],
       countryBadge: "Argentina.png",
       englishCountryName: "Argentina",
@@ -243,7 +253,11 @@ export const ContextProvider = ({ children }) => {
       polishCountryName: "Dania",
     },
   ];
-  const linkStyle = { color: "white", textDecoration: "none" };
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none",
+  };
+
   const dayOfTheWeek =
     (todaysDate.$W === 1 && "Monday") ||
     (todaysDate.$W === 2 && "Tuesday") ||

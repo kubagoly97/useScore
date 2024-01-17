@@ -33,7 +33,7 @@ function ClubCard({ club }) {
         <Item
           sx={{
             bgcolor: "#16DB65",
-            border: "2px dashed #0D2818",
+            border: "1px dashed #0D2818",
             "&:hover": {
               backgroundColor: "#04471C",
               opacity: [0.8, 0.8, 0.8],

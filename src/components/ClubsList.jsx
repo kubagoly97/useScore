@@ -44,7 +44,7 @@ export default function ClubsList() {
           maxWidth: "100%",
           backgroundColor: "rgba(0,0,0,0.4)",
           borderRadius: "6px",
-          border: "2px dashed #0D2818",
+          border: "0.5px dashed #0D2818",
         }}
       >
         {yourClubsList.length &&

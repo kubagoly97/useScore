@@ -129,20 +129,3 @@ export default function HomePage() {
     </>
   );
 }
-
-function TodaysGames() {
-  const { language, todaysGames } = useProps();
-  return (
-    <div>
-      Today are playing:
-      <ul>
-        {todaysGames.length > 0 && (
-          <li>
-            {todaysGames[0].match_hometeam_name} -{" "}
-            {todaysGames[0].match_awayteam_name} | {todaysGames[0].match_time}
-          </li>
-        )}
-      </ul>
-    </div>
-  );
-}

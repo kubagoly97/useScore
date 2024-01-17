@@ -33,9 +33,9 @@ export default function FavouriteMatchesList() {
         dense
         sx={{
           flexGrow: 1,
-          backgroundColor: "rgba(0,0,0,0.2)",
-          borderTop: "2px dashed #0D2818",
-          borderBottom: "2px dashed #0D2818",
+          // backgroundColor: "rgba(0,0,0,0.2)",
+          // borderTop: "2px dashed #0D2818",
+          // borderBottom: "2px dashed #0D2818",
         }}
       >
         {yourFollowingMatches.length &&
@@ -43,6 +43,10 @@ export default function FavouriteMatchesList() {
             const labelId = `checkbox-list-secondary-label-${match}`;
             return (
               <ListItem
+                sx={{
+                  borderBottom: "0.5px solid grey",
+                  padding: "3px 0px 3px 0px",
+                }}
                 key={i}
                 disablePadding
                 secondaryAction={
