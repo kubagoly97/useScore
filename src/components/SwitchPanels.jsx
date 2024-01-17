@@ -48,6 +48,11 @@ export default function SwitchPanels() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { yourClubsList, yourFollowingMatches, language } = useProps();
+  const noClubsAndMatchesStyle = {
+    fontWeight: "100",
+    color: "#16DB65",
+    paddingLeft: "1em",
+  };
 
   const handleChange = (event, newValue) => {
     setIsLoading(true);
@@ -98,7 +103,7 @@ export default function SwitchPanels() {
             <ClubsList />
           </>
         ) : (
-          <span style={{ color: "#16DB65" }}>
+          <span style={noClubsAndMatchesStyle}>
             {language
               ? `You don't have any teams on your list`
               : "Nie masz jeszcze zespołu na liście"}
@@ -113,7 +118,7 @@ export default function SwitchPanels() {
             <FavouriteMatchesList />
           </>
         ) : (
-          <span style={{ color: "#16DB65" }}>
+          <span style={noClubsAndMatchesStyle}>
             {language
               ? `You don't have any matches on your list`
               : "Nie masz jeszcze meczu na liście"}
