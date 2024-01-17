@@ -59,7 +59,10 @@ export default function SwitchPanels() {
     <Box
       sx={{
         width: 1,
-        "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
+        "& .MuiBox-root.css-19kzrtu": {
+          paddingRight: "0px",
+          paddingLeft: "0px",
+        },
       }}
     >
       <Box sx={{ borderBottom: 0.5, borderColor: "divider" }}>
