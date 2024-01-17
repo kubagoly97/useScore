@@ -3,6 +3,10 @@
   /* margin: 0 auto; */
   /* text-align: center; */
 }
+.css-8p0td8 {
+  padding-left: 0x;
+  padding-right: 0x;
+}
 .MuiContainer-root.MuiContainer-maxWidthXl.css-1knfaro-MuiContainer-root {
   padding-left: 0;
   padding-right: 0;
@@ -103,8 +107,4 @@ html {
 .btnLoginAndRegister:hover {
   cursor: pointer;
   color: #72de9d;
-}
-.css-r9z1sk-MuiContainer-root {
-  padding-left: 0px;
-  padding-right: 0px;
 }
