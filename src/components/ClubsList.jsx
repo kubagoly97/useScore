@@ -37,14 +37,9 @@ export default function ClubsList() {
         component="div"
         dense
         sx={{
-          paddingLeft: "0px",
-          marginTop: "10px",
           flexGrow: 1,
-          width: "100%",
-          maxWidth: "100%",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          borderRadius: "6px",
-          border: "0.5px dashed #0D2818",
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: "3px",
         }}
       >
         {yourClubsList.length &&
