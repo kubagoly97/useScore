@@ -34,6 +34,7 @@ export function LeagueDetailsInMatchComponent({ match, setShowTable }) {
       match.league_name.includes("Beker") ||
       match.league_name.includes("Trophy") ||
       match.league_name.includes("Club Friendlies") ||
+      match.league_name.includes("Round of") ||
       match.league_name.includes("Coupe") ? (
         <img
           style={imageInSectionStyle}

@@ -25,7 +25,7 @@ export default function LeagueTable({ table, club }) {
 
   return (
     <>
-      {table[0].country_name === "eurocups" ? (
+      {table.length && table[0].country_name === "eurocups" ? (
         <h3 style={{ color: "white" }}>
           {table[0].league_round} - {table[0].league_name}
         </h3>

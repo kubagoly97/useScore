@@ -275,6 +275,7 @@ export const ContextProvider = ({ children }) => {
     (todaysDate.$W === 5 && "Piątek") ||
     (todaysDate.$W === 6 && "Sobota") ||
     (todaysDate.$W === 7 && "Niedziela");
+
   const fetchData = async (id) => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_teams&league_id=${id}&APIkey=${

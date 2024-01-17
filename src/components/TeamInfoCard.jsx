@@ -29,7 +29,7 @@ export default function TeamInfoCard({ club }) {
     const json = await res.json();
   };
 
-  const typographyStyle = { color: "white", fontWeight: "100" };
+  const typographyStyle = { color: "rgb(210, 210, 210)", fontWeight: "100" };
 
   return (
     <Card

@@ -5,7 +5,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import useProps from "../hooks/useProps";
 import { Link } from "react-router-dom";
 
@@ -19,10 +18,7 @@ export default function TopScorersTable({ topScorers }) {
 
   return (
     <>
-      <TableContainer
-        component={Paper}
-        style={{ backgroundColor: "#0D2818", boxShadow: "none" }}
-      >
+      <TableContainer style={{ backgroundColor: "#0D2818", boxShadow: "none" }}>
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow style={{ backgroundColor: "black" }}>

@@ -147,6 +147,7 @@ export default function BasicGrid2() {
                               club={clubInfo[0]}
                               setShowTable={setShowTable}
                               showTable={showTable}
+                              table={table}
                             />
                           )
                       )
