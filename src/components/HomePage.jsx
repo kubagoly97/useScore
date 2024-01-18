@@ -14,6 +14,7 @@ import { LogoutButtonStackOnHomePage } from "./LogoutButtonStackOnHomePage";
 import useProps from "../hooks/useProps";
 import Fade from "@mui/material/Fade";
 import TodaysGamesList from "./TodaysGamesList";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function HomePage() {
   const { user } = useAuthContext();
@@ -112,16 +113,23 @@ export default function HomePage() {
                               .charAt(0)
                               .toUpperCase()}${user.email
                               .slice(0, user.email.indexOf("@"))
-                              .slice(1)}`
+                              .slice(1)} `
                           : `Witaj ponownie, ${user.email
                               .slice(0, user.email.indexOf("@"))
                               .charAt(0)
                               .toUpperCase()}${user.email
                               .slice(0, user.email.indexOf("@"))
-                              .slice(1)}`
+                              .slice(1)} `
                         : language
                         ? `Welcome on useScore, choose the league!`
                         : `Witaj na useScore, wybierz ligę!`}
+                      {user ? (
+                        <span>
+                          <PersonIcon fontSize="small" />
+                        </span>
+                      ) : (
+                        <></>
+                      )}
                     </h1>
                     {!user && <LogoutButtonStackOnHomePage />}
                     {user ? <SwitchPanels /> : <></>}

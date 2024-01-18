@@ -29,12 +29,15 @@ export const ContextProvider = ({ children }) => {
   });
   // ---------------------------
   const date = new Date();
+
   const [value, setValue] = useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
   );
+
   const [todaysDate, setTodaysDate] = useState(
     dayjs(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
   );
+
   const everyLeagues = [
     {
       leagues: [
@@ -42,7 +45,6 @@ export const ContextProvider = ({ children }) => {
         { leagueName: "Championship", leagueId: 153 },
         { leagueName: "League One", leagueId: 154 },
         { leagueName: "League Two", leagueId: 145 },
-        { leagueName: "FA Cup", leagueId: 146 },
       ],
       countryBadge: "Anglia.png",
       englishCountryName: "England",
@@ -251,6 +253,24 @@ export const ContextProvider = ({ children }) => {
       countryBadge: "Denmark.png",
       englishCountryName: "Denmark",
       polishCountryName: "Dania",
+    },
+    {
+      leagues: [
+        { leagueName: "Allsvenskan", leagueId: 307 },
+        { leagueName: "Superettan", leagueId: 305 },
+      ],
+      countryBadge: "Sweden.png",
+      englishCountryName: "Sweden",
+      polishCountryName: "Szwecja",
+    },
+    {
+      leagues: [
+        { leagueName: "Premier Division", leagueId: 200 },
+        { leagueName: "First Division", leagueId: 198 },
+      ],
+      countryBadge: "Ireland.png",
+      englishCountryName: "Ireland",
+      polishCountryName: "Irlandia",
     },
   ];
   const linkStyle = {
