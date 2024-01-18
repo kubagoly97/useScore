@@ -84,6 +84,7 @@ export default function SwitchGameDetails({
           "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
         }}
       >
+        <button onClick={() => console.log(match)}>check</button>
         <Box
           sx={{
             borderBottom: 0.5,
@@ -128,7 +129,7 @@ export default function SwitchGameDetails({
           </Tabs>
         </Box>
         <CustomTabPanel component={"div"} value={value} index={0}>
-          {match.match_referee ? (
+          {match.lineup.home.starting_lineups.length ? (
             <DetailsTab match={match} />
           ) : (
             <MoreInfoBeforeGameComponent />

@@ -47,7 +47,10 @@ function FavouriteMatchButton({ match }) {
         >
           {language
             ? (!match.match_status.length &&
-                `${match.match_time} | ${match.match_date}`) ||
+                `${match.match_date.slice(8, 10)}-${match.match_date.slice(
+                  5,
+                  7
+                )} | ${match.match_time}`) ||
               (match.match_status == "Finished" && "Finished") ||
               (match.match_status == "After ET" && "Finished") ||
               (match.match_status == "Aban." && "Postponed") ||
@@ -59,7 +62,10 @@ function FavouriteMatchButton({ match }) {
                 </span>
               ))
             : (!match.match_status.length &&
-                `${match.match_time} | ${match.match_date}`) ||
+                `${match.match_date.slice(8, 10)}-${match.match_date.slice(
+                  5,
+                  7
+                )} | ${match.match_time}`) ||
               (match.match_status == "Finished" && "Koniec") ||
               (match.match_status == "Aban." && "Przełozony") ||
               (match.match_status == "After ET" && "Koniec") ||
