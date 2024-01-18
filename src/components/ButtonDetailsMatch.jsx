@@ -8,12 +8,12 @@ import Grid from "@mui/material/Grid";
 export function ButtonDetailsMatch({ match, labelId, func }) {
   return (
     <ListItemButton onClick={func}>
-      <FavouriteMatchButton match={match} labelId={labelId} />
+      <FavouriteMatchButton match={match} />
     </ListItemButton>
   );
 }
 
-function FavouriteMatchButton({ match, labelId }) {
+function FavouriteMatchButton({ match }) {
   const badgeStyle = { width: 38, height: 38, marginRight: "10px" };
   const { language } = useProps();
 
@@ -67,7 +67,7 @@ function FavouriteMatchButton({ match, labelId }) {
               (match.match_status.length && (
                 <span style={{ fontSize: "22px", color: "white" }}>
                   <CircleIcon fontSize="small" sx={{ color: "red" }} />{" "}
-                  {match.match_status} '
+                  {match.match_status}'
                 </span>
               ))}
         </Grid>
