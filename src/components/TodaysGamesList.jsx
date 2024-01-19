@@ -8,7 +8,11 @@ import Grid from "@mui/material/Grid";
 
 function renderRow(props) {
   const { index, style, data } = props;
-  const matchStyle = { textAlign: "center", color: "white", fontWeight: "100" };
+  const matchStyle = {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "100",
+  };
   const { linkStyle } = useProps();
 
   return (
@@ -19,7 +23,8 @@ function renderRow(props) {
           <Grid item xs={2} sx={matchStyle}>
             {!data[index].match_status.length
               ? data[index].match_time
-              : `${data[index].match_status}'`}
+              : `${data[index].match_status}`}
+            {data[index].match_status === "1" && "'"}
           </Grid>
           <Grid item xs={1}>
             <img
