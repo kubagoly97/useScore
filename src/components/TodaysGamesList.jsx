@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { FixedSizeList } from "react-window";
 import useProps from "../hooks/useProps";
 import Grid from "@mui/material/Grid";
+import { MatchStatus } from "./MatchStatus";
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -13,7 +14,7 @@ function renderRow(props) {
     color: "white",
     fontWeight: "100",
   };
-  const { linkStyle } = useProps();
+  const { linkStyle, language } = useProps();
 
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
@@ -21,10 +22,23 @@ function renderRow(props) {
         {console.log("itemData: ", data)}
         <Grid container spacing={2}>
           <Grid item xs={2} sx={matchStyle}>
-            {!data[index].match_status.length
-              ? data[index].match_time
-              : `${data[index].match_status}`}
-            {data[index].match_status === "1" && "'"}
+            {language ? (
+              <MatchStatus
+                match={data[index]}
+                finished={"Finish."}
+                postponed={"Post."}
+                halfTime={"Half Time"}
+                favourites={false}
+              />
+            ) : (
+              <MatchStatus
+                match={data[index]}
+                finished={"Koniec"}
+                postponed={"Przeł."}
+                halfTime={"Przerwa"}
+                favourites={false}
+              />
+            )}
           </Grid>
           <Grid item xs={1}>
             <img
