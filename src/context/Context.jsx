@@ -5,6 +5,7 @@ export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const { user } = useAuthContext();
+
   const [showClubList, setShowClubList] = useState(false);
   // -------------------------------
   const [isLoading, setIsLoading] = useState(false);
@@ -327,6 +328,7 @@ export const ContextProvider = ({ children }) => {
     setShowClubList(true);
     setIsLoading(false);
   };
+
   const fetchTodaysGames = async (id) => {
     setIsLoading(true);
     const url = `https://apiv3.apifootball.com/?action=get_events&from=${

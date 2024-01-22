@@ -14,19 +14,26 @@ export function OneLeague({ league }) {
   const handleClick = () => {
     setOpen(!open);
   };
-  const expandStyle = { color: "rgb(209, 207, 207)" };
+  const expandStyle = { color: "rgb(209, 207, 207)", fontSize: "1em" };
   return (
     <>
       <ListItemButton
         onClick={handleClick}
-        sx={{ borderBottom: "0.5px solid rgb(30, 30, 30)" }}
+        sx={{
+          borderBottom: "0.5px solid rgb(30, 30, 30)",
+        }}
       >
         <CountryBadge src={league.countryBadge} />
         <ListItemText
           primary={
             language ? league.englishCountryName : league.polishCountryName
           }
-          sx={{ color: "white" }}
+          sx={{
+            color: "white",
+            "& .css-10hburv-MuiTypography-root": {
+              fontWeight: 100,
+            },
+          }}
         />
         {open ? (
           <ExpandLess sx={expandStyle} />
@@ -42,10 +49,12 @@ export function OneLeague({ league }) {
                 fetchData(oneLeague.leagueId);
                 fetchTodaysGames(oneLeague.leagueId);
               }}
-              sx={{ pl: 4 }}
+              sx={{ pl: 4, fontSize: "10px" }}
             >
               <ListItemText
-                sx={{ color: "rgb(209, 207, 207)", fontWeight: "100" }}
+                sx={{
+                  color: "rgb(209, 207, 207)",
+                }}
                 primary={oneLeague.leagueName}
               />
             </ListItemButton>

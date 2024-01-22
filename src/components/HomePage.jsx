@@ -64,10 +64,11 @@ export default function HomePage() {
       <Fade in={homePageFootballBar} timeout={750}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={0.9}>
-            <Grid xs={0} sm={4} md={3} sx={{ marginTop: "2em" }}>
+            <Grid xs={0} sm={0} md={1}></Grid>
+            <Grid xs={0} sm={4} md={2} sx={{ marginTop: "2em" }}>
               <LeaguesList />
             </Grid>
-            <Grid xs={11.5} sm={8} md={9}>
+            <Grid xs={11.5} sm={7.8} md={7}>
               {showClubList ? (
                 <Fade in={!isLoading} timeout={500}>
                   <Box
@@ -136,6 +137,7 @@ export default function HomePage() {
                   </Container>
                 </Fade>
               )}
+              <Grid xs={0} sm={0} md={2}></Grid>
             </Grid>
           </Grid>
         </Box>
