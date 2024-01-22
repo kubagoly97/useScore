@@ -14,7 +14,7 @@ export function OneLeague({ league }) {
   const handleClick = () => {
     setOpen(!open);
   };
-
+  const expandStyle = { color: "rgb(209, 207, 207)" };
   return (
     <>
       <ListItemButton
@@ -28,7 +28,11 @@ export function OneLeague({ league }) {
           }
           sx={{ color: "white" }}
         />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {open ? (
+          <ExpandLess sx={expandStyle} />
+        ) : (
+          <ExpandMore sx={expandStyle} />
+        )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
@@ -41,7 +45,7 @@ export function OneLeague({ league }) {
               sx={{ pl: 4 }}
             >
               <ListItemText
-                sx={{ color: "white", fontWeight: "100" }}
+                sx={{ color: "rgb(209, 207, 207)", fontWeight: "100" }}
                 primary={oneLeague.leagueName}
               />
             </ListItemButton>
