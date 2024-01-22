@@ -8,6 +8,7 @@ import LeaguesList from "./LeaguesList";
 import LeaguesListOnNotHomePage from "./LeagueListOnNotHomePage";
 import { useState } from "react";
 import useProps from "../hooks/useProps";
+import LeaguesListOnFootballBar from "./LeaguesListOnFootballBar";
 
 export default function LeftDrawer() {
   const [state, setState] = useState({
@@ -41,7 +42,7 @@ export default function LeftDrawer() {
     >
       {homePageFootballBar ? (
         <>
-          <LeaguesList />
+          <LeaguesListOnFootballBar />
         </>
       ) : (
         <LeaguesListOnNotHomePage />

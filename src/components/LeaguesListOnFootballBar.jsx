@@ -9,9 +9,10 @@ import { Box } from "@mui/system";
 import { Subheader } from "./Subheader";
 import useProps from "../hooks/useProps";
 import { YouTubeLink } from "./YouTubeLink";
+import { CountrySectionOnLeagueList } from "./CountrySectionOnLeagueList";
 import { OneLeague } from "./OneLeague";
 
-export default function LeaguesList() {
+export default function LeaguesListOnFootballBar() {
   const { user } = useAuthContext();
   const { setShowClubList, language, everyLeagues, linkStyle } = useProps();
   const { logout } = useLogout();
@@ -64,9 +65,11 @@ export default function LeaguesList() {
             </>
           )}
           {everyLeagues.map((league, i) => (
-            <OneLeague
-              countryName={league.englishCountryName}
-              league={league}
+            <CountrySectionOnLeagueList
+              countryBadge={league.countryBadge}
+              englishCountryName={league.englishCountryName}
+              polishCountryName={league.polishCountryName}
+              leagues={league.leagues}
             />
           ))}
           <YouTubeLink />
