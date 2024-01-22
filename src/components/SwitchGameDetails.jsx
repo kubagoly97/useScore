@@ -84,7 +84,6 @@ export default function SwitchGameDetails({
           "& .MuiBox-root.css-19kzrtu": { padding: "20px 0px 20px 0px" },
         }}
       >
-        <button onClick={() => console.log(match)}>check</button>
         <Box
           sx={{
             borderBottom: 0.5,

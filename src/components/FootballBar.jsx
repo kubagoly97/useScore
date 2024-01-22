@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -18,7 +17,8 @@ export default function FootballBar() {
     <AppBar
       position="sticky"
       sx={{
-        borderRadius: "2px",
+        padding: "2px 0px 2px 0px",
+        borderRadius: "5px",
         background: "linear-gradient(2deg ,#0D2818, #058C42 )",
       }}
     >

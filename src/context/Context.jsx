@@ -249,6 +249,7 @@ export const ContextProvider = ({ children }) => {
       leagues: [
         { leagueName: "Superliga", leagueId: 135 },
         { leagueName: "1. Division", leagueId: 138 },
+        { leagueName: "2. Division", leagueId: 136 },
       ],
       countryBadge: "Denmark.png",
       englishCountryName: "Denmark",
@@ -271,6 +272,25 @@ export const ContextProvider = ({ children }) => {
       countryBadge: "Ireland.png",
       englishCountryName: "Ireland",
       polishCountryName: "Irlandia",
+    },
+    {
+      leagues: [
+        { leagueName: "Superliga", leagueId: 31 },
+        { leagueName: "1st Division", leagueId: 32 },
+        { leagueName: "2nd Division", leagueId: 33 },
+      ],
+      countryBadge: "Albania.png",
+      englishCountryName: "Albania",
+      polishCountryName: "Albania",
+    },
+    {
+      leagues: [
+        { leagueName: "1 Lyga", leagueId: 227 },
+        { leagueName: "A Lyga", leagueId: 226 },
+      ],
+      countryBadge: "Lithuania.jpeg",
+      englishCountryName: "Lithuania",
+      polishCountryName: "Litwa",
     },
   ];
   const linkStyle = {
