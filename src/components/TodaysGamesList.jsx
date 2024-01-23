@@ -19,7 +19,6 @@ function renderRow(props) {
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
       <ListItemButton>
-        {console.log("itemData: ", data)}
         <Grid container spacing={2}>
           <Grid item xs={2} sx={matchStyle}>
             {language ? (

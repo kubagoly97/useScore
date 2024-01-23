@@ -93,9 +93,9 @@ export default function TeamSquadOnBasicGrid2({ club, playersType }) {
                     <a
                       href={`player?play=${player.player_key}`}
                       style={{
-                        color: "white",
+                        color: "rgb(194, 194, 194)",
                         textDecoration: "none",
-                        fontWeight: "bold",
+                        fontWeight: "300",
                         cursor: "pointer",
                       }}
                     >

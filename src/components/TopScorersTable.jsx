@@ -13,7 +13,7 @@ export default function TopScorersTable({ topScorers }) {
 
   const tableCellStyle = {
     color: "white",
-    fontWeight: "100",
+    fontWeight: "400",
   };
 
   return (
@@ -36,12 +36,14 @@ export default function TopScorersTable({ topScorers }) {
           <TableBody>
             {topScorers.map((scorer, i) => (
               <TableRow
+                key={i}
                 style={{
                   color: "white",
                 }}
               >
                 <TableCell
-                  style={{ color: "white" }}
+                  key={i}
+                  style={{ color: "rgb(194, 194, 194)", fontWeight: "100" }}
                   component="th"
                   scope="row"
                 >
@@ -60,7 +62,7 @@ export default function TopScorersTable({ topScorers }) {
                     {scorer.team_name}
                   </a>
                 </TableCell>
-                <TableCell style={tableCellStyle} align="right">
+                <TableCell key={i} style={tableCellStyle} align="right">
                   {scorer.goals}
                 </TableCell>
               </TableRow>

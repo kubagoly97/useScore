@@ -33,6 +33,7 @@ export function OneLeague({ league }) {
             "& .css-10hburv-MuiTypography-root": {
               fontWeight: 100,
             },
+            "& .css-yb0lig": { fontWeight: 100 },
           }}
         />
         {open ? (

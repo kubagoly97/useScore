@@ -67,6 +67,7 @@ export default function LeaguesList() {
             <OneLeague
               countryName={league.englishCountryName}
               league={league}
+              key={i}
             />
           ))}
           <YouTubeLink />
