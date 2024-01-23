@@ -68,7 +68,7 @@ export default function HomePage() {
             <Grid xs={0} sm={4} md={2} sx={{ marginTop: "2em" }}>
               <LeaguesList />
             </Grid>
-            <Grid xs={11.6} sm={7.8} md={7}>
+            <Grid xs={11.4} sm={7.8} md={7}>
               {showClubList ? (
                 <Fade in={!isLoading} timeout={500}>
                   <Box

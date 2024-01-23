@@ -6,20 +6,34 @@ import { FixedSizeList } from "react-window";
 import useProps from "../hooks/useProps";
 import Grid from "@mui/material/Grid";
 import { MatchStatus } from "./MatchStatus";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useAuthContext } from "../hooks/useAuthContext";
+import Button from "@mui/material/Button";
 
 function renderRow(props) {
   const { index, style, data } = props;
+
   const matchStyle = {
     textAlign: "center",
     color: "white",
     fontWeight: "100",
   };
-  const { linkStyle, language } = useProps();
+  const { linkStyle, language, handleAddMatchOnYourFavouriteList } = useProps();
+  const { user } = useAuthContext();
 
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
       <ListItemButton>
         <Grid container spacing={2}>
+          {user ? (
+            <Grid item xs={1}>
+              <AddCircleOutlineIcon
+              // onClick={() => handleAddMatchOnYourFavouriteList(data[index])}
+              />
+            </Grid>
+          ) : (
+            <></>
+          )}
           <Grid item xs={2} sx={matchStyle}>
             {language ? (
               <MatchStatus
@@ -46,7 +60,7 @@ function renderRow(props) {
               style={{ width: "25px" }}
             />
           </Grid>
-          <Grid item xs={8} sx={matchStyle}>
+          <Grid item xs={user ? 7 : 6} sx={matchStyle}>
             <a href={`/${data[index].match_hometeam_id}`} style={linkStyle}>
               {data[index].match_hometeam_name}
             </a>{" "}

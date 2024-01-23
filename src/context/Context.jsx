@@ -352,6 +352,44 @@ export const ContextProvider = ({ children }) => {
     const resJson = await res.json();
     setTotodaysGames(resJson);
   };
+  const handleAddMatchOnYourFavouriteList = async (match) => {
+    const team_home_badge = match.team_home_badge;
+    const team_away_badge = match.team_away_badge;
+    const match_hometeam_score = match.match_hometeam_score;
+    const match_awayteam_score = match.match_awayteam_score;
+    const match_date = match.match_date;
+    const match_time = match.match_time;
+    const match_id = match.match_id;
+    setYourFollowingMatches([
+      ...yourFollowingMatches,
+      {
+        team_home_badge: match.team_home_badge,
+        team_away_badge: match.team_away_badge,
+        match_hometeam_score: match.match_hometeam_score,
+        match_awayteam_score: match.match_awayteam_score,
+        match_date: match.match_date,
+        match_time: match.match_time,
+        match_id: match.match_id,
+      },
+    ]);
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}matchesList`, {
+      method: "POST",
+      body: JSON.stringify({
+        team_home_badge,
+        team_away_badge,
+        match_hometeam_score,
+        match_awayteam_score,
+        match_date,
+        match_time,
+        match_id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    const json = await res.json();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -411,6 +449,7 @@ export const ContextProvider = ({ children }) => {
         todaysDate,
         dayOfTheWeek,
         polishDayOfTheWeek,
+        handleAddMatchOnYourFavouriteList,
       }}
     >
       {children}
