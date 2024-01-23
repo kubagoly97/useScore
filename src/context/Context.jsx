@@ -42,6 +42,16 @@ export const ContextProvider = ({ children }) => {
   const everyLeagues = [
     {
       leagues: [
+        { leagueName: "UEFA Champions League", leagueId: 3 },
+        { leagueName: "UEFA Europa Cup", leagueId: 4 },
+        { leagueName: "UEFA Europa Conference League", leagueId: 683 },
+      ],
+      countryBadge: "Inter.png",
+      englishCountryName: "Eurocups",
+      polishCountryName: "Puchary europejskie",
+    },
+    {
+      leagues: [
         { leagueName: "Premier League", leagueId: 152 },
         { leagueName: "Championship", leagueId: 153 },
         { leagueName: "League One", leagueId: 154 },

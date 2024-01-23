@@ -14,7 +14,11 @@ export function OneLeague({ league }) {
   const handleClick = () => {
     setOpen(!open);
   };
-  const expandStyle = { color: "rgb(209, 207, 207)", fontSize: "1em" };
+  const expandStyle = {
+    color: "black",
+    fontSize: "1.5em",
+    "&:hover": { color: "rgb(209, 207, 207)" },
+  };
   return (
     <>
       <ListItemButton
