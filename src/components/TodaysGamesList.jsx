@@ -55,14 +55,16 @@ function renderRow(props) {
                   </Tooltip>
                 </Fade>
               ) : (
-                <Tooltip title="Add to favourites">
-                  <AddCircleOutlineIcon
-                    sx={{ fontSize: "22px" }}
-                    onClick={() =>
-                      handleAddMatchOnYourFavouriteList(data[index])
-                    }
-                  />
-                </Tooltip>
+                <Fade in={!ifAddOrRemove}>
+                  <Tooltip title="Add to favourites">
+                    <AddCircleOutlineIcon
+                      sx={{ fontSize: "22px" }}
+                      onClick={() =>
+                        handleAddMatchOnYourFavouriteList(data[index])
+                      }
+                    />
+                  </Tooltip>
+                </Fade>
               )}
             </Grid>
           ) : (
