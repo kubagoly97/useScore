@@ -391,6 +391,23 @@ export const ContextProvider = ({ children }) => {
     const json = await res.json();
   };
 
+  const handleDelete = async (id) => {
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}matchesList/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    if (res.ok) {
+      setYourFollowingMatches(yourFollowingMatches.filter((c) => c._id !== id));
+    } else {
+      console.log("ERROR");
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}clubList`, {
@@ -450,6 +467,7 @@ export const ContextProvider = ({ children }) => {
         dayOfTheWeek,
         polishDayOfTheWeek,
         handleAddMatchOnYourFavouriteList,
+        handleDelete,
       }}
     >
       {children}

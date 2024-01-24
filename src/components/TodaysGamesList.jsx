@@ -8,7 +8,8 @@ import Grid from "@mui/material/Grid";
 import { MatchStatus } from "./MatchStatus";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useAuthContext } from "../hooks/useAuthContext";
-import Button from "@mui/material/Button";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import Fade from "@mui/material/Fade";
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -18,8 +19,18 @@ function renderRow(props) {
     color: "white",
     fontWeight: "100",
   };
-  const { linkStyle, language, handleAddMatchOnYourFavouriteList } = useProps();
+  const {
+    linkStyle,
+    language,
+    handleAddMatchOnYourFavouriteList,
+    yourFollowingMatches,
+    handleDelete,
+  } = useProps();
   const { user } = useAuthContext();
+
+  const ifAddOrRemove = yourFollowingMatches
+    .map((m) => m.match_id)
+    .includes(data[index].match_id);
 
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
@@ -27,9 +38,25 @@ function renderRow(props) {
         <Grid container spacing={2}>
           {user ? (
             <Grid item xs={1}>
-              <AddCircleOutlineIcon
-              // onClick={() => handleAddMatchOnYourFavouriteList(data[index])}
-              />
+              {ifAddOrRemove ? (
+                <Fade in={ifAddOrRemove}>
+                  <RemoveCircleOutlineIcon
+                    sx={{ fontSize: "22px" }}
+                    onClick={() =>
+                      handleDelete(
+                        yourFollowingMatches.find(
+                          ({ match_id }) => match_id === data[index].match_id
+                        )._id
+                      )
+                    }
+                  />
+                </Fade>
+              ) : (
+                <AddCircleOutlineIcon
+                  sx={{ fontSize: "22px" }}
+                  onClick={() => handleAddMatchOnYourFavouriteList(data[index])}
+                />
+              )}
             </Grid>
           ) : (
             <></>

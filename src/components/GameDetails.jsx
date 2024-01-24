@@ -21,70 +21,14 @@ export function GameDetails({
 }) {
   const { user } = useAuthContext();
   const {
-    setYourFollowingMatches,
     yourFollowingMatches,
     value,
     handleAddMatchOnYourFavouriteList,
+    handleDelete,
   } = useProps();
 
   const [headToHead, setHeadToHead] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
-  // const handleAddMatchOnYourFavouriteList = async () => {
-  //   const team_home_badge = match.team_home_badge;
-  //   const team_away_badge = match.team_away_badge;
-  //   const match_hometeam_score = match.match_hometeam_score;
-  //   const match_awayteam_score = match.match_awayteam_score;
-  //   const match_date = match.match_date;
-  //   const match_time = match.match_time;
-  //   const match_id = match.match_id;
-  //   setYourFollowingMatches([
-  //     ...yourFollowingMatches,
-  //     {
-  //       team_home_badge: match.team_home_badge,
-  //       team_away_badge: match.team_away_badge,
-  //       match_hometeam_score: match.match_hometeam_score,
-  //       match_awayteam_score: match.match_awayteam_score,
-  //       match_date: match.match_date,
-  //       match_time: match.match_time,
-  //       match_id: match.match_id,
-  //     },
-  //   ]);
-  //   const res = await fetch(`${import.meta.env.VITE_BASE_URL}matchesList`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       team_home_badge,
-  //       team_away_badge,
-  //       match_hometeam_score,
-  //       match_awayteam_score,
-  //       match_date,
-  //       match_time,
-  //       match_id,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${user.token}`,
-  //     },
-  //   });
-  //   const json = await res.json();
-  // };
-
-  const handleDelete = async (id) => {
-    const res = await fetch(
-      `${import.meta.env.VITE_BASE_URL}matchesList/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
-    if (res.ok) {
-      setYourFollowingMatches(yourFollowingMatches.filter((c) => c._id !== id));
-    } else {
-      console.log("ERROR");
-    }
-  };
 
   useEffect(() => {
     function isThisTeam(team) {
