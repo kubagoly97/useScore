@@ -303,6 +303,16 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Lithuania",
       polishCountryName: "Litwa",
     },
+    {
+      leagues: [
+        { leagueName: "Serie A", leagueId: 99 },
+        { leagueName: "Serie B", leagueId: 75 },
+        { leagueName: "Serie C", leagueId: 79 },
+      ],
+      countryBadge: "Brazil.png",
+      englishCountryName: "Brazil",
+      polishCountryName: "Brazylia",
+    },
   ];
   const linkStyle = {
     color: "white",

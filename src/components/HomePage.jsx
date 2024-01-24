@@ -25,6 +25,13 @@ export default function HomePage() {
     fontWeight: "100",
   };
 
+  const username = user
+    ? `${user.email
+        .slice(0, user.email.indexOf("@"))
+        .charAt(0)
+        .toUpperCase()}${user.email.slice(0, user.email.indexOf("@")).slice(1)}`
+    : "username";
+
   const {
     setPlayerData,
     setMatchesData,
@@ -109,18 +116,8 @@ export default function HomePage() {
                     >
                       {user
                         ? language
-                          ? `Welcome back, ${user.email
-                              .slice(0, user.email.indexOf("@"))
-                              .charAt(0)
-                              .toUpperCase()}${user.email
-                              .slice(0, user.email.indexOf("@"))
-                              .slice(1)} `
-                          : `Witaj ponownie, ${user.email
-                              .slice(0, user.email.indexOf("@"))
-                              .charAt(0)
-                              .toUpperCase()}${user.email
-                              .slice(0, user.email.indexOf("@"))
-                              .slice(1)} `
+                          ? `Welcome back, ${username} `
+                          : `Witaj ponownie, ${username} `
                         : language
                         ? `Welcome on useScore, choose the league!`
                         : `Witaj na useScore, wybierz ligę!`}

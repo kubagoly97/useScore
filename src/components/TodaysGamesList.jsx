@@ -10,6 +10,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useAuthContext } from "../hooks/useAuthContext";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import Fade from "@mui/material/Fade";
+import Tooltip from "@mui/material/Tooltip";
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -40,22 +41,28 @@ function renderRow(props) {
             <Grid item xs={1}>
               {ifAddOrRemove ? (
                 <Fade in={ifAddOrRemove}>
-                  <RemoveCircleOutlineIcon
-                    sx={{ fontSize: "22px" }}
-                    onClick={() =>
-                      handleDelete(
-                        yourFollowingMatches.find(
-                          ({ match_id }) => match_id === data[index].match_id
-                        )._id
-                      )
-                    }
-                  />
+                  <Tooltip title="Remove from favourites">
+                    <RemoveCircleOutlineIcon
+                      sx={{ fontSize: "22px" }}
+                      onClick={() =>
+                        handleDelete(
+                          yourFollowingMatches.find(
+                            ({ match_id }) => match_id === data[index].match_id
+                          )._id
+                        )
+                      }
+                    />
+                  </Tooltip>
                 </Fade>
               ) : (
-                <AddCircleOutlineIcon
-                  sx={{ fontSize: "22px" }}
-                  onClick={() => handleAddMatchOnYourFavouriteList(data[index])}
-                />
+                <Tooltip title="Add to favourites">
+                  <AddCircleOutlineIcon
+                    sx={{ fontSize: "22px" }}
+                    onClick={() =>
+                      handleAddMatchOnYourFavouriteList(data[index])
+                    }
+                  />
+                </Tooltip>
               )}
             </Grid>
           ) : (
@@ -130,7 +137,11 @@ export default function TodaysGamesList() {
           itemSize={40}
           itemCount={todaysGames.length}
           overscanCount={5}
-          itemData={todaysGames}
+          itemData={todaysGames
+            .sort((a, b) => a.match_time.slice(3, 5) - b.match_time.slice(3, 5))
+            .sort(
+              (a, b) => a.match_time.slice(0, 2) - b.match_time.slice(0, 2)
+            )}
         >
           {renderRow}
         </FixedSizeList>
