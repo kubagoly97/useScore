@@ -19,11 +19,6 @@ import PersonIcon from "@mui/icons-material/Person";
 export default function HomePage() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const dateStyle = {
-    fontSize: "13px",
-    color: "rgb(171, 171, 171)",
-    fontWeight: "100",
-  };
 
   const username = user
     ? `${user.email
@@ -44,6 +39,7 @@ export default function HomePage() {
     todaysDate,
     dayOfTheWeek,
     polishDayOfTheWeek,
+    dateStyle,
   } = useProps();
 
   useEffect(function () {

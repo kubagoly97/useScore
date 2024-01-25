@@ -318,6 +318,11 @@ export const ContextProvider = ({ children }) => {
     color: "white",
     textDecoration: "none",
   };
+  const dateStyle = {
+    fontSize: "13px",
+    color: "rgb(171, 171, 171)",
+    fontWeight: "100",
+  };
 
   const dayOfTheWeek =
     (todaysDate.$W === 1 && "Monday") ||
@@ -478,6 +483,7 @@ export const ContextProvider = ({ children }) => {
         polishDayOfTheWeek,
         handleAddMatchOnYourFavouriteList,
         handleDelete,
+        dateStyle,
       }}
     >
       {children}

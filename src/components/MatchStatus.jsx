@@ -11,11 +11,7 @@ export function MatchStatus({
   return (
     <span>
       {favourites
-        ? (!match.match_status.length &&
-            `${match.match_date.slice(8, 10)}-${match.match_date.slice(
-              5,
-              7
-            )} | ${match.match_time}`) ||
+        ? (!match.match_status.length && `${match.match_time}`) ||
           (match.match_status == "Finished" && finished) ||
           (match.match_status == "After ET" && finished) ||
           (match.match_status == "Aban." && postponed) ||
