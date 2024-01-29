@@ -92,7 +92,7 @@ export function GameDetails({
           handleShowTable={handleShowTable}
           match={match}
           setShowTable={setShowTable}
-        />
+        />{" "}
         <h1>
           <a style={teamNameStyle} href={`/${match.match_hometeam_id}`}>
             {" "}

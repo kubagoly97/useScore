@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import useProps from "../hooks/useProps";
+import { StatusBadgeH2H } from "./StatusBadgeH2H";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#0D2818",
@@ -25,151 +26,17 @@ export function HeadToHead({ club, headToHead }) {
                 key={i}
                 sx={{
                   boxShadow: "none",
-                  borderBottom: "0.5px solid white",
+                  borderBottom: "0.5px solid rgb(71, 71, 71)",
                   borderRadius: "0px",
                 }}
               >
                 {language ? (
                   <>
-                    <span
-                      style={{
-                        marginRight: "7px",
-                        boxShadow: "1px black",
-                        fontWeight: "900",
-                        border:
-                          match.match_hometeam_id === club.team_key
-                            ? Number(match.match_hometeam_score) >
-                              Number(match.match_awayteam_score)
-                              ? "1px solid green"
-                              : Number(match.match_hometeam_score) ==
-                                Number(match.match_awayteam_score)
-                              ? "1px solid grey"
-                              : Number(match.match_hometeam_score) <
-                                  Number(match.match_awayteam_score) &&
-                                "1px solid red"
-                            : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score)
-                            ? "1px solid green"
-                            : Number(match.match_hometeam_score) ==
-                              Number(match.match_awayteam_score)
-                            ? "1px solid grey"
-                            : Number(match.match_hometeam_score) >
-                                Number(match.match_awayteam_score) &&
-                              "1px solid red",
-                        padding: "2px 7px 2px 7px",
-                        backgroundColor:
-                          match.match_hometeam_id === club.team_key
-                            ? Number(match.match_hometeam_score) >
-                              Number(match.match_awayteam_score)
-                              ? "rgba(4, 181, 27, 0.4)"
-                              : Number(match.match_hometeam_score) ==
-                                Number(match.match_awayteam_score)
-                              ? "rgba(99, 99, 99, 0.4)"
-                              : Number(match.match_hometeam_score) <
-                                  Number(match.match_awayteam_score) &&
-                                "rgba(240, 5, 5, 0.4)"
-                            : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score)
-                            ? "rgba(4, 181, 27, 0.4)"
-                            : Number(match.match_hometeam_score) ==
-                              Number(match.match_awayteam_score)
-                            ? "rgba(99, 99, 99, 0.4)"
-                            : Number(match.match_hometeam_score) >
-                                Number(match.match_awayteam_score) &&
-                              "rgba(240, 5, 5, 0.4)",
-                        borderRadius: "3px",
-                        color: "white",
-                      }}
-                    >
-                      {match.match_hometeam_id === club.team_key
-                        ? Number(match.match_hometeam_score) >
-                          Number(match.match_awayteam_score)
-                          ? "W"
-                          : Number(match.match_hometeam_score) ==
-                            Number(match.match_awayteam_score)
-                          ? "D"
-                          : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score) && "L"
-                        : Number(match.match_hometeam_score) <
-                          Number(match.match_awayteam_score)
-                        ? "W"
-                        : Number(match.match_hometeam_score) ==
-                          Number(match.match_awayteam_score)
-                        ? "D"
-                        : Number(match.match_hometeam_score) >
-                            Number(match.match_awayteam_score) && "L"}
-                    </span>
+                    <StatusBadgeH2H match={match} club={club} EngOrPl={true} />
                   </>
                 ) : (
                   <>
-                    <span
-                      style={{
-                        marginRight: "7px",
-                        boxShadow: "1px black",
-                        fontWeight: "900",
-                        border:
-                          match.match_hometeam_id === club.team_key
-                            ? Number(match.match_hometeam_score) >
-                              Number(match.match_awayteam_score)
-                              ? "1px solid green"
-                              : Number(match.match_hometeam_score) ==
-                                Number(match.match_awayteam_score)
-                              ? "1px solid grey"
-                              : Number(match.match_hometeam_score) <
-                                  Number(match.match_awayteam_score) &&
-                                "1px solid red"
-                            : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score)
-                            ? "1px solid green"
-                            : Number(match.match_hometeam_score) ==
-                              Number(match.match_awayteam_score)
-                            ? "1px solid grey"
-                            : Number(match.match_hometeam_score) >
-                                Number(match.match_awayteam_score) &&
-                              "1px solid red",
-                        padding: "2px 7px 2px 7px",
-                        backgroundColor:
-                          match.match_hometeam_id === club.team_key
-                            ? Number(match.match_hometeam_score) >
-                              Number(match.match_awayteam_score)
-                              ? "rgba(4, 181, 27, 0.4)"
-                              : Number(match.match_hometeam_score) ==
-                                Number(match.match_awayteam_score)
-                              ? "rgba(99, 99, 99, 0.4)"
-                              : Number(match.match_hometeam_score) <
-                                  Number(match.match_awayteam_score) &&
-                                "rgba(240, 5, 5, 0.4)"
-                            : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score)
-                            ? "rgba(4, 181, 27, 0.4)"
-                            : Number(match.match_hometeam_score) ==
-                              Number(match.match_awayteam_score)
-                            ? "rgba(99, 99, 99, 0.4)"
-                            : Number(match.match_hometeam_score) >
-                                Number(match.match_awayteam_score) &&
-                              "rgba(240, 5, 5, 0.4)",
-                        borderRadius: "3px",
-                        color: "white",
-                      }}
-                    >
-                      {match.match_hometeam_id === club.team_key
-                        ? Number(match.match_hometeam_score) >
-                          Number(match.match_awayteam_score)
-                          ? "Z"
-                          : Number(match.match_hometeam_score) ==
-                            Number(match.match_awayteam_score)
-                          ? "R"
-                          : Number(match.match_hometeam_score) <
-                              Number(match.match_awayteam_score) && "P"
-                        : Number(match.match_hometeam_score) <
-                          Number(match.match_awayteam_score)
-                        ? "Z"
-                        : Number(match.match_hometeam_score) ==
-                          Number(match.match_awayteam_score)
-                        ? "R"
-                        : Number(match.match_hometeam_score) >
-                            Number(match.match_awayteam_score) && "P"}
-                    </span>
+                    <StatusBadgeH2H match={match} club={club} EngOrPl={false} />
                   </>
                 )}{" "}
                 <span

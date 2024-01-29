@@ -128,14 +128,16 @@ export default function SwitchGameDetails({
           </Tabs>
         </Box>
         <CustomTabPanel component={"div"} value={value} index={0}>
-          {match.lineup.home.starting_lineups.length ? (
+          {match.goalscorer.length || match.cards.length ? (
             <DetailsTab match={match} />
           ) : (
             <MoreInfoBeforeGameComponent />
           )}
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={1}>
-          {match.lineup.home.starting_lineups.length ? (
+          {match.lineup.home.starting_lineups.length ||
+          match.goalscorer.length ||
+          match.cards.length ? (
             <Grid container spacing={0.1}>
               <StartingHomeSquad match={match} />
               <StartingAwaySquad match={match} />
@@ -173,7 +175,10 @@ export default function SwitchGameDetails({
               </Stack>
             </Box>
           ) : (
-            <MoreInfoBeforeGameComponent />
+            <MoreInfoBeforeGameComponent
+              englishText="No data available for display"
+              polishText="Brak danych do wyświetlenia"
+            />
           )}
         </CustomTabPanel>
         <CustomTabPanel component={"div"} value={value} index={3}>
