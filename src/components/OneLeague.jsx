@@ -51,6 +51,7 @@ export function OneLeague({ league }) {
         <List component="div" disablePadding>
           {league.leagues.map((oneLeague, i) => (
             <ListItemButton
+              key={i}
               onClick={() => {
                 fetchData(oneLeague.leagueId);
                 fetchTodaysGames(oneLeague.leagueId);

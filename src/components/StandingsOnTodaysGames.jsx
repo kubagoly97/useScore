@@ -28,7 +28,7 @@ export default function StandingsOnTodaysGames({ table }) {
       <TableContainer
         component={Paper}
         style={{
-          backgroundColor: "#0D2818",
+          backgroundColor: "black",
           boxShadow: "none",
           marginBottom: "15px",
         }}
@@ -108,7 +108,8 @@ export default function StandingsOnTodaysGames({ table }) {
                     <img
                       src={team.team_badge}
                       alt={team.team_name}
-                      className="BadgeInTable"
+                      style={{ width: "14px" }}
+                      // className="BadgeInTable"
                     />{" "}
                     <a href={`/${team.team_id}`} style={teamStyle}>
                       {" "}
