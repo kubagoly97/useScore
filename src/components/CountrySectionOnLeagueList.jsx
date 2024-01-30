@@ -9,7 +9,8 @@ export function CountrySectionOnLeagueList({
   polishCountryName = "Kraj",
   leagues,
 }) {
-  const { language, fetchData, fetchTodaysGames } = useProps();
+  const { language, fetchData, fetchTodaysGames, fetchTodaysGamesTable } =
+    useProps();
 
   return (
     <>
@@ -24,6 +25,7 @@ export function CountrySectionOnLeagueList({
           onClick={() => {
             fetchData(league.leagueId);
             fetchTodaysGames(league.leagueId);
+            fetchTodaysGamesTable(league.leagueId);
           }}
         />
       ))}
