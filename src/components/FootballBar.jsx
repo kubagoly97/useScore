@@ -15,7 +15,7 @@ import LanguageSwitch from "./LanguageSwitch";
 export default function FootballBar() {
   return (
     <AppBar
-      position="sticky"
+      position="static"
       sx={{
         padding: "2px 0px 2px 0px",
         borderRadius: "5px",
