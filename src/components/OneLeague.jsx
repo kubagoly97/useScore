@@ -9,7 +9,8 @@ import useProps from "../hooks/useProps";
 import { CountryBadge } from "./CountryBadge";
 
 export function OneLeague({ league }) {
-  const { fetchData, fetchTodaysGames, language } = useProps();
+  const { fetchData, fetchTodaysGames, language, fetchTodaysGamesTable } =
+    useProps();
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -53,6 +54,7 @@ export function OneLeague({ league }) {
               onClick={() => {
                 fetchData(oneLeague.leagueId);
                 fetchTodaysGames(oneLeague.leagueId);
+                fetchTodaysGamesTable(oneLeague.leagueId);
               }}
               sx={{ pl: 4, fontSize: "10px" }}
             >

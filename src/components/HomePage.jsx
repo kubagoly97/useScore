@@ -15,6 +15,7 @@ import useProps from "../hooks/useProps";
 import Fade from "@mui/material/Fade";
 import TodaysGamesList from "./TodaysGamesList";
 import PersonIcon from "@mui/icons-material/Person";
+import TabsTodaysMatchesAndTable from "./TabsTodaysMatchesAndTable";
 
 export default function HomePage() {
   const { user } = useAuthContext();
@@ -40,6 +41,8 @@ export default function HomePage() {
     dayOfTheWeek,
     polishDayOfTheWeek,
     dateStyle,
+    todaysGamesTable,
+    fetchTodaysGamesTable,
   } = useProps();
 
   useEffect(function () {
@@ -82,12 +85,13 @@ export default function HomePage() {
                   >
                     {todaysGames.length > 0 ? (
                       <>
-                        <span style={dateStyle}>
+                        <TabsTodaysMatchesAndTable />
+                        {/* <span style={dateStyle}>
                           {todaysDate.$D}.{todaysDate.$M < 9 ? 0 : ""}
                           {todaysDate.$M + 1}.{todaysDate.$y} |{" "}
                           {language ? dayOfTheWeek : polishDayOfTheWeek}
                         </span>
-                        <TodaysGamesList />
+                        <TodaysGamesList /> */}
                       </>
                     ) : (
                       <></>

@@ -24,6 +24,8 @@ export const ContextProvider = ({ children }) => {
   // ---------------------------
   const [todaysGames, setTotodaysGames] = useState([]);
   // ---------------------------
+  const [todaysGamesTable, setTodaysGamesTable] = useState([]);
+  // ---------------------------
   const [language, setLanguage] = useState(function () {
     const storedValue = localStorage.getItem("language");
     return storedValue ? JSON.parse(storedValue) : true;
@@ -367,6 +369,17 @@ export const ContextProvider = ({ children }) => {
     const resJson = await res.json();
     setTotodaysGames(resJson);
   };
+
+  const fetchTodaysGamesTable = async (id) => {
+    const url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${id}&APIkey=${
+      import.meta.env.VITE_API_KEY
+    }`;
+    const res = await fetch(url);
+    const resJSON = await res.json();
+    console.log(resJSON);
+    setTodaysGamesTable(resJSON);
+  };
+
   const handleAddMatchOnYourFavouriteList = async (match) => {
     const team_home_badge = match.team_home_badge;
     const team_away_badge = match.team_away_badge;
@@ -484,6 +497,9 @@ export const ContextProvider = ({ children }) => {
         handleAddMatchOnYourFavouriteList,
         handleDelete,
         dateStyle,
+        fetchTodaysGamesTable,
+        todaysGamesTable,
+        setTodaysGamesTable,
       }}
     >
       {children}
