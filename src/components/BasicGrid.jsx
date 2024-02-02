@@ -6,6 +6,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
 import useProps from "../hooks/useProps";
 import Tooltip from "@mui/material/Tooltip";
+import NoPicture from "/NoPicture.jpeg";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -28,6 +29,9 @@ export default function BasicGrid() {
 }
 
 function ClubCard({ club }) {
+  const replaceImage = (e) => {
+    e.target.src = NoPicture;
+  };
   return (
     <Tooltip placement="top-start" title={`${club.team_name}`}>
       <Grid xs={12} sm={4} md={3}>
@@ -43,6 +47,7 @@ function ClubCard({ club }) {
             }}
           >
             <img
+              onError={replaceImage}
               className="ClubImageOnList"
               src={club.team_badge}
               alt={club.team_name}

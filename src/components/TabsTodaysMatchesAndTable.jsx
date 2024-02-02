@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TodaysGamesList from "./TodaysGamesList";
 import useProps from "../hooks/useProps";
-import { getTableBodyUtilityClass } from "@mui/material";
 import StandingsOnTodaysGames from "./StandingsOnTodaysGames";
 
 function CustomTabPanel(props) {
@@ -57,6 +56,19 @@ export default function TabsTodaysMatchesAndTable() {
     todaysGamesTable,
   } = useProps();
 
+  const tabs = [
+    {
+      number: 0,
+      englishText: "Today's games",
+      polishText: "Dzisiaj grają",
+      todaysGames: true,
+    },
+    {
+      number: 1,
+      todaysGames: false,
+    },
+  ];
+
   return (
     <Box sx={{ width: "100%", "& .css-19kzrtu": { padding: "0px" } }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -68,27 +80,26 @@ export default function TabsTodaysMatchesAndTable() {
           textColor="inherit"
           indicatorColor="inherit"
         >
-          <Tab
-            sx={{
-              padding: "5px",
-              color: "white",
-              border: value === 0 ? "0.5px solid rgb(54, 54, 54)" : "none",
-              borderRadius: "20px",
-            }}
-            label={language ? "Todays games" : "Dzisiaj grają"}
-            {...a11yProps(0)}
-          />
-          <Tab
-            sx={{
-              padding: "5px",
-              border: value === 1 ? "0.5px solid rgb(54, 54, 54)" : "none",
-              borderRadius: "20px",
-              transition: "1s",
-            }}
-            label={todaysGamesTable[0].league_name}
-            {...a11yProps(1)}
-            disabled={todaysGamesTable[0].country_name == "eurocups"}
-          />
+          {tabs.map((tab, i) => (
+            <Tab
+              key={i}
+              sx={{
+                padding: "5px",
+                color: "white",
+                border:
+                  value === tab.number ? "0.5px solid rgb(54, 54, 54)" : "none",
+                borderRadius: "20px",
+              }}
+              label={
+                tab.todaysGames
+                  ? language
+                    ? tab.englishText
+                    : tab.polishText
+                  : todaysGamesTable[0].league_name
+              }
+              {...a11yProps(tab.number)}
+            />
+          ))}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
