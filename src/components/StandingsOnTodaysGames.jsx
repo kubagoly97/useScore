@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import useProps from "../hooks/useProps";
-
+import NoPicture from "/NoPicture.jpeg";
 export default function StandingsOnTodaysGames({ table }) {
   const { language } = useProps();
 
@@ -22,7 +22,9 @@ export default function StandingsOnTodaysGames({ table }) {
     color: "white",
     fontWeight: "100",
   };
-
+  const replaceImage = (e) => {
+    e.target.src = NoPicture;
+  };
   return (
     <>
       <TableContainer
@@ -107,9 +109,8 @@ export default function StandingsOnTodaysGames({ table }) {
                     {"  "}
                     <img
                       src={team.team_badge}
-                      alt={team.team_name}
                       style={{ width: "14px" }}
-                      // className="BadgeInTable"
+                      onError={replaceImage}
                     />{" "}
                     <a href={`/${team.team_id}`} style={teamStyle}>
                       {" "}

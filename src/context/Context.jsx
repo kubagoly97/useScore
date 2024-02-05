@@ -315,6 +315,21 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Brazil",
       polishCountryName: "Brazylia",
     },
+    {
+      leagues: [
+        { leagueName: "OTP Bank Liga", leagueId: 191 },
+        { leagueName: "Markantil Bank Liga", leagueId: 188 },
+      ],
+      countryBadge: "Hungary.png",
+      englishCountryName: "Hungary",
+      polishCountryName: "Węgry",
+    },
+    {
+      leagues: [{ leagueName: "Urvalsdeild", leagueId: 192 }],
+      countryBadge: "Iceland.png",
+      englishCountryName: "Iceland",
+      polishCountryName: "Islandia",
+    },
   ];
   const linkStyle = {
     color: "white",
