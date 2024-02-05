@@ -114,7 +114,6 @@ export default function LeagueTable({ table, club }) {
                       className="BadgeInTable"
                     />{" "}
                     <a href={`/${team.team_id}`} style={teamStyle}>
-                      {" "}
                       {team.team_name}
                     </a>
                   </TableCell>
