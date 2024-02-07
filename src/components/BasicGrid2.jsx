@@ -105,7 +105,8 @@ export default function BasicGrid2() {
     <>
       <Box sx={{ flexGrow: 1, marginTop: "15px" }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={5}>
+          <Grid md={1}></Grid>
+          <Grid item xs={12} sm={5} md={5}>
             <Stack spacing={2}>
               <Fade in={clubInfo.length}>
                 <Item sx={boxStyle}>
@@ -130,7 +131,7 @@ export default function BasicGrid2() {
             </Stack>
           </Grid>
           {!showTable ? (
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={7} md={5}>
               <Stack>
                 <Fade in={matchesData.length}>
                   <Item sx={gameDeatilsAndTableStyle}>
@@ -172,7 +173,7 @@ export default function BasicGrid2() {
               </Stack>
             </Grid>
           ) : (
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={7} md={5}>
               <Fade in={showTable}>
                 <Item sx={gameDeatilsAndTableStyle}>
                   <SwitchTableAndTopScorers
@@ -184,6 +185,7 @@ export default function BasicGrid2() {
               </Fade>
             </Grid>
           )}
+          <Grid md={1}></Grid>
         </Grid>
       </Box>
     </>

@@ -330,7 +330,14 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Iceland",
       polishCountryName: "Islandia",
     },
+    {
+      leagues: [{ leagueName: "Veikkausliiga", leagueId: 352 }],
+      countryBadge: "Finland.png",
+      englishCountryName: "Finland",
+      polishCountryName: "Finlandia",
+    },
   ];
+
   const linkStyle = {
     color: "white",
     textDecoration: "none",
