@@ -70,7 +70,7 @@ export default function HomePage() {
       <Fade in={homePageFootballBar} timeout={750}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={0.9}>
-            <Grid xs={0} sm={0} md={1}></Grid>
+            <Grid xs={0} sm={0} md={1.5}></Grid>
             <Grid xs={0} sm={4} md={2} sx={{ marginTop: "2em" }}>
               <LeaguesList />
             </Grid>
@@ -86,12 +86,6 @@ export default function HomePage() {
                     {todaysGames.length > 0 ? (
                       <>
                         <TabsTodaysMatchesAndTable />
-                        {/* <span style={dateStyle}>
-                          {todaysDate.$D}.{todaysDate.$M < 9 ? 0 : ""}
-                          {todaysDate.$M + 1}.{todaysDate.$y} |{" "}
-                          {language ? dayOfTheWeek : polishDayOfTheWeek}
-                        </span>
-                        <TodaysGamesList /> */}
                       </>
                     ) : (
                       <></>
@@ -134,7 +128,7 @@ export default function HomePage() {
                   </Container>
                 </Fade>
               )}
-              <Grid xs={0} sm={0} md={2}></Grid>
+              <Grid xs={0} sm={0} md={1.5}></Grid>
             </Grid>
           </Grid>
         </Box>
