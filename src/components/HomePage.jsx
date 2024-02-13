@@ -37,12 +37,6 @@ export default function HomePage() {
     language,
     homePageFootballBar,
     todaysGames,
-    todaysDate,
-    dayOfTheWeek,
-    polishDayOfTheWeek,
-    dateStyle,
-    todaysGamesTable,
-    fetchTodaysGamesTable,
   } = useProps();
 
   useEffect(function () {
