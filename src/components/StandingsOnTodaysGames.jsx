@@ -65,7 +65,17 @@ export default function StandingsOnTodaysGames({ table }) {
                   }}
                 >
                   <TableCell
-                    style={{ color: "white" }}
+                    style={{
+                      color: "white",
+                      borderBottom:
+                        team.country_name === "eurocups" &&
+                        team.overall_league_position === "4" &&
+                        "0.5px solid grey",
+                      paddingBottom:
+                        team.country_name === "eurocups" &&
+                        team.overall_league_position === "4" &&
+                        "5px",
+                    }}
                     component="th"
                     scope="row"
                   >
@@ -101,6 +111,10 @@ export default function StandingsOnTodaysGames({ table }) {
                           (team.overall_promotion.includes("Relegation") &&
                             "red") ||
                           (team.overall_promotion.includes("Final Series") &&
+                            "blue") ||
+                          (team.overall_promotion.includes(
+                            "Championship Round"
+                          ) &&
                             "blue"),
                       }}
                     >
