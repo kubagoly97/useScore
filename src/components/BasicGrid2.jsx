@@ -14,6 +14,7 @@ import SwitchSquadBG2 from "./SwitchSquadBG2";
 import useProps from "../hooks/useProps";
 import SwitchTableAndTopScorers from "./SwitchTableAndTopScorers";
 import Fade from "@mui/material/Fade";
+import dayjs from "dayjs";
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -86,8 +87,11 @@ export default function BasicGrid2() {
 
   useEffect(() => {
     async function fetchDetails() {
+      const year = dayjs().year();
       const res = await fetch(
-        `https://apiv3.apifootball.com/?action=get_events&from=2023-07-01&to=2024-06-30&team_id=${id}&APIkey=${
+        `https://apiv3.apifootball.com/?action=get_events&from=${
+          year - 1
+        }-07-01&to=${year}-06-30&team_id=${id}&APIkey=${
           import.meta.env.VITE_API_KEY
         }`
       );

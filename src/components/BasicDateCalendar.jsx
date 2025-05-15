@@ -130,6 +130,7 @@ export default function DateCalendarServerRequest({ setShowTable }) {
     setIsLoading(true);
     setHighlightedDays([]);
     fetchHighlightedDays(date);
+    console.log(highlightedDays);
   };
 
   useEffect(() => {
