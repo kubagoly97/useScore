@@ -336,6 +336,12 @@ export const ContextProvider = ({ children }) => {
       englishCountryName: "Finland",
       polishCountryName: "Finlandia",
     },
+    {
+      leagues: [{ leagueName: "Primera División", leagueId: 115 }],
+      countryBadge: "Chile.png",
+      englishCountryName: "Chile",
+      polishCountryName: "Chile",
+    },
   ];
 
   const linkStyle = {
