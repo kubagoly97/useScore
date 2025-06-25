@@ -130,7 +130,22 @@ export default function DateCalendarServerRequest({ setShowTable }) {
     setIsLoading(true);
     setHighlightedDays([]);
     fetchHighlightedDays(date);
-    console.log(highlightedDays);
+    console.log(
+      matchesData.slice(
+        matchesData.findIndex((match) =>
+          match.match_date.includes(
+            `${date.$y}-${date.$M < 9 ? "0" : ""}${date.$M + 1}`
+          )
+        ),
+        matchesData.findIndex((match) =>
+          match.match_date.includes(
+            `${date.$M === 11 ? date.$y + 1 : date.$y}-${
+              date.$M < 8 ? "0" : ""
+            }${date.$M === 11 ? "01" : date.$M + 2}`
+          )
+        )
+      ).length
+    );
   };
 
   useEffect(() => {

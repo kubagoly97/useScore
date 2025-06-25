@@ -3,6 +3,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export function FootballFooter() {
   const iconStyle = {
@@ -40,6 +41,14 @@ export function FootballFooter() {
           style={iconStyle}
         >
           <YouTubeIcon />
+        </a>
+      </Tooltip>
+      <Tooltip title="My LinkedIn" placement="bottom-end">
+        <a
+          href="https://www.linkedin.com/in/jakub-goly-8393a1370/?locale=pl_PL"
+          style={iconStyle}
+        >
+          <LinkedInIcon />
         </a>
       </Tooltip>
     </Box>
